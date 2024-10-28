@@ -1,0 +1,17 @@
+{
+  "name": "onex-kg",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --clearScreen false",
+    "build": "tsc && vite build"
+  },
+  "dependencies": {
+    "@repo/ui": "*"
+  },
+  "devDependencies": {
+    "@repo/configs": "*",
+    "@repo/types": "*"
+  }
+}
