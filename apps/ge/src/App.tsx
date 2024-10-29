@@ -1,12 +1,5 @@
-import { PrimaryButton, SecondaryButton } from "@repo/ui";
-
 const App = () => {
-  return (
-    <div>
-      <PrimaryButton />
-      <SecondaryButton />
-    </div>
-  );
+  return <div></div>;
 };
 
 export default App;
