@@ -13,3 +13,7 @@
 body {
   background-color: #f9fafb;
 }
+.onex-menu-item {
+  display: flex;
+  align-items: center;
+}
