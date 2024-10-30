@@ -23,12 +23,9 @@ import logout_icon from "../../assets/images/log-out-icon.svg";
 import onex_logo from "../../assets/images/onex_logo_closed.svg";
 import app_versions from "../../assets/images/api-versions.svg";
 import { MenuProps } from "antd";
-import { usePermission } from "@repo/ui";
-import { useNavigate } from "react-router-dom";
 
 type MenuItem = Required<MenuProps>["items"][number];
-export const sidebar = (): MenuItem[] => {
-  const navigate = useNavigate();
+export const sidebar = (permissions: Record<string, boolean>): MenuItem[] => {
   const {
     dashboard_view,
     recipient_view,
@@ -44,7 +41,7 @@ export const sidebar = (): MenuItem[] => {
     shop_view,
     warehouse_view,
     api_version_view,
-  } = usePermission();
+  } = permissions;
 
   return [
     {
@@ -91,7 +88,7 @@ export const sidebar = (): MenuItem[] => {
       ],
     },
     {
-      key: "/orders",
+      key: "/order",
       label: "Orders",
       icon: <img alt="Orders" src={layers_icon} />,
       style:
@@ -167,7 +164,7 @@ export const sidebar = (): MenuItem[] => {
       style: !order_view ? { display: "none" } : undefined,
     },
     {
-      key: "/roles",
+      key: "/permissions",
       label: "Roles",
       icon: <img alt="Roles" src={roles_icon} />,
       style: !role_view ? { display: "none" } : undefined,
@@ -254,7 +251,7 @@ export const sidebar = (): MenuItem[] => {
       icon: <img alt="Log out" src={logout_icon} />,
       onClick: () => {
         localStorage.clear();
-        navigate("/");
+        window.location.replace("/");
       },
     },
   ];
