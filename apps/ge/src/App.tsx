@@ -44,9 +44,7 @@ const App = () => {
         className={"border border-grey-50 rounded"}
         meta={data?.meta}
         onChangePage={setPage}
-        onChangePerPage={(_, size) => {
-          setPerPage(size);
-        }}
+        onChangePerPage={(size) => setPerPage(size)}
         loading={loading}
       />
     </Sidebar>

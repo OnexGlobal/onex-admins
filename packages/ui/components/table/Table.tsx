@@ -5,7 +5,7 @@ import { Meta } from "@repo/types";
 interface OnexTableProps extends TableProps {
   meta?: Meta;
   onChangePage?: (value: number) => void;
-  onChangePerPage?: (_: number | null, value: number) => void;
+  onChangePerPage?: (value: number) => void;
 }
 
 const OnexTable: React.FC<OnexTableProps> = ({
@@ -17,14 +17,20 @@ const OnexTable: React.FC<OnexTableProps> = ({
   return (
     <Table
       {...props}
-      pagination={{
-        total: meta?.total,
-        current: meta?.current_page,
-        pageSize: meta?.per_page,
-        onChange: onChangePage,
-        onShowSizeChange: onChangePerPage,
-        className: "pr-4",
-      }}
+      pagination={
+        meta
+          ? {
+              total: meta?.total,
+              current: meta?.current_page,
+              pageSize: meta?.per_page,
+              onChange: onChangePage,
+              onShowSizeChange: (_, value) => {
+                if (onChangePerPage) onChangePerPage(value);
+              },
+              className: "pr-[12px]",
+            }
+          : false
+      }
     />
   );
 };
