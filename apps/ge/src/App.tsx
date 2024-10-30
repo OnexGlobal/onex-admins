@@ -3,78 +3,51 @@ import { Sidebar } from "@repo/ui";
 import { Route, Routes } from "react-router-dom";
 import { sidebar } from "./utils/constants/sidebar";
 import OnexTable from "@repo/ui/components/table/Table";
+import axios from "axios";
+import { useEffect, useState } from "react";
 
 const App = () => {
+  const [data, setData] = useState<any>(null);
+  const [page, setPage] = useState(1);
+  const [perPage, setPerPage] = useState(15);
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    setLoading(true);
+    axios("https://backadmin.onex.ge/api/orders", {
+      params: {
+        page,
+        per_page: perPage,
+      },
+      headers: {
+        Authorization:
+          "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL2JhY2thZG1pbi5vbmV4LmdlL2FwaS9sb2dpbiIsImlhdCI6MTczMDIwNjA4OSwiZXhwIjoxNzkwMjA2MDI5LCJuYmYiOjE3MzAyMDYwODksImp0aSI6IjN2MHdnNHZyN1ROZ1BXTXYiLCJzdWIiOiIxIiwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyIsInVuaXF1ZV9pZCI6ImZmZjFkZTUyLTQ3ZTEtNDA0Mi1hZmZhLTI1NmNiY2RiODRmcSJ9.0atAxPPuHP_4q-oZld9cHHufy7h90jmZ4fdUO6de2LY",
+      },
+    })
+      .then((res) => {
+        setData(res?.data?.data);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  }, [page, perPage]);
+
+  console.log(data?.meta?.total);
   return (
     <Sidebar menu={sidebar()}>
       <Routes>
         <Route path="/" element={<div>Dashboard</div>} />
       </Routes>
       <OnexTable
-        data={[
-          {
-            id: 100201,
-            tracking_code: "43179072265100100035",
-            status: "at_warehouse",
-            ready_for_pickup: 0,
-          },
-
-          {
-            id: 100200,
-            tracking_code: "00340434720016563794",
-            status: "at_warehouse",
-            ready_for_pickup: 0,
-          },
-          {
-            id: 100199,
-            tracking_code: "YQ307694177GB",
-            status: "at_warehouse",
-            ready_for_pickup: 0,
-          },
-          {
-            id: 100198,
-            tracking_code: "OQ946073397GB",
-            status: "at_warehouse",
-            ready_for_pickup: 0,
-          },
-          {
-            id: 100197,
-            tracking_code: "GA03729",
-            status: "at_warehouse",
-            ready_for_pickup: 0,
-          },
-          {
-            id: 100196,
-            tracking_code: "GA03740",
-            status: "at_warehouse",
-            ready_for_pickup: 0,
-          },
-          {
-            id: 100195,
-            tracking_code: "H03CPA0028740030",
-            status: "at_warehouse",
-            ready_for_pickup: 0,
-          },
-
-          {
-            id: 100194,
-            tracking_code: "T0047A0472147177",
-            status: "at_warehouse",
-            ready_for_pickup: 0,
-          },
-          {
-            id: 100193,
-            tracking_code: "T00B8A0331978307",
-            status: "at_warehouse",
-            ready_for_pickup: 0,
-          },
-          {
-            id: 100192,
-            tracking_code: "C00HHA0525822154",
-            status: "at_warehouse",
-            ready_for_pickup: 0,
-          },
-        ]}
+        dataSource={data?.data}
+        columns={[{ dataIndex: "name", title: "Name" }]}
+        className={"border border-grey-50 rounded"}
+        meta={data?.meta}
+        onChangePage={setPage}
+        onChangePerPage={(_, size) => {
+          setPerPage(size);
+        }}
+        loading={loading}
       />
     </Sidebar>
   );

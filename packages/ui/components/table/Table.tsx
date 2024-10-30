@@ -1,28 +1,32 @@
-import { Table } from "antd";
-import { ColumnsType } from "antd/es/table";
+import { Table, TableProps } from "antd";
 import * as React from "react";
+import { Meta } from "@repo/types";
 
-type GenericDataType = Record<string, any>;
-
-interface OnexTableProps {
-  data: GenericDataType[];
+interface OnexTableProps extends TableProps {
+  meta?: Meta;
+  onChangePage?: (value: number) => void;
+  onChangePerPage?: (_: number | null, value: number) => void;
 }
 
-const OnexTable: React.FC<OnexTableProps> = ({ data }) => {
-  const generateColumns = (
-    data: GenericDataType[]
-  ): ColumnsType<GenericDataType> => {
-    if (data.length === 0) return [];
-    return Object.keys(data[0]).map((key) => ({
-      title: key.charAt(0).toUpperCase() + key.slice(1).replaceAll("_", " "),
-      dataIndex: key,
-      key,
-    }));
-  };
-
-  const columns: ColumnsType<GenericDataType> = generateColumns(data) || [];
-
-  return <Table columns={columns} dataSource={data} rowKey="id" />;
+const OnexTable: React.FC<OnexTableProps> = ({
+  meta,
+  onChangePage,
+  onChangePerPage,
+  ...props
+}) => {
+  return (
+    <Table
+      {...props}
+      pagination={{
+        total: meta?.total,
+        current: meta?.current_page,
+        pageSize: meta?.per_page,
+        onChange: onChangePage,
+        onShowSizeChange: onChangePerPage,
+        className: "pr-4",
+      }}
+    />
+  );
 };
 
 export default OnexTable;
