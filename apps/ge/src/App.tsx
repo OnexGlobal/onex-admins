@@ -8,12 +8,12 @@ import { AuthContext } from "./utils/hooks/useAuth";
 import { usePermission } from "./utils/hooks/usePermissions";
 
 const App = () => {
-  const { auth, loading } = useContext(AuthContext);
+  const { auth, loading, user } = useContext(AuthContext);
   const permissions = usePermission();
   if (loading) return <Loading />;
   if (!auth) return <Unanuthenticated />;
   return (
-    <Sidebar menu={sidebar(permissions)}>
+    <Sidebar menu={sidebar(permissions)} email={user?.email}>
       <Authenticated />
     </Sidebar>
   );
