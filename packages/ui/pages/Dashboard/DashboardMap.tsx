@@ -1,11 +1,11 @@
-import { Loader } from "@repo/ui/components/loader/Loader";
 import * as am4core from "@amcharts/amcharts4/core.js";
 import * as am4maps from "@amcharts/amcharts4/maps";
 import { useLayoutEffect, useState } from "react";
 import am4themes_animated from "@amcharts/amcharts4/themes/animated";
 import am4geodata_georgiaHigh from "@amcharts/amcharts4-geodata/russiaHigh";
-import { DashboardData } from "../../types/dashboard";
-import { russiaRegions } from "../../constants/russia-regions";
+import { DashboardData } from "onex-ge/src/types/dashboard";
+import { russiaRegions } from "onex-ge/src/constants/russia-regions";
+import { Loader } from "../../components/loader/Loader";
 
 interface Props {
   dashboardData: DashboardData;

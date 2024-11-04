@@ -1,9 +1,7 @@
 import { useState } from "react";
-// import { StylePage } from "../style-page";
-// import { Typography } from "components/elements/Typography";
 import DashboardTopActions from "./TopActions";
-import { FILTERS } from "../../types/dashboard";
-import useDashboardData from "../../hooks/dashboard/useDashboardData.hook";
+import { FILTERS } from "onex-ge/src/types/dashboard";
+import useDashboardData from "onex-ge/src/hooks/dashboard/useDashboardData.hook";
 import GrowthChart from "./GrowthChart";
 import DashboardTotalCards from "./TotalCards";
 import { Col, Row } from "antd";

@@ -160,6 +160,12 @@ module.exports = {
         500: "linear-gradient(45deg, #0a2540 0%, #4f96d9 140.58%)",
       },
     },
+    fontSize: {
+      title: [
+        "24px",
+        { lineHeight: "21px", letterSpacing: "-1.44px", fontWeight: 500 },
+      ],
+    },
     screens: {
       sm: "0px",
       md: "768px",

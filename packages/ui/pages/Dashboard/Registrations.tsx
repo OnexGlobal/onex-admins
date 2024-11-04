@@ -1,8 +1,8 @@
 import { useLayoutEffect } from "react";
-import { Loader } from "@repo/ui/components/loader/Loader";
 import * as am4core from "@amcharts/amcharts4/core.js";
 import * as am4charts from "@amcharts/amcharts4/charts.js";
-import { DashboardData } from "../../types/dashboard";
+import { DashboardData } from "onex-ge/src/types/dashboard";
+import { Loader } from "../../components/loader/Loader";
 
 interface Props {
   dashboardData: DashboardData;
@@ -72,12 +72,7 @@ export default function DashboardRegistration({
   return dashboardData ? (
     <div className="mt-[40px] p-[24px] bg-white rounded-[12px] relative w-[100%]">
       <div className="absolute top-[24px] right-[24px] max-md:right-[10px] max-md:top-[10px]">
-        <Typography
-          text={`This ${filterType}`}
-          fontSize="14px"
-          fontWeight="400"
-          color={"#B3BBC4"}
-        />
+        <h1 className="text-info text-oxford-blue-100">{`This ${filterType}`}</h1>
       </div>
 
       <h1 className="text-title p-[0 0 15px 0]">Registration</h1>

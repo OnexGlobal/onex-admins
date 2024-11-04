@@ -3,7 +3,7 @@ import * as am4core from "@amcharts/amcharts4/core";
 import * as am4charts from "@amcharts/amcharts4/charts";
 import am4themes_animated from "@amcharts/amcharts4/themes/animated";
 import { Segmented, Select } from "antd";
-import useGetDashboardChartsData from "../../hooks/dashboard/useGetDashboardCharts.hook";
+import useGetDashboardChartsData from "onex-ge/src/hooks/dashboard/useGetDashboardCharts.hook";
 
 interface Props {
   customRange?: string[];

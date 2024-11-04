@@ -1,8 +1,8 @@
-import { Loader } from "@repo/ui/components/loader/Loader";
 import { useLayoutEffect } from "react";
 import * as am4core from "@amcharts/amcharts4/core";
 import * as am4charts from "@amcharts/amcharts4/charts";
-import { Last4BoxesType } from "../../types/dashboard";
+import { Last4BoxesType } from "onex-ge/src/types/dashboard";
+import { Loader } from "../../components/loader/Loader";
 
 export default function DashboardAppDownloads({
   dashboardData,

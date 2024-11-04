@@ -13,6 +13,16 @@
 body {
   background-color: #f9fafb;
 }
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 0;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #e7e9ec;
+  border-radius: 16px;
+}
 .onex-menu-item,
 .onex-menu-submenu-title {
   display: flex !important;

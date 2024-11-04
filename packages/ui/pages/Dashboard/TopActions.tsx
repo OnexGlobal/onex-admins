@@ -1,8 +1,7 @@
 import { DatePicker, Segmented } from "antd";
-import Flex from "components/elements/Flex";
 import dayjs from "dayjs";
 import { Dispatch, SetStateAction } from "react";
-import { DashboardData, FILTERS } from "types/dashboard";
+import { DashboardData, FILTERS } from "onex-ge/src/types/dashboard";
 
 const { RangePicker } = DatePicker;
 
@@ -24,13 +23,7 @@ export default function DashboardTopActions({
   dashboardData,
 }: Props) {
   return (
-    <Flex
-      width="100%"
-      justifyContent="flex-end"
-      alignItems="center"
-      gap="16px"
-      margin="0 0 16px 0"
-    >
+    <div className="w-[100%] flex justify-end items-center gap-[16px] mb-[16px]">
       <Segmented
         className={"_segment"}
         size={"small"}
@@ -48,6 +41,6 @@ export default function DashboardTopActions({
         ]}
         onChange={(_, values) => setCustomRange(values)}
       />
-    </Flex>
+    </div>
   );
 }

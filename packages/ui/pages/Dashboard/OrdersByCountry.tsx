@@ -1,12 +1,12 @@
 import { useLayoutEffect } from "react";
 import * as am4core from "@amcharts/amcharts4/core.js";
 import * as am4charts from "@amcharts/amcharts4/charts.js";
-import { Loader } from "@repo/ui/components/loader/Loader";
 import {
   LeftBottomArrowIcon,
   TopRightArrowIcon,
-} from "../../components/svg-components/index";
-import { DashboardData } from "../../types/dashboard";
+} from "onex-ge/src/components/svg-components";
+import { DashboardData } from "onex-ge/src/types/dashboard";
+import { Loader } from "../../components/loader/Loader";
 
 interface Props {
   dashboardData: DashboardData;

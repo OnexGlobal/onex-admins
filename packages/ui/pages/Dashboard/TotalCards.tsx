@@ -1,17 +1,17 @@
 import TotalVerifiedPercent from "./TotalVerifiedPercent";
 import { useEffect, useState } from "react";
-import { DownloadUnverified } from "../../services/dashboard";
+import { DownloadUnverified } from "onex-ge/src/services/dashboard";
 import { Col, Row } from "antd";
 import {
   DownloadIcon,
   LeftBottomArrowIcon,
   TopRightArrowIcon,
   UserIcon,
-} from "../../components/svg-components/index";
+} from "onex-ge/src/components/svg-components";
 
-import { DashboardData, FilterAsProps } from "../../types/dashboard";
-import { Loader } from "@repo/ui/components/loader/Loader";
-import Primary from "@repo/ui/components/buttons/Primary";
+import { DashboardData, FilterAsProps } from "onex-ge/src/types/dashboard";
+import Primary from "../../components/buttons/Primary";
+import { Loader } from "../../components/loader/Loader";
 
 interface Props {
   dashboardData: DashboardData;

@@ -1,7 +1,7 @@
 import * as am4core from "@amcharts/amcharts4/core.js";
 import * as am4charts from "@amcharts/amcharts4/charts.js";
 import am4themes_animated from "@amcharts/amcharts4/themes/animated.js";
-import { Last4BoxesType } from "../../types/dashboard";
+import { Last4BoxesType } from "onex-ge/src/types/dashboard";
 import { useLayoutEffect } from "react";
 
 export default function UsersByGender({
