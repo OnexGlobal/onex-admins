@@ -1,5 +1,5 @@
 import { ButtonHTMLAttributes } from "react";
+import { BaseButtonProps } from "antd/es/button/button";
 
-export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  loading?: boolean;
-}
+export type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> &
+  BaseButtonProps;

@@ -32,11 +32,13 @@ const App = () => {
       });
   }, [page, perPage]);
 
-  console.log(data?.meta?.total);
   return (
     <Sidebar menu={sidebar()}>
       <Routes>
-        <Route path="/" element={<div>Dashboard</div>} />
+        <Route
+          path="/"
+          element={<div className={"text-title"}>Dashboard</div>}
+        />
       </Routes>
       <OnexTable
         dataSource={data?.data}
@@ -47,6 +49,9 @@ const App = () => {
         onChangePerPage={(size) => setPerPage(size)}
         loading={loading}
       />
+      <div className="border-[3px] border-grey-50 rounded-[12px] [&>h1]:max-md:text-green-500">
+        <h1>Total</h1>
+      </div>
     </Sidebar>
   );
 };

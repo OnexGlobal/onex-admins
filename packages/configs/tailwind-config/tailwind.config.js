@@ -167,5 +167,13 @@ module.exports = {
       xl: "1240px",
       "2xl": "1440px",
     },
+    fontSize: {
+      title: [
+        "24px",
+        { lineHeight: "32px", fontWeight: 500, marginBottom: "24px" },
+      ],
+      description: ["20px", { lineHeight: "30px", fontWeight: 500 }],
+      info: ["14px", { lineHeight: "24px", fontWeight: 400 }],
+    },
   },
 };
