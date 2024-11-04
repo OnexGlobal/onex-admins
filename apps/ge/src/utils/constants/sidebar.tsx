@@ -147,7 +147,7 @@ export const sidebar = (permissions: Record<string, boolean>): MenuItem[] => {
           key: "/online-payment",
           label: "Online payment",
           icon: <img alt="Online payment" src={payment_icon} />,
-          style: report_full ? undefined : { display: "none" },
+          style: balance_view ? undefined : { display: "none" },
         },
         {
           key: "/bonus",
