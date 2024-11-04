@@ -4,9 +4,7 @@
   "license": "MIT",
   "main": "./index.ts",
   "devDependencies": {
-    "@repo/eslint-config": "*",
-    "@repo/typescript-config": "*",
-    "eslint": "^8.57.0",
+    "@repo/configs": "*",
     "typescript": "5.5.4"
   }
 }

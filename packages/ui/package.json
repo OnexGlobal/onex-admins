@@ -3,11 +3,8 @@
   "version": "0.0.0",
   "license": "MIT",
   "devDependencies": {
-    "@repo/eslint-config": "*",
-    "@repo/typescript-config": "*",
+    "@repo/configs": "*",
     "@repo/types": "*",
-    "eslint": "^8.57.0",
-    "typescript": "5.5.4",
-
+    "typescript": "5.5.4"
   }
 }
