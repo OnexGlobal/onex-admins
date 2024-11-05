@@ -1,4 +1,4 @@
-import { Dashboard, ProtectedRoute } from "@repo/ui";
+import { Customers, Dashboard, Home, ProtectedRoute } from "@repo/ui";
 import { Route, Routes } from "react-router-dom";
 import { usePermission } from "../../utils/hooks/usePermissions";
 
@@ -23,17 +23,17 @@ const AuthRoutes = () => {
   const routes = [
     {
       path: "/",
-      component: <div>Home</div>,
+      component: <Home />,
       permission: true,
     },
     {
       path: "/dashboard",
-      component: <Dashboard />,
+      component: <div>Dashboard</div>,
       permission: dashboard_view,
     },
     {
       path: "/customers",
-      component: <div>Customers</div>,
+      component: <Customers />,
       permission: recipient_view,
     },
     {
