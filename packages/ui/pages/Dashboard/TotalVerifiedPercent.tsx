@@ -13,28 +13,29 @@ export default function TotalVerifiedPercent({
   }, [dashboardData]);
 
   return (
-    <div>
-      <div
-        className="flex w-[100px] h-[100px] rounded-[50%] justify-center items-center relative transition-[250ms]"
-        style={{
-          background: `radial-gradient(closest-side, white 79% transparent 80% 100%) conic-gradient(${
-            percentage >= 85 ? "#0a2540" : "#FC4447"
-          } var(--percent), #e7e9ec 0) --percent: 85%`,
-        }}
-      >
-        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
-          <Tooltip title={"Verified rate"} placement={"bottom"}>
-            <div>{percentage}%</div>
-          </Tooltip>
-        </div>
-
-        <progress
-          id={"myprogress"}
-          value={25}
-          max="100"
-          style={{ visibility: "hidden", width: "0", height: "0" }}
-        />
+    <div
+      className={`relative flex items-center justify-center w-24 h-24 rounded-full transition-all`}
+      style={{
+        background: `radial-gradient(closest-side, white 79%, transparent 80% 100%), conic-gradient(${
+          percentage >= 85 ? "#0a2540" : "#FC4447"
+        } ${percentage}%, #e7e9ec 0)`,
+      }}
+    >
+      <div className="absolute inset-0 flex items-center justify-center">
+        <Tooltip title={"Verified rate"} placement={"bottom"}>
+          <div className="text-lg font-bold text-[#0a2540] md:text-base">
+            {percentage}%
+          </div>
+        </Tooltip>
       </div>
+
+      {/* Hidden progress element */}
+      <progress
+        id={"myprogress"}
+        value={25}
+        max="100"
+        className="invisible w-0 h-0"
+      ></progress>
     </div>
   );
 }

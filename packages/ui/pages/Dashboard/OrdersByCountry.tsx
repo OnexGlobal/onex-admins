@@ -154,11 +154,9 @@ export default function OrdersByCountry({
           {`This ${filterType}`}
         </h1>
       </div>
-
-      <h1 className="text-title p-[0 0 15px 0]">Orders by country</h1>
-
+      <h1 className="text-title pb-[15px]">Orders by country</h1>
       {dashboardData ? (
-        <div id="ordersByCountry" className="w-[100%] h-[325px]" />
+        <div id="ordersByCountry" className="w-[100%] h-[325px]"></div>
       ) : (
         <Loader />
       )}
@@ -172,16 +170,16 @@ export default function OrdersByCountry({
                       src={`https://backadmin.onex.ge/storage/images/warehouses/${expected[1].round_flag}`}
                     />
                     <div className="max-md:hidden max-md:mb-[10px]">
-                      <h1 className="text-info font-[500] p-[0 12px 0 5px]">
+                      <h1 className="text-info font-[500] pr-[12px] pl-[5px]">
                         {expected[0]}
                       </h1>
                     </div>
                     <div className="flex max-md:flex-col">
-                      <h1 className="text-info font-[500] p-[0 12px 0 5px]">{`${expected[1].total} items `}</h1>
+                      <h1 className="text-info font-[500] pr-[12px] pl-[5px]">{`${expected[1].total} items `}</h1>
                       <div className="flex">
-                        <h1 className="text-info font-[500] p-[0 12px 0 5px]">{` ${expected[1].total_weight} kg`}</h1>
+                        <h1 className="text-info font-[500] pr-[12px] pl-[5px]]">{` ${expected[1].total_weight} kg`}</h1>
 
-                        <h1 className="text-info text-green-500 font-[500] p-[0 12px 0 5px]">{`Avg ${expected[1].avg_weight} kg`}</h1>
+                        <h1 className="text-info text-green-500 font-[500] pr-[12px] pl-[5px]">{`Avg ${expected[1].avg_weight} kg`}</h1>
                       </div>
                     </div>
                   </div>
@@ -199,11 +197,11 @@ export default function OrdersByCountry({
                           Math.sign(expected[1].percentage_expression) === -1
                             ? "text-red-500"
                             : "text-green-500"
-                        } p-[0 16px 0 4px]`}
+                        } pr-[16px] pl-[4px]`}
                       >{`${expected[1].percentage_expression}%`}</h1>
                     </div>
 
-                    <h1 className="text-info p-[0 16px 0 4px]">{`${
+                    <h1 className="text-info pr-[16px] pl-[4px]">{`${
                       Math.sign(expected[1].sum_expression) === -1
                         ? expected[1].sum_expression
                         : "+" + expected[1].sum_expression

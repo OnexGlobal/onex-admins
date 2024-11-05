@@ -1,7 +1,7 @@
 import { useState } from "react";
 import DashboardTopActions from "./TopActions";
 import { FILTERS } from "onex-ge/src/types/dashboard";
-import useDashboardData from "onex-ge/src/hooks/dashboard/useDashboardData.hook";
+import useDashboardData from "../../hooks/dashboard/useDashboardData.hook";
 import GrowthChart from "./GrowthChart";
 import DashboardTotalCards from "./TotalCards";
 import { Col, Row } from "antd";

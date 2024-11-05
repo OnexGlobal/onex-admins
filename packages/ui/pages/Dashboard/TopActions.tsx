@@ -25,8 +25,6 @@ export default function DashboardTopActions({
   return (
     <div className="w-[100%] flex justify-end items-center gap-[16px] mb-[16px]">
       <Segmented
-        className={"_segment"}
-        size={"small"}
         options={filters}
         onChange={(val) => {
           setFilterType(val as FILTERS);

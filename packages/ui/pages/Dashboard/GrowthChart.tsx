@@ -3,7 +3,7 @@ import * as am4core from "@amcharts/amcharts4/core";
 import * as am4charts from "@amcharts/amcharts4/charts";
 import am4themes_animated from "@amcharts/amcharts4/themes/animated";
 import { Segmented, Select } from "antd";
-import useGetDashboardChartsData from "onex-ge/src/hooks/dashboard/useGetDashboardCharts.hook";
+import useGetDashboardChartsData from "../../hooks/dashboard/useGetDashboardCharts.hook";
 
 interface Props {
   customRange?: string[];
@@ -110,12 +110,10 @@ export default function DashboardCharts({ customRange }: Props) {
   }, [dashboardCharts]);
 
   return (
-    <div className="flex w-[100%] m-[0 0 44px 0]">
-      <div className="flex justify-items-end gap-[24px] w-[100%] m-[0 0 16px 0]">
-        <h1 className="text-title">Growth</h1>
+    <div className="flex flex-col w-[100%] mb-[44px] rounded-[12px] bg-white pt-[16px] pr-[16px] pl-[16px] h-max">
+      <div className="flex justify-items-end gap-[24px] flex-wrap w-[100%] mb-[16px]">
+        <h1 className="text-title mr-auto">Growth</h1>
         <Segmented
-          className="flex bg-white items-stretch has-[:ant-segmented-item]:flex has-[:ant-segmented-item]:items-center has-[:ant-segmented-item-selected]:bg-[#e3e2e2]"
-          size={"small"}
           options={[
             // "Daily",
             "Weekly",

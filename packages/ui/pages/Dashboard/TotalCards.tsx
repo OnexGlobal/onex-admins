@@ -1,6 +1,6 @@
 import TotalVerifiedPercent from "./TotalVerifiedPercent";
 import { useEffect, useState } from "react";
-import { DownloadUnverified } from "onex-ge/src/services/dashboard";
+import { DownloadUnverified } from "../../services/dashboard";
 import { Col, Row } from "antd";
 import {
   DownloadIcon,
@@ -48,11 +48,11 @@ export default function DashboardTotalCards({
       ) : (
         <Row gutter={[24, 24]} className="max-lg:mb-[25px]">
           <Col lg={24} md={24} xs={24}>
-            <div className="flex bg-white border-[1.5px] border-oxford-blue-30 rounded-[12px] p-[24px] min-h-[145px] max-md:min-h-[auto]">
+            <div className="flex flex-col bg-oxford-blue-500 border-[1.5px] border-oxford-blue-30 rounded-[12px] p-[24px] min-h-[145px] max-md:min-h-[auto]">
               <h1 className="text-title text-white size-[36px]">
                 {dashboardData?.all_info?.all_total}
               </h1>
-              <h1 className="text-info text-white p-[15px 0 18px 0]">
+              <h1 className="text-info text-white pt-[15px] pb-[18px]">
                 Total registered users
               </h1>
               <div className="flex justify-between max-md:items-center">
@@ -74,7 +74,7 @@ export default function DashboardTotalCards({
                             ) === -1
                               ? "text-red-500"
                               : "text-green-500"
-                          } p-[0 16px 0 4px]`}
+                          } pr-[16px] pl-[4px]`}
                         >{`${dashboardData?.all_info?.all_percentage_expression}%`}</h1>
                       </div>
 
@@ -98,13 +98,13 @@ export default function DashboardTotalCards({
           </Col>
           <Col lg={24} md={24} xs={24}>
             <div className="flex bg-white border-[1.5px] border-oxford-blue-30 rounded-[12px] p-[24px] min-h-[145px] max-md:min-h-[auto]">
-              <div className="flex justify-between">
+              <div className="flex w-[100%] justify-between">
                 <div>
                   <h1 className="text-title size-[36px]">
                     {dashboardData?.all_info?.completed_total}
                   </h1>
 
-                  <h1 className="text-info p-[15px 0 18px 0] text-oxford-blue-200">
+                  <h1 className="text-info pt-[15px] pb=[18px] text-oxford-blue-200">
                     Total verified
                   </h1>
 
@@ -131,7 +131,7 @@ export default function DashboardTotalCards({
                                 ) === -1
                                   ? "text-red-500"
                                   : "text-green-500"
-                              } p-[0 16px 0 4px]`}
+                              } pr-[16px] pl-[4px]`}
                             >{`${dashboardData?.all_info?.all_percentage_expression}%`}</h1>
                           </div>
 
@@ -164,12 +164,12 @@ export default function DashboardTotalCards({
           </Col>
           <Col lg={24} md={24} xs={24}>
             <div className="flex bg-white border-[1.5px] border-oxford-blue-30 rounded-[12px] p-[24px] min-h-[145px] max-md:min-h-[auto]">
-              <div className="flex justify-between">
+              <div className="flex justify-between w-[100%]">
                 <div>
                   <h1 className="text-title size-[36px]">
                     {unverifiedTotalSum}
                   </h1>
-                  <h1 className="text-info p-[15px 0 18px 0] text-oxford-blue-200">
+                  <h1 className="text-info pt-[15px] pb-[18px] text-oxford-blue-200">
                     Total unverified
                   </h1>
 
@@ -195,7 +195,7 @@ export default function DashboardTotalCards({
                                 ) === -1
                                   ? "text-red-500"
                                   : "text-green-500"
-                              } p-[0 16px 0 4px]`}
+                              } pr-[16px] pl-[4px]`}
                             >{`${dashboardData?.all_info?.all_percentage_expression}%`}</h1>
                           </div>
 
@@ -222,6 +222,7 @@ export default function DashboardTotalCards({
                 </div>
                 <div>
                   <Primary
+                    color="default"
                     icon={<DownloadIcon />}
                     onClick={() => handleDownloadUnverified()}
                   >
@@ -229,16 +230,16 @@ export default function DashboardTotalCards({
                   </Primary>
 
                   <div className="flex flex-col items-end mt-[20px]">
-                    <div className="[&:nth-child(3n)]:mb-[25px]">
-                      <h1 className="text-info p-[0 8px 0 0] text-oxford-blue-200">
+                    <div className="[&:nth-child(3n)]:mb-[25px] flex">
+                      <h1 className="text-info pr-[8px] text-oxford-blue-200">
                         Incomplete
                       </h1>
                       <h1 className="text-info size-[16px] font-[600] text-oxford-blue-600">
                         {dashboardData?.all_info?.incompleted_total}
                       </h1>
                     </div>
-                    <div className="[&:nth-child(3n)]:mb-[25px]">
-                      <h1 className="text-info p-[0 8px 0 0] text-oxford-blue-200">
+                    <div className="[&:nth-child(3n)]:mb-[25px] flex">
+                      <h1 className="text-info pr-[8px] text-oxford-blue-200">
                         Not verified
                       </h1>
                       <h1 className="text-info size-[16px] font-[600] text-oxford-blue-600">
