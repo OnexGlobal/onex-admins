@@ -1,4 +1,4 @@
-import { Paginated, Users } from "@repo/types";
+import { Paginated, Recipient } from "@repo/types";
 import { useQuery } from "@tanstack/react-query";
 import { recipientsApi } from "../../services/recipients";
 
@@ -12,18 +12,18 @@ export default function useGetRecipients(
     queryKey: ["get-recipients", query],
     queryFn: () => recipientsApi.getRecipients(query),
 
-    select: ({ data, meta }: Paginated<Users.Recipient[]>) => {
+    select: ({ data, meta }: Paginated<Recipient[]>) => {
       const recipients = data?.map((recipient, i) => {
         return {
           ...recipient,
           key: i,
           id: recipient?.id,
-          label: `${recipient.first_name || ""} ${
-            recipient.last_name || ""
-          } ${recipient.company_name || ""} ${recipient.user_code}`,
-          value: `${recipient.first_name || ""} ${
-            recipient.last_name || ""
-          } ${recipient.company_name || ""}`.trim(),
+          label: `${recipient.first_name || ""} ${recipient.last_name || ""} ${
+            recipient.company_name || ""
+          } ${recipient.user_code}`,
+          value: `${recipient.first_name || ""} ${recipient.last_name || ""} ${
+            recipient.company_name || ""
+          }`.trim(),
         };
       });
       return { recipients, meta };

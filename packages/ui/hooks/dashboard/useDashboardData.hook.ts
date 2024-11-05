@@ -1,11 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
 import { AxiosResponse } from "axios";
-import { Refetch } from "@repo/types";
-import { Dashboard } from "@repo/types";
+import { DashboardData, Refetch } from "@repo/types";
 import { GetDashboardData } from "../../services/dashboard";
 
 export default function useDashboardData(filters: Record<string, string>): {
-  dashboardData?: AxiosResponse<Dashboard.DashboardData>;
+  dashboardData?: AxiosResponse<DashboardData>;
   isLoading?: boolean;
   refetch?: Refetch;
 } {

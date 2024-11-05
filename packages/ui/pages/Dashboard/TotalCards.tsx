@@ -2,14 +2,11 @@ import TotalVerifiedPercent from "./TotalVerifiedPercent";
 import { useEffect, useState } from "react";
 import { DownloadUnverified } from "../../services/dashboard";
 import { Col, Row } from "antd";
-import {
-  DownloadIcon,
-  LeftBottomArrowIcon,
-  TopRightArrowIcon,
-  UserIcon,
-} from "onex-ge/src/components/svg-components";
-
-import { DashboardData, FilterAsProps } from "onex-ge/src/types/dashboard";
+import DownloadIcon from "../../assets/icons/DownloadIcon";
+import LeftBottomArrowIcon from "../../assets/icons/LeftBottomArrow";
+import TopRightArrowIcon from "../../assets/icons/TopRightArrow";
+import UserIcon from "../../assets/icons/UserIcon";
+import { DashboardData, FilterAsProps } from "../../../types/src/dashboard";
 import Primary from "../../components/buttons/Primary";
 import { Loader } from "../../components/loader/Loader";
 

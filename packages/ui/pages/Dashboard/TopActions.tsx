@@ -1,7 +1,7 @@
 import { DatePicker, Segmented } from "antd";
 import dayjs from "dayjs";
 import { Dispatch, SetStateAction } from "react";
-import { DashboardData, FILTERS } from "onex-ge/src/types/dashboard";
+import { DashboardData, FILTERS } from "../../../types/src/dashboard";
 
 const { RangePicker } = DatePicker;
 
@@ -31,7 +31,6 @@ export default function DashboardTopActions({
           setCustomRange([]);
         }}
       />
-
       <RangePicker
         defaultValue={[
           dayjs(dashboardData?.current_start_date.substr(0, 10), "YYYY-MM-DD"),
