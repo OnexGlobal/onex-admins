@@ -32,7 +32,6 @@ export default function DashboardCharts({ customRange }: Props) {
   useEffect(() => {
     if (dashboardCharts) {
       const data = Object.entries(dashboardCharts)?.map((dashboardItem) => {
-        console.log(dashboardItem);
         const newData: { [key: string]: string | Date | number } = {
           date: new Date(dashboardItem[0]),
         };

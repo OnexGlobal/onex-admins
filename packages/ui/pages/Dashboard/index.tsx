@@ -13,8 +13,9 @@ import RegistrationIsPerson from "./RegistrationIsPerson";
 import RegistrationType from "./RegistrationType";
 import UsersByGender from "./UsersByGender";
 import { Loader } from "../../components/loader/Loader";
+import { weekDays } from "onex-ge/src/constants/constants";
 
-const currentWeekDay = new Date().getDay();
+const currentWeekDay = weekDays[new Date().getDay()];
 const DashboardPage = () => {
   const [filterType, setFilterType] = useState(FILTERS.day);
   const [customRange, setCustomRange] = useState<string[]>([]);

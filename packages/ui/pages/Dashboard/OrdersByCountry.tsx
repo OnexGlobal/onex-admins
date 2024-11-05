@@ -5,11 +5,12 @@ import LeftBottomArrowIcon from "../../assets/icons/LeftBottomArrow";
 import TopRightArrowIcon from "../../assets/icons/TopRightArrow";
 import { DashboardData } from "../../../types/src/dashboard";
 import { Loader } from "../../components/loader/Loader";
+import { weekDays } from "onex-ge/src/constants/constants";
 
 interface Props {
   dashboardData: DashboardData;
   filterType: string;
-  currentWeekDay: number;
+  currentWeekDay: (typeof weekDays)[number];
 }
 
 export default function OrdersByCountry({
@@ -18,7 +19,6 @@ export default function OrdersByCountry({
   currentWeekDay,
 }: Props) {
   useLayoutEffect(() => {
-    console.log(dashboardData);
     if (dashboardData) {
       const chart = am4core.create("ordersByCountry", am4charts.XYChart);
       chart.hiddenState.properties.opacity = 0; // this creates initial fade-in
@@ -162,7 +162,7 @@ export default function OrdersByCountry({
         {dashboardData
           ? Object.entries(dashboardData?.order_info).map((expected) => {
               return (
-                <div className="flex items-center justify-between">
+                <div className="flex items-center justify-between mb-[6px]">
                   <div className="flex items-center max-md:flex-row max-md:items-center">
                     <img
                       src={`https://backadmin.onex.ge/storage/images/warehouses/${expected[1].round_flag}`}

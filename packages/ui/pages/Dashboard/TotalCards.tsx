@@ -9,13 +9,14 @@ import UserIcon from "../../assets/icons/UserIcon";
 import { DashboardData, FilterAsProps } from "../../../types/src/dashboard";
 import Primary from "../../components/buttons/Primary";
 import { Loader } from "../../components/loader/Loader";
+import { weekDays } from "onex-ge/src/constants/constants";
 
 interface Props {
   dashboardData: DashboardData;
   filterType: string;
   filters: FilterAsProps;
   isLoading?: boolean;
-  currentWeekDay: number;
+  currentWeekDay: (typeof weekDays)[number];
 }
 
 export default function DashboardTotalCards({
@@ -25,7 +26,6 @@ export default function DashboardTotalCards({
   filters,
   currentWeekDay,
 }: Props) {
-  console.log(dashboardData, isLoading, filterType, filters, currentWeekDay);
   const [unverifiedTotalSum, setUnverifiedTotalSum] = useState(0);
   const handleDownloadUnverified = () => {
     DownloadUnverified(filters, dashboardData);
@@ -75,7 +75,11 @@ export default function DashboardTotalCards({
                         >{`${dashboardData?.all_info?.all_percentage_expression}%`}</h1>
                       </div>
 
-                      <h1 className={"text-info size-[12px] text-white"}>{`${
+                      <h1
+                        className={
+                          "text-info size-[12px] text-white transform-none w-[100%]"
+                        }
+                      >{`${
                         Math.sign(
                           dashboardData?.all_info?.all_sum_expression
                         ) === -1
@@ -105,7 +109,7 @@ export default function DashboardTotalCards({
                     Total verified
                   </h1>
 
-                  <div className="flex justify-between max-md:items-center">
+                  <div className="flex justify-between max-md:items-center ">
                     <div>
                       {dashboardData?.all_info
                         ?.completed_percentage_expression ? (
@@ -134,7 +138,7 @@ export default function DashboardTotalCards({
 
                           <h1
                             className={
-                              "text-info size-[12px] text-oxford-blue-200"
+                              "text-info size-[12px] text-oxford-blue-200 transform-none w-[100%]"
                             }
                           >{`${
                             Math.sign(
@@ -198,7 +202,7 @@ export default function DashboardTotalCards({
 
                           <h1
                             className={
-                              "text-info size-[12px] text-oxford-blue-200"
+                              "text-info size-[12px] text-oxford-blue-200 transform-none w-[100%]"
                             }
                           >{`${
                             Math.sign(

@@ -31,13 +31,18 @@ export default function DashboardTopActions({
           setCustomRange([]);
         }}
       />
-      <RangePicker
-        defaultValue={[
-          dayjs(dashboardData?.current_start_date.substr(0, 10), "YYYY-MM-DD"),
-          dayjs(dashboardData?.current_end_date.substr(0, 10), "YYYY-MM-DD"),
-        ]}
-        onChange={(_, values) => setCustomRange(values)}
-      />
+      {dashboardData ? (
+        <RangePicker
+          defaultValue={[
+            dayjs(
+              dashboardData?.current_start_date.substr(0, 10),
+              "YYYY-MM-DD"
+            ),
+            dayjs(dashboardData?.current_end_date.substr(0, 10), "YYYY-MM-DD"),
+          ]}
+          onChange={(_, values) => setCustomRange(values)}
+        />
+      ) : null}
     </div>
   );
 }
