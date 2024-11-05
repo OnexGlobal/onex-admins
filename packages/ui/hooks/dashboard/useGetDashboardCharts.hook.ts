@@ -1,9 +1,10 @@
-import { useQuery } from "react-query";
-import { GetDashboardChartsData } from "../../services/dashboard.js";
-import { FilterAsProps } from "types/dashboard.js";
-import { Refetch } from "types";
+import { useQuery } from "@tanstack/react-query";
+import { GetDashboardChartsData } from "../../services/dashboard";
+import { Dashboard, Refetch } from "@repo/types";
 
-export default function useGetDashboardChartsData(filters: FilterAsProps): {
+export default function useGetDashboardChartsData(
+  filters: Dashboard.FilterAsProps
+): {
   dashboardCharts: Record<string, Record<string, string | number>[]>;
   isLoading?: boolean;
   refetch?: Refetch;
@@ -12,15 +13,13 @@ export default function useGetDashboardChartsData(filters: FilterAsProps): {
     data: dashboardCharts,
     isLoading,
     refetch,
-  } = useQuery(
-    ["dashboardCharts", filters],
-    () => GetDashboardChartsData(filters),
-    {
-      staleTime: Infinity,
-      select: ({ data }) => {
-        return data?.data;
-      },
-    }
-  );
+  } = useQuery({
+    queryKey: ["dashboardCharts", filters],
+    queryFn: () => GetDashboardChartsData(filters),
+    staleTime: Infinity,
+    select: ({ data }) => {
+      return data?.data;
+    },
+  });
   return { dashboardCharts, isLoading, refetch };
 }
