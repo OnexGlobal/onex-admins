@@ -1,6 +1,6 @@
 import { useState } from "react";
 import DashboardTopActions from "./TopActions";
-import { FILTERS } from "onex-ge/src/types/dashboard";
+import { FILTERS } from "../../../types/src/dashboard";
 import useDashboardData from "../../hooks/dashboard/useDashboardData.hook";
 import GrowthChart from "./GrowthChart";
 import DashboardTotalCards from "./TotalCards";
@@ -12,6 +12,7 @@ import DashboardAppDownloads from "./AppDownloads";
 import RegistrationIsPerson from "./RegistrationIsPerson";
 import RegistrationType from "./RegistrationType";
 import UsersByGender from "./UsersByGender";
+import { Loader } from "../../components/loader/Loader";
 
 const currentWeekDay = new Date().getDay();
 const DashboardPage = () => {
@@ -32,8 +33,9 @@ const DashboardPage = () => {
         setCustomRange={setCustomRange}
         dashboardData={dashboardData?.data}
       />
-      <GrowthChart customRange={customRange} />
-      {dashboardData && (
+      {customRange ? <GrowthChart customRange={customRange} /> : <Loader />}
+
+      {dashboardData ? (
         <>
           {" "}
           <Row gutter={24} style={{ width: "100%" }}>
@@ -93,6 +95,8 @@ const DashboardPage = () => {
             </Col>
           </Row>
         </>
+      ) : (
+        <Loader />
       )}
     </div>
   );

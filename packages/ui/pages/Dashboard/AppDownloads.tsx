@@ -1,7 +1,7 @@
 import { useLayoutEffect } from "react";
 import * as am4core from "@amcharts/amcharts4/core";
 import * as am4charts from "@amcharts/amcharts4/charts";
-import { Last4BoxesType } from "onex-ge/src/types/dashboard";
+import { Last4BoxesType } from "../../../types/src/dashboard";
 import { Loader } from "../../components/loader/Loader";
 
 export default function DashboardAppDownloads({
@@ -74,7 +74,7 @@ export default function DashboardAppDownloads({
   }, [dashboardData]);
 
   return (
-    <div className="bg-white rounded-[12px] p-[24px] m-[40px 0] relative w-[100%] [&>#appDownloads]:h-auto">
+    <div className="bg-white rounded-[12px] p-[24px] m-[40px 0] relative w-[100%]">
       <div className="absolute top-[24px] right-[24px] max-md:top-[10px] max-md:right-[10px]">
         <h1 className="text-info text-oxford-blue-100">{`This ${filterType}`}</h1>
       </div>
@@ -84,14 +84,16 @@ export default function DashboardAppDownloads({
       ) : (
         <div className="flex items-center">
           <div id="appDownloads" className="w-[65%] h-[240px]" />
-          <div className={"legends"}>
-            <div className="legend [&>ios]:bg-sea-green-300">
+          <div className="legends">
+            <div className="legend">
               <div className="flex items-center">
-                <div className="legend-icon ios" />
-                <p>
+                <div className="legend-icon ios bg-sea-green-300 w-[18px] h-[18px] rounded-[5px] mr-[5px]" />
+                <p className="mt-[16px] mb-[16px]">
                   Ios
-                  <span>{dashboardData?.app_downloads_info?.ios_total}</span>
-                  <span className={"percent"}>
+                  <span className="pl-[5px] font-[600]">
+                    {dashboardData?.app_downloads_info?.ios_total}
+                  </span>
+                  <span className="text-oxford-blue-200 pl-[5px]">
                     (
                     {
                       dashboardData?.app_downloads_info
@@ -102,15 +104,15 @@ export default function DashboardAppDownloads({
                 </p>
               </div>
             </div>
-            <div className="legend [&>android]:bg-orange-500">
+            <div className="legend">
               <div className="flex items-center">
-                <div className="legend-icon android" />
-                <p>
+                <div className="legend-icon android bg-orange-500 w-[18px] h-[18px] rounded-[5px] mr-[5px]" />
+                <p className="mt-[16px] mb-[16px]">
                   Android
-                  <span>
+                  <span className="pl-[5px] font-[600]">
                     {dashboardData?.app_downloads_info?.android_total}
                   </span>
-                  <span className={"percent"}>
+                  <span className="text-oxford-blue-200 pl-[5px]">
                     (
                     {
                       dashboardData?.app_downloads_info

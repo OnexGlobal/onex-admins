@@ -34,7 +34,7 @@ const AuthRoutes = () => {
     },
     {
       path: "/dashboard",
-      component: <div>Dashboard</div>,
+      component: <Dashboard />,
       permission: dashboard_view,
     },
     {

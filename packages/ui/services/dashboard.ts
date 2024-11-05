@@ -1,5 +1,5 @@
 import { DashboardData, FilterAsProps } from "@repo/types/src/dashboard";
-import axios from "../../../apps/ge/src/libs/axios";
+import axios from "axios";
 
 export const GetDashboardData = async (filters: Record<string, string>) => {
   const data = axios.get(`/dashboard`, {

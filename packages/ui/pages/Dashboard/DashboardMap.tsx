@@ -2,9 +2,9 @@ import * as am4core from "@amcharts/amcharts4/core.js";
 import * as am4maps from "@amcharts/amcharts4/maps";
 import { useLayoutEffect, useState } from "react";
 import am4themes_animated from "@amcharts/amcharts4/themes/animated";
-import am4geodata_georgiaHigh from "@amcharts/amcharts4-geodata/russiaHigh";
-import { DashboardData } from "onex-ge/src/types/dashboard";
-import { russiaRegions } from "onex-ge/src/constants/russia-regions";
+import am4geodata_georgiaHigh from "@amcharts/amcharts4-geodata/georgiaHigh";
+import { DashboardData } from "../../../types/src/dashboard";
+import { georgiaRegions } from "onex-ge/src/constants/georgia-regions";
 import { Loader } from "../../components/loader/Loader";
 
 interface Props {
@@ -64,7 +64,7 @@ const MapChart = ({ dashboardData, filterType }: Props) => {
       });
 
       let newData = sortedArr.map((region, index) => {
-        let id = russiaRegions.find((i) => i.name === region[0]);
+        let id = georgiaRegions.find((i) => i.name === region[0]);
 
         return {
           id: id?.shortName || "",
@@ -99,7 +99,7 @@ const MapChart = ({ dashboardData, filterType }: Props) => {
     // ... rest of the code
   }, [dashboardData]);
   return (
-    <div className="bg-white rounded-[12px] p-[24px] m-[40px 0] relative w-[100%] [&>#MapChart]:h-[500px] [&>#MapChart]:w-[100%] &>#MapChart]:max-md:h-auto [&>ul]:list-none [&>ul]:p-0 [&>li]:mb-[10px]">
+    <div className="bg-white rounded-[12px] p-[24px] mt-[40px] mb-[40px] relative w-[100%] ">
       <div className="absolute top-[24px] right-[24px] max-md:top-[10px] max-md:right-[10px]">
         <h1 className="text-info text-oxford-blue-100">{`This ${filterType}`}</h1>
       </div>
@@ -110,12 +110,12 @@ const MapChart = ({ dashboardData, filterType }: Props) => {
       ) : (
         <>
           <div className="flex items-center justify-between max-md:flex-col max-md:items-baseline">
-            <div id="MapChart" />
+            <div id="MapChart" className="h-[500px] w-[100%] max-md:h-auto " />
             <div>
-              <ul>
+              <ul className="list-none p-0">
                 {sortedNewData?.map((item) =>
                   item?.value ? (
-                    <li>
+                    <li className="mb-[10px]">
                       <div className="flex items-center">
                         <div
                           className="cube"

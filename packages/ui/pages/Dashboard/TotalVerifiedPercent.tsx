@@ -1,6 +1,6 @@
 import { Tooltip } from "antd";
 import { useMemo } from "react";
-import { DashboardData } from "onex-ge/src/types/dashboard";
+import { DashboardData } from "../../../types/src/dashboard";
 
 export default function TotalVerifiedPercent({
   dashboardData,

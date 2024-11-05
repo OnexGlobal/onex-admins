@@ -1,10 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
 import { GetDashboardChartsData } from "../../services/dashboard";
-import { Dashboard, Refetch } from "@repo/types";
+import { FilterAsProps, Refetch } from "@repo/types";
 
-export default function useGetDashboardChartsData(
-  filters: Dashboard.FilterAsProps
-): {
+export default function useGetDashboardChartsData(filters: FilterAsProps): {
   dashboardCharts: Record<string, Record<string, string | number>[]>;
   isLoading?: boolean;
   refetch?: Refetch;

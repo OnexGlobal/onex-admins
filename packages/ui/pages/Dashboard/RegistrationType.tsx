@@ -1,5 +1,5 @@
 import { useLayoutEffect } from "react";
-import { Last4BoxesType } from "onex-ge/src/types/dashboard";
+import { Last4BoxesType } from "../../../types/src/dashboard";
 import * as am4core from "@amcharts/amcharts4/core.js";
 import * as am4charts from "@amcharts/amcharts4/charts.js";
 import { Loader } from "../../components/loader/Loader";
@@ -67,18 +67,18 @@ export default function RegistrationType({
         <div className="flex items-center">
           <div id="registrationByType" className="w-[60%] h-[280px]" />
           <div className={"legends"}>
-            <div className="legend [&>georgian]:bg-blue-600">
+            <div className="legend">
               <div className="flex items-center">
-                <div className="legend-icon georgian" />
-                <p>
+                <div className="legend-icon georgian bg-blue-600 w-[18px] h-[18px] rounded-[5px] mr-[5px]" />
+                <p className="mt-[16px] mb-[16px]">
                   Georgian
-                  <span>
+                  <span className="pl-[5px] font-[600]">
                     {
                       dashboardData?.registration_by_nationality_info
                         ?.georgian_total
                     }
                   </span>
-                  <span className={"percent"}>
+                  <span className="text-oxford-blue-200 pl-[5px]">
                     (
                     {
                       dashboardData?.registration_by_nationality_info
@@ -89,18 +89,18 @@ export default function RegistrationType({
                 </p>
               </div>
             </div>
-            <div className="legend [&>foreigner]:bg-cyan-500">
+            <div className="legend">
               <div className="flex items-center">
-                <div className="legend-icon foreigner" />
-                <p>
+                <div className="legend-icon foreigner bg-cyan-500 w-[18px] h-[18px] rounded-[5px] mr-[5px]" />
+                <p className="mt-[16px] mb-[16px]">
                   Foreigner
-                  <span>
+                  <span className="pl-[5px] font-[600]">
                     {
                       dashboardData?.registration_by_nationality_info
                         ?.foreigner_total
                     }
                   </span>
-                  <span className={"percent"}>
+                  <span className="text-oxford-blue-200 pl-[5px]">
                     (
                     {
                       dashboardData?.registration_by_nationality_info

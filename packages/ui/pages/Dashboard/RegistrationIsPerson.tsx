@@ -1,5 +1,5 @@
 import { useLayoutEffect } from "react";
-import { Last4BoxesType } from "onex-ge/src/types/dashboard";
+import { Last4BoxesType } from "../../../types/src/dashboard";
 import * as am4core from "@amcharts/amcharts4/core";
 import * as am4charts from "@amcharts/amcharts4/charts";
 import { Loader } from "../../components/loader/Loader";
@@ -90,18 +90,18 @@ export default function RegistrationIsPerson({
           <div className="flex items-center">
             <div id="chartdiv" className="w-[60%] h-[240px]" />
             <div className="legends">
-              <div className="legend [&>person]:bg-purple-600 [&>not-completed]:bg-cyan-500">
+              <div className="legend">
                 <div className="flex items-center">
-                  <div className="legend-icon person" />
-                  <p>
+                  <div className="legend-icon person bg-purple-600 w-[18px] h-[18px] rounded-[5px] mr-[5px]" />
+                  <p className="mt-[16px] mb-[16px]">
                     Person
-                    <span>
+                    <span className="pl-[5px] font-[600]">
                       {
                         dashboardData?.registration_by_user_type_info
                           ?.users_total
                       }
                     </span>
-                    <span className={"percent"}>
+                    <span className="text-oxford-blue-200 pl-[5px]">
                       (
                       {
                         dashboardData?.registration_by_user_type_info
@@ -112,18 +112,18 @@ export default function RegistrationIsPerson({
                   </p>
                 </div>
               </div>
-              <div className="legend [&>company]:bg-sea-green-300 [&>not-completed]:bg-cyan-50">
+              <div className="legend">
                 <div className="flex items-center">
-                  <div className="legend-icon company" />
-                  <p>
+                  <div className="legend-icon company bg-sea-green-300 w-[18px] h-[18px] rounded-[5px] mr-[5px]" />
+                  <p className="mt-[16px] mb-[16px]">
                     Company
-                    <span>
+                    <span className="pl-[5px] font-[600]">
                       {
                         dashboardData?.registration_by_user_type_info
                           ?.companies_total
                       }
                     </span>
-                    <span className={"percent"}>
+                    <span className="text-oxford-blue-200 pl-[5px]">
                       (
                       {
                         dashboardData?.registration_by_user_type_info

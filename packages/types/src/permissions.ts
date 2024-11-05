@@ -1,3 +1,5 @@
+import { ActivityLog, AmeriaRefund } from "./users";
+
 export interface Permissions {
   role: Role[];
   region: Region[];
@@ -675,16 +677,6 @@ export interface Pivot41 {
   permission_id: number;
 }
 
-export interface AmeriaRefund {
-  id: number;
-  group: string;
-  name: string;
-  guard_name: string;
-  created_at: string;
-  updated_at: string;
-  pivot: Pivot42;
-}
-
 export interface Pivot42 {
   role_id: number;
   permission_id: number;
@@ -883,16 +875,6 @@ export interface Report {
 export interface Pivot55 {
   role_id: number;
   permission_id: number;
-}
-
-export interface ActivityLog {
-  id: number;
-  group: string;
-  name: string;
-  guard_name: string;
-  created_at: string;
-  updated_at: string;
-  pivot: Pivot56;
 }
 
 export interface Pivot56 {

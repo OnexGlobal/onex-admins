@@ -1,7 +1,7 @@
 import * as am4core from "@amcharts/amcharts4/core.js";
 import * as am4charts from "@amcharts/amcharts4/charts.js";
 import am4themes_animated from "@amcharts/amcharts4/themes/animated.js";
-import { Last4BoxesType } from "onex-ge/src/types/dashboard";
+import { Last4BoxesType } from "../../../types/src/dashboard";
 import { useLayoutEffect } from "react";
 
 export default function UsersByGender({
@@ -53,7 +53,7 @@ export default function UsersByGender({
   }, [dashboardData]);
 
   return (
-    <div className="bg-white rounded-[12px] p-[24px] m-[40px 0] relative w-[100%] [&>#usersByGender]:h-auto">
+    <div className="bg-white rounded-[12px] p-[24px] m-[40px 0] relative w-[100%]">
       <div className="absolute top-[24px] right-[24px] max-md:top-[10px] max-md:right-[10px]">
         <h1 className="text-info text-oxford-blue-100">{`This ${filterType}`}</h1>
       </div>
@@ -63,15 +63,15 @@ export default function UsersByGender({
       <div className="flex items-center">
         <div id="usersByGender" className="w-[60%] h-[280px]" />
         <div className={"legends"}>
-          <div className="legend [&>male]:bg-sea-green-300">
+          <div className="legend">
             <div className="flex items-center">
-              <div className="legend-icon male" />
-              <p>
+              <div className="legend-icon male bg-sea-green-300 w-[18px] h-[18px] rounded-[5px] mr-[5px]" />
+              <p className="mt-[16px] mb-[16px]">
                 Male
-                <span>
+                <span className="pl-[5px] font-[600]">
                   {dashboardData?.registration_by_gender_info?.males_total}
                 </span>
-                <span className={"percent"}>
+                <span className="text-oxford-blue-200 pl-[5px]">
                   (
                   {
                     dashboardData?.registration_by_gender_info
@@ -82,15 +82,15 @@ export default function UsersByGender({
               </p>
             </div>
           </div>
-          <div className="legend [&>female]:bg-pink-500">
+          <div className="legend">
             <div className="flex items-center">
-              <div className="legend-icon female" />
-              <p>
+              <div className="legend-icon female bg-pink-500 w-[18px] h-[18px] rounded-[5px] mr-[5px]" />
+              <p className="mt-[16px] mb-[16px]">
                 Female
-                <span>
+                <span className="pl-[5px] font-[600]">
                   {dashboardData?.registration_by_gender_info?.females_total}
                 </span>
-                <span className={"percent"}>
+                <span className="text-oxford-blue-200 pl-[5px]">
                   (
                   {
                     dashboardData?.registration_by_gender_info
@@ -101,18 +101,18 @@ export default function UsersByGender({
               </p>
             </div>
           </div>
-          <div className="legend [&>not-specified]:bg-cyan-500">
+          <div className="legend">
             <div className="flex items-center">
-              <div className="legend-icon not-specified" />
-              <p>
+              <div className="legend-icon not-specified bg-cyan-500 w-[18px] h-[18px] rounded-[5px] mr-[5px]" />
+              <p className="mt-[16px] mb-[16px]">
                 Not specified
-                <span>
+                <span className="pl-[5px] font-[600]">
                   {
                     dashboardData?.registration_by_gender_info
                       ?.unspecified_total
                   }
                 </span>
-                <span className={"percent"}>
+                <span className="text-oxford-blue-200 pl-[5px]">
                   (
                   {
                     dashboardData?.registration_by_gender_info

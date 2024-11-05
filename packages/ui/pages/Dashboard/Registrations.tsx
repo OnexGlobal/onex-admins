@@ -1,7 +1,7 @@
 import { useLayoutEffect } from "react";
 import * as am4core from "@amcharts/amcharts4/core.js";
 import * as am4charts from "@amcharts/amcharts4/charts.js";
-import { DashboardData } from "onex-ge/src/types/dashboard";
+import { DashboardData } from "../../../types/src/dashboard";
 import { Loader } from "../../components/loader/Loader";
 
 interface Props {
@@ -75,11 +75,11 @@ export default function DashboardRegistration({
         <h1 className="text-info text-oxford-blue-100">{`This ${filterType}`}</h1>
       </div>
 
-      <h1 className="text-title p-[0 0 15px 0]">Registration</h1>
+      <h1 className="text-title pb-[15px]">Registration</h1>
 
       <div className="flex max-md:flex-col">
-        <div className="max-md:flex-nowrap">
-          <h1 className="text-info size-[12px] p-[0 0 15px 0] text-oxford-blue-200 max-md:p-0">
+        <div className="max-md:flex-nowrap ">
+          <h1 className="text-info w-[100%] size-[12px] transform-none pb-[15px] text-oxford-blue-200 max-md:p-0">
             {`${dashboardData?.current_start_date.substr(
               0,
               10
@@ -87,16 +87,18 @@ export default function DashboardRegistration({
           </h1>
         </div>
         <div className="flex justify-between w-[25%] max-md:w-[45%] max-sm:w-[75%]">
-          <h1 className="text-info p-[0 4px 0 16px] max-md:p-0">Total</h1>
-          <h1 className="text-info font-[600] p-[0 4px 0 16px] max-md:p-0">
+          <h1 className="text-info pr-[4px] pl-[16px] max-md:p-0">Total</h1>
+          <h1 className="text-info font-[600] pr-[4px] pl-[16px] max-md:p-0">
             {dashboardData?.all_info?.all_total}
           </h1>
-          <h1 className="text-info p-[0 4px 0 16px] max-md:p-0">Verified</h1>
-          <h1 className="text-info p-[0 0 0 4px] max-md:p-0">
+          <h1 className="text-info pr-[4px] pl-[16px] max-md:p-0">Verified</h1>
+          <h1 className="text-info pl-[4px] max-md:p-0">
             {dashboardData?.all_info?.completed_total}
           </h1>
-          <h1 className="text-info p-[0 4px 0 16px] max-md:p-0">Unverified</h1>
-          <h1 className="text-info font-[600] p-[0 0 0 4px] max-md:p-0">
+          <h1 className="text-info pr-[4px] pl-[16px] max-md:p-0">
+            Unverified
+          </h1>
+          <h1 className="text-info font-[600] pl-[4px] max-md:p-0">
             {dashboardData?.all_info?.incompleted_total +
               dashboardData?.all_info?.unverified_total}
           </h1>
