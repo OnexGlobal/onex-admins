@@ -25,37 +25,37 @@ export default function CustomersTable({
     {
       key: "name",
       dataIndex: "name",
-      title: "",
+      title: "Name",
     },
     {
       key: "id",
       dataIndex: "id",
-      title: "",
+      title: "ID",
     },
     {
       key: "phone",
       dataIndex: "phone",
-      title: "",
+      title: "Phone",
     },
     {
       key: "address",
       dataIndex: "address",
-      title: "",
+      title: "Address",
     },
     {
       key: "email",
       dataIndex: "email",
-      title: "",
+      title: "Email",
     },
     {
       key: "passportDetails",
       dataIndex: "passportDetails",
-      title: "",
+      title: "Passport details",
     },
     {
       key: "registeredDate",
       dataIndex: "registeredDate",
-      title: "",
+      title: "Registered date",
     },
   ];
   let dataSource = null;
@@ -107,59 +107,20 @@ export default function CustomersTable({
         </div>
       </div>
     ),
-    id: (
-      <div className="flex flex-col">
-        <span className="text-black text-[14px] font-[500] pb-[12px`]">ID</span>
-        <span className="text-black text-[14px]">{recipient.user_id}</span>
-      </div>
-    ),
+    id: recipient.user_id,
     user_id: recipient.user_id,
-    phone: (
-      <div className="flex flex-col">
-        <span className="text-oxford-blue-400 font-[500] pb-[12px]">Phone</span>
-        <span className="text-black text-[14px]">{recipient.phone}</span>
-      </div>
-    ),
-    address: (
-      <div className="flex flex-col">
-        <span className="text-oxford-blue-400 font-[500] pb-[12px]">
-          Address
-        </span>
-        <span className="text-black text-[14px]">{recipient.address}</span>
-      </div>
-    ),
-    email: (
-      <div className="flex flex-col">
-        <span className="text-oxford-blue-400 font-[500] pb-[12px]">Email</span>
-        <span className="text-black text-[14px]">{recipient?.user?.email}</span>
-      </div>
-    ),
-    passportDetails: (
-      <div className="flex flex-col">
-        <span className="text-oxford-blue-400 font-[500] pb-[12px]">
-          Passport details
-        </span>
-        <span className="text-black text-[14px]">
-          {recipient?.document_number || "Not completed"}
-        </span>
-      </div>
-    ),
-    registeredDate: (
-      <>
-        <span className="text-oxford-blue-400 font-[500] pb-[12px]">
-          Registered At
-        </span>
-        <span className="text-oxford-blue-400 font-[500] pb-[12px]">
-          {dayjs(recipient.user.created_et).format("YYYY-MM-DD HH:mm")}
-        </span>
-      </>
-    ),
+    phone: recipient.phone,
+    address: recipient.address,
+    email: recipient?.user?.email,
+    passportDetails: recipient?.document_number || "Not completed",
+    registeredDate: dayjs(recipient.user.created_et).format("YYYY-MM-DD HH:mm"),
   }));
 
   return (
     <Table
       columns={columns}
       dataSource={dataSource}
+      bordered
       onRow={(record) => ({
         onClick: () => {
           handleClickCustomer(record.user_id);

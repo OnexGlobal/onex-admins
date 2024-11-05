@@ -1,4 +1,10 @@
-import { Customers, Dashboard, Home, ProtectedRoute } from "@repo/ui";
+import {
+  Customers,
+  Dashboard,
+  Home,
+  PrimeUser,
+  ProtectedRoute,
+} from "@repo/ui";
 import { Route, Routes } from "react-router-dom";
 import { usePermission } from "../../utils/hooks/usePermissions";
 
@@ -38,7 +44,7 @@ const AuthRoutes = () => {
     },
     {
       path: "/prime",
-      component: <div>Prime</div>,
+      component: <PrimeUser />,
       permission: recipient_view,
     },
     {
