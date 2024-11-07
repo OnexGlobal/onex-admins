@@ -1,5 +1,5 @@
 import { FC, useState } from "react";
-import { SVGProps } from "types";
+import { SVGProps } from "@repo/types";
 
 export const EditIcon: FC<SVGProps> = ({
   size = "24",

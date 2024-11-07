@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { SVGProps } from "types";
+import { SVGProps } from "@repo/types";
 
 export const CloseCircleIcon: FC<SVGProps> = ({
   margin,

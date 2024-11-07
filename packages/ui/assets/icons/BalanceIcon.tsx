@@ -1,4 +1,4 @@
-import { SVGProps } from "types";
+import { SVGProps } from "@repo/types";
 
 export function BalanceIcon({
   size = "24",

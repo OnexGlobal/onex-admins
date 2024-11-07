@@ -1,4 +1,4 @@
-import { SVGProps } from "../../types";
+import { SVGProps } from "@repo/types";
 
 export default function EmailIcon({ size = "24", margin }: SVGProps) {
   return (

@@ -1,4 +1,4 @@
-import { SVGProps } from "../../types";
+import { SVGProps } from "@repo/types";
 
 export default function RecipientIcon({ size = "42", margin }: SVGProps) {
   return (

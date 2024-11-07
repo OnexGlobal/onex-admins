@@ -1,4 +1,4 @@
-import { SVGProps } from "types";
+import { SVGProps } from "@repo/types";
 
 export const DocumentIcon = ({
   size = 24,

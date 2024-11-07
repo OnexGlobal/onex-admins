@@ -1,12 +1,14 @@
-import { SVGProps } from "types";
+import { SVGProps } from "@repo/types";
 
 export default function ExpectedIcon({
   size = "24",
   color = "#3B5166",
   margin,
+  ...props
 }: SVGProps) {
   return (
     <svg
+      {...props}
       width={size}
       height={size}
       style={{ margin }}

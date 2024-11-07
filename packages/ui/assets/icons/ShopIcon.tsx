@@ -1,8 +1,9 @@
-import { SVGProps } from "types";
+import { SVGProps } from "@repo/types";
 
-export default function ShopIcon({ size = "20", margin }: SVGProps) {
+export default function ShopIcon({ size = "20", margin, ...props }: SVGProps) {
   return (
     <svg
+      {...props}
       width={size}
       height={size}
       style={{ margin }}

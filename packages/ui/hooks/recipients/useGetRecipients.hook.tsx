@@ -1,6 +1,7 @@
-import { Paginated, Recipient } from "@repo/types";
+import { Paginated } from "@repo/types";
+import { Recipient } from "@repo/types/src/users";
 import { useQuery } from "@tanstack/react-query";
-import { recipientsApi } from "../../services/recipients";
+import { recipientsApi } from "@repo/ui/services/recipients";
 
 export default function useGetRecipients(
   query: null | Record<

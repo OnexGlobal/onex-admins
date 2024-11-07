@@ -1,4 +1,4 @@
-import { SVGProps } from "types";
+import { SVGProps } from "@repo/types";
 
 export default function OutputIcon({ size = 32, margin }: SVGProps) {
   return (

@@ -1,9 +1,9 @@
 import { FC } from "react";
-import { ButtonProps } from "@repo/types";
+import { MainButtonProps } from "@repo/types";
 import { Button } from "antd";
 
-const Primary: FC<ButtonProps> = ({ ...props }) => {
-  return <Button color="primary" variant="outlined" type="dashed" {...props} />;
+const Primary: FC<MainButtonProps> = ({ ...props }) => {
+  return <Button color="primary" {...props} />;
 };
 
 export default Primary;

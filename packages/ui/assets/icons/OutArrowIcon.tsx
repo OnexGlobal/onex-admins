@@ -1,16 +1,6 @@
 import { FC } from "react";
-import { SVGProps } from "../../types";
-import { styled } from "@linaria/react";
+import { SVGProps } from "@repo/types";
 
-const SVG = styled.svg`
-  &._hover {
-    &:hover {
-      path {
-        stroke: #5dba2f;
-      }
-    }
-  }
-`;
 export const OutArrowIcon: FC<SVGProps> = ({
   size = "20",
   color = "#5B6D7F",
@@ -19,7 +9,7 @@ export const OutArrowIcon: FC<SVGProps> = ({
   ...props
 }) => {
   return (
-    <SVG
+    <svg
       {...props}
       style={{ margin, cursor }}
       width={size}
@@ -35,6 +25,6 @@ export const OutArrowIcon: FC<SVGProps> = ({
         strokeLinecap="round"
         strokeLinejoin="round"
       />
-    </SVG>
+    </svg>
   );
 };

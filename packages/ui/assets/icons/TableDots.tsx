@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { SVGProps } from "../../types";
+import { SVGProps } from "@repo/types";
 
 export const TableDots: FC<SVGProps> = ({ size = "24" }) => {
   return (

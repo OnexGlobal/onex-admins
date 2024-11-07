@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { SVGProps } from "types";
+import { SVGProps } from "@repo/types";
 
 export const DashboardIcon: FC<SVGProps> = ({
   color = "#5B6D7F",

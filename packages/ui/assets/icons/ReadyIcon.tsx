@@ -1,4 +1,4 @@
-import { SVGProps } from "types";
+import { SVGProps } from "@repo/types";
 
 export default function ReadyIcon({ size = "20", margin, ...props }: SVGProps) {
   return (

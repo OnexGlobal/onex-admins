@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { SVGProps } from "../../types";
+import { SVGProps } from "@repo/types";
 
 export const FlagAndAir: FC<SVGProps> = ({ height = "40", width = "88" }) => {
   return (

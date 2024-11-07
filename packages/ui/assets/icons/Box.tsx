@@ -1,4 +1,4 @@
-import { SVGProps } from "types";
+import { SVGProps } from "@repo/types";
 
 export const Box = ({ margin, color, size = 40, ...props }: SVGProps) => (
   <svg

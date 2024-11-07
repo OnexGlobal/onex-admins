@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { SVGProps } from "../../types";
+import { SVGProps } from "@repo/types";
 
 export const WarningCircleIcon: FC<SVGProps> = ({ size = "43", ...props }) => {
   return (

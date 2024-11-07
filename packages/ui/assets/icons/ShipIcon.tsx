@@ -1,4 +1,4 @@
-import { SVGProps } from "types";
+import { SVGProps } from "@repo/types";
 
 export default function ShipIcon({ size = "24", margin, ...props }: SVGProps) {
   return (

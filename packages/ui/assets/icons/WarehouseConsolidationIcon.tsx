@@ -1,4 +1,4 @@
-import { SVGProps } from "types";
+import { SVGProps } from "@repo/types";
 
 export const WarehouseConsolidationIcon = ({
   color = "#3B5166",

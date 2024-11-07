@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { SVGProps } from "../../types";
+import { SVGProps } from "@repo/types";
 
 export const AroundCheckedIcon: FC<SVGProps> = ({ size = "15", ...props }) => {
   return (

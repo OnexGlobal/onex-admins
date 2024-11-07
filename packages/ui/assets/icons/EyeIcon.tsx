@@ -1,5 +1,5 @@
 import { FC, useState } from "react";
-import { SVGProps } from "types";
+import { SVGProps } from "@repo/types";
 
 export const EyeIcon: FC<SVGProps> = ({ size = "24", margin, ...props }) => {
   const [color, setColor] = useState("#3B5166");

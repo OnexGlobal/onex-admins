@@ -2,7 +2,7 @@ import { Dispatch, SetStateAction } from "react";
 import { Paginated } from "./pagination";
 
 export interface PrimeUsersSearchType {
-  filter?: Record<string, string | number | undefined>;
+  filter?: Record<string, string | number | null>;
   setFilter: Dispatch<
     SetStateAction<Record<string, string | number | undefined | null>>
   >;
@@ -1034,6 +1034,7 @@ export interface OrdersCountByCountry {
   round_flag: string;
   total: number;
 }
+
 export interface CustomersSearchType {
   filter?: Record<string, string | number | undefined>;
   setFilter: Dispatch<
@@ -1041,11 +1042,12 @@ export interface CustomersSearchType {
   >;
   refetch: () => void;
 }
+
 export interface CustomersTableType {
   recipients?: Recipient[];
   meta?: Paginated<any>["meta"];
-  filter?: Record<string, string | number | undefined>;
+  filter?: Record<string, string | number | undefined | boolean>;
   setFilter: Dispatch<
-    SetStateAction<Record<string, string | number | undefined>>
+    SetStateAction<Record<string, string | boolean | number | undefined>>
   >;
 }

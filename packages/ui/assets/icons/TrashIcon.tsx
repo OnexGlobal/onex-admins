@@ -1,4 +1,4 @@
-import { SVGProps } from "types";
+import { SVGProps } from "@repo/types";
 import { useState } from "react";
 
 export default function TrashIcon({ size = "24", margin, ...props }: SVGProps) {

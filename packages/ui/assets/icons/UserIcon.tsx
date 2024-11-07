@@ -1,4 +1,4 @@
-import { SVGProps } from "types";
+import { SVGProps } from "@repo/types";
 
 export default function UserIcon({ size = "42", margin }: SVGProps) {
   return (

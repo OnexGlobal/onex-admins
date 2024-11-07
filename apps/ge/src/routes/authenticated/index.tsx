@@ -1,6 +1,7 @@
 import {
   Customers,
   Dashboard,
+  Expected,
   Home,
   PrimeUser,
   ProtectedRoute,
@@ -54,7 +55,7 @@ const AuthRoutes = () => {
     },
     {
       path: "/expected",
-      component: <div>Expected</div>,
+      component: <Expected />,
       permission: expected_view,
     },
     {

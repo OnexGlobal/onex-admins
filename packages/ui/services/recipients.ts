@@ -17,7 +17,7 @@ export const recipientsApi = {
 
 interface PropsData {
   id?: string | number;
-  data: Record<string, string | number | boolean | undefined>;
+  data: Record<string, string | number | boolean | null>;
 }
 
 interface PropsQuery {

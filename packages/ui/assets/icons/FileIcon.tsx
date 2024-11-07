@@ -1,4 +1,4 @@
-import { SVGProps } from "types";
+import { SVGProps } from "@repo/types";
 
 export default function FileIcon({ size = "18", margin, ...props }: SVGProps) {
   return (
