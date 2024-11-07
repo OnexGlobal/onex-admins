@@ -6,10 +6,12 @@ import { Loading } from "./components/general/Loading";
 import { useContext } from "react";
 import { AuthContext } from "./utils/hooks/useAuth";
 import { usePermission } from "./utils/hooks/usePermissions";
+import { Button } from "antd";
 
 const App = () => {
   const { auth, loading, user } = useContext(AuthContext);
   const permissions = usePermission();
+
   if (loading) return <Loading />;
   if (!auth) return <Unanuthenticated />;
   return (

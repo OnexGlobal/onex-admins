@@ -1,6 +1,18 @@
 import { ActivityLog, AmeriaRefund } from "./users";
-
+export interface PermissionObject {
+  id: number;
+  group: string;
+  name: string;
+  guard_name: string;
+  created_at: string;
+  updated_at: string;
+  pivot: {
+    role_id: number;
+    permission_id: number;
+  };
+}
 export interface Permissions {
+  "test-users": { name: string }[];
   role: Role[];
   region: Region[];
   community: Community[];

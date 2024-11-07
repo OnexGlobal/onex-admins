@@ -16,6 +16,7 @@ export interface UserType {
   label?: string;
   verified_type: string;
   email_verified_at?: string | null;
+  user_id: number;
   birthday_date: string;
   prime_start_at: string;
   prime_end_at?: string | null;
@@ -386,6 +387,8 @@ export interface Pivot14 {
 
 export interface BalancePaymentType {
   id: number;
+  type: string;
+  sum: number;
   group: string;
   name: string;
   guard_name: string;

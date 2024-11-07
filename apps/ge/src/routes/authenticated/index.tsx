@@ -1,10 +1,12 @@
 import {
+  Balance,
   Customers,
   Dashboard,
   Expected,
   Home,
   PrimeUser,
   ProtectedRoute,
+  TestUsers,
 } from "@repo/ui";
 import { Route, Routes } from "react-router-dom";
 import { usePermission } from "../../utils/hooks/usePermissions";
@@ -25,6 +27,7 @@ const AuthRoutes = () => {
     shop_view,
     warehouse_view,
     api_version_view,
+    balance_edit,
   } = usePermission();
 
   const routes = [
@@ -50,7 +53,7 @@ const AuthRoutes = () => {
     },
     {
       path: "/test-users",
-      component: <div>Test users</div>,
+      component: <TestUsers />,
       permission: recipient_view,
     },
     {
@@ -75,7 +78,7 @@ const AuthRoutes = () => {
     },
     {
       path: "/balance",
-      component: <div>Balance</div>,
+      component: <Balance balance_edit={balance_edit} />,
       permission: balance_view,
     },
     {
