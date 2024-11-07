@@ -1,6 +1,7 @@
 import { ActivityLog, AmeriaRefund } from "./users";
 
 export interface Permissions {
+  "test-users": { name: string }[];
   role: Role[];
   region: Region[];
   community: Community[];

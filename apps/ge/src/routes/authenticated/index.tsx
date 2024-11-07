@@ -4,6 +4,7 @@ import {
   Home,
   PrimeUser,
   ProtectedRoute,
+  TestUsers,
 } from "@repo/ui";
 import { Route, Routes } from "react-router-dom";
 import { usePermission } from "../../utils/hooks/usePermissions";
@@ -49,7 +50,7 @@ const AuthRoutes = () => {
     },
     {
       path: "/test-users",
-      component: <div>Test users</div>,
+      component: <TestUsers />,
       permission: recipient_view,
     },
     {

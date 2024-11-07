@@ -4,9 +4,9 @@ import { Status } from "@repo/types";
 import { WarningCircleIcon } from "../../assets/icons/WarningCircleIcon";
 
 interface DeletedProps {
-  deleted: Status;
+  deleted: any;
   deletedId?: Status;
-  setDeleted: Dispatch<SetStateAction<Status>>;
+  setDeleted: Dispatch<SetStateAction<any>>;
   handleDelete: (val: Record<string, Status>) => void;
   description?: string;
   title?: string;
@@ -18,7 +18,6 @@ export const DeleteModal: FC<DeletedProps> = ({
   deletedId,
   handleDelete,
   title = "",
-  description = "",
 }) => {
   return (
     <Modal
@@ -28,16 +27,20 @@ export const DeleteModal: FC<DeletedProps> = ({
       footer={null}
       width={400}
     >
-      <span className="text-[18px]">{title}</span>
-      <span className="text-[18px] text-oxford-blue-300">{title}</span>
+      <div className="flex flex-col">
+        <span className="text-[18px]">{title}</span>
+        <span className="text-[18px] text-oxford-blue-300">{title}</span>
 
-      <div className="w-full flex justify-between mt-[24px] mb-[12px]">
-        <Button onClick={() => setDeleted(false)} />
-        <Button
-          onClick={() => handleDelete({ id: deletedId || "", status: 0 })}
-        >
-          Delete
-        </Button>
+        <div className="w-full flex justify-between mt-[24px] mb-[12px] gap-[12px] [&>button]:flex-1">
+          <Button onClick={() => setDeleted(false)}>Cancel</Button>
+          <Button
+            type="primary"
+            danger
+            onClick={() => handleDelete({ id: deletedId || "", status: 0 })}
+          >
+            Delete
+          </Button>
+        </div>
       </div>
     </Modal>
   );
