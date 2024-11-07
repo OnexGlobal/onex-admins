@@ -1,4 +1,12 @@
-import { AutoComplete, DatePicker, Form, Input, Select, Tag } from "antd";
+import {
+  AutoComplete,
+  Button,
+  DatePicker,
+  Form,
+  Input,
+  Select,
+  Tag,
+} from "antd";
 import { useState } from "react";
 import useSmartServices from "@repo/ui/hooks/smart-services/useSmartServices.hook";
 import useCategories from "@repo/ui/hooks/categories/useCategories.hook";
@@ -7,7 +15,6 @@ import FlyIcon from "@repo/ui/assets/icons/FlyIcon";
 import { SearchIcon } from "@repo/ui/assets/icons/SearchIcon";
 import useGetWarehouses from "@repo/ui/hooks/warehouses/useWarehouses.hook";
 import dayjs from "dayjs";
-import Primary from "../../components/buttons/Primary";
 
 const { RangePicker } = DatePicker;
 
@@ -42,8 +49,7 @@ export default function ExpectedTopActions({
         }
       }
     });
-
-    console.log(newValue);
+    setFilters(newValue);
   };
 
   const handleResetForm = () => {
@@ -182,22 +188,21 @@ export default function ExpectedTopActions({
           {/*>*/}
           {/*  {more ? "Show less" : "Show more"}*/}
           {/*</Primary>*/}
-          <Primary
+          <Button
             color="default"
             onClick={() => handleResetForm()}
             className="hover:!text-black hover:!border-oxford-blue-50"
           >
             Reset
-          </Primary>
-          <Primary
+          </Button>
+          <Button
             icon={<SearchIcon />}
-            onClick={() => handleResetForm()}
             htmlType="submit"
             color="primary"
             variant="solid"
           >
             Search
-          </Primary>
+          </Button>
         </div>
       </Form>
     </div>

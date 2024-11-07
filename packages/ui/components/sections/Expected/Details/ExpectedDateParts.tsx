@@ -8,7 +8,7 @@ interface Props {
 
 const ExpectedDateParts: FC<Props> = ({ expectedByID }) => {
   return (
-    <div className="rounded-[12px] bg-white pt-[16px] pl-[16px] pr-[16px] mb-[16px] h-max">
+    <div className="rounded-[12px] bg-white p-[16px] mb-[16px] h-max">
       <div className="flex items-center">
         <ExpectedIcon className="mr-[16px]" />
         <div className="flex flex-col">

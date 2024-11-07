@@ -34,7 +34,7 @@ export const DetailsOrder: FC<Props> = ({
 
       <CustomerParts expectedByID={expectedByID} />
       <ExpectedDateParts expectedByID={expectedByID} />
-      {expectedByID?.order_smart_services && (
+      {!!expectedByID?.order_smart_services && (
         <ServiceParts expectedByID={expectedByID} refetch={refetch} />
       )}
     </>

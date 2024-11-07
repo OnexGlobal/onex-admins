@@ -144,10 +144,9 @@ export const EditExpectedOrder: FC<Props> = ({
             name={"dispatch_id"}
             label={"Dispatch"}
             rules={[{ required: true, message: "Required" }]}
-            className="font-[500]"
+            className="font-[500] w-[150px]"
           >
             <Select
-              className="w-[100px]"
               placeholder={"Dispatch"}
               disabled={!dispatches.length}
               options={dispatches || []}
@@ -186,18 +185,14 @@ export const EditExpectedOrder: FC<Props> = ({
           name={"order_type"}
           label={"Product type"}
           rules={[{ required: true, message: "Required" }]}
-          className="font-[500]"
+          className="font-[500] w-[250px]"
         >
-          <Select
-            placeholder="Product type"
-            className="w-[227px]"
-            options={orderTypes}
-          />
+          <Select placeholder="Product type" options={orderTypes} />
         </Form.Item>
         <Form.Item
           name={"category_id"}
           label={"Category"}
-          className="w-[180px] font-[500]"
+          className="w-[250px] font-[500]"
         >
           <Select options={categories} placeholder={"Category"} />
         </Form.Item>

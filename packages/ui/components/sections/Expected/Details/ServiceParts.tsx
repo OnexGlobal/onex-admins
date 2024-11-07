@@ -24,9 +24,9 @@ const ServiceParts: FC<Props> = ({ expectedByID, refetch }) => {
     (e) => notificationError("Errore", e?.response?.data?.message)
   );
   return (
-    <div className="flex justify-between items-center gap-[24px 50px] rounded-[12px] bg-white pt-[16px] pr-[16px] pl-[16px] mb-[16px] h-max">
+    <div className="flex justify-between items-start gap-[24px 50px] rounded-[12px] bg-white p-[16px] mb-[16px] h-max">
       <div className="border-l-[1px solid] border-oxford-blue-50 pl-[10px] h-max">
-        <h1 className="text-description text-oxford-blue-400 pb-[4px]">
+        <h1 className="text-info font-[500] text-oxford-blue-400 pb-[4px]">
           Smart Service
         </h1>
         <div className="flex items-center gap-[8px]">
@@ -35,7 +35,7 @@ const ServiceParts: FC<Props> = ({ expectedByID, refetch }) => {
             src={expectedByID?.order_smart_services?.smart_service?.image}
             width="25"
           />
-          <h1 className="text-description text-oxford-blue-300">
+          <h1 className="text-info text-oxford-blue-300">
             {
               expectedByID?.order_smart_services?.smart_service
                 ?.current_smart_service?.name
@@ -46,28 +46,32 @@ const ServiceParts: FC<Props> = ({ expectedByID, refetch }) => {
           </Tag>
         </div>
       </div>
-      <div className="border-l-[1px solid] border-oxford-blue-50 pl-[10px] h-max">
-        <h1 className="text-description text-oxford-blue-400 pb-[4px]">
+      <div className="border-l-[1px solid] border-oxford-blue-50 pl-[16px] h-max">
+        <h1 className="text-info font-[500] text-oxford-blue-400 pb-[4px]">
           Added date
         </h1>
 
-        <h1 className="text-description">
+        <h1 className="text-info">
           {dayjs(expectedByID?.created_at).format("DD.MM.YYYY, HH:mm")}
         </h1>
       </div>
-      <div className="border-l-[1px solid] border-oxford-blue-50 pl-[10px] h-max">
-        <h1 className="text-description text-oxford-blue-400 pb-[4px]">Note</h1>
+      <div className="border-l-[1px solid] border-oxford-blue-50 pl-[16px] h-max">
+        <h1 className="text-info font-[500] text-oxford-blue-400 pb-[4px]">
+          Note
+        </h1>
 
-        <h1 className="text-description text-oxford-blue-400">
+        <h1 className="text-info text-oxford-blue-400">
           {expectedByID?.order_smart_services?.smart_service?.description ||
             expectedByID?.customer_comment ||
             "."}
         </h1>
       </div>
-      <div className="border-l-[1px solid] border-oxford-blue-50 pl-[10px] h-max">
-        <h1 className="text-description text-oxford-blue-400 pb-[4px]">Cost</h1>
+      <div className="border-l-[1px solid] border-oxford-blue-50 pl-[16px] h-max">
+        <h1 className="text-info font-[500] text-oxford-blue-400 pb-[4px]">
+          Cost
+        </h1>
 
-        <h1 className="text-description">
+        <h1 className="text-info">
           {`${expectedByID?.order_smart_services?.smart_service?.cost || ""} ₾`}
         </h1>
       </div>

@@ -1,4 +1,5 @@
 import axios from "axios";
+
 const token = localStorage.getItem("token");
 axios.defaults.baseURL = import.meta.env.VITE_APP_BASE_URL_DEV;
 axios.defaults.headers.common = {
@@ -12,7 +13,7 @@ axios.interceptors.response.use(
   (response) => response,
   (error) => {
     const { status } = error.response;
-    if (status === 500 || status === 401) {
+    if (status === 500) {
       localStorage.clear();
       window.location.reload();
     }

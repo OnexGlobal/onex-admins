@@ -5,7 +5,7 @@ import ShopIcon from "@repo/ui/assets/icons/ShopIcon";
 import { EditIcon } from "@repo/ui/assets/icons/EditIcon";
 import React, { FC } from "react";
 import { ExpectedOrdersType } from "@repo/types/src/expected-orders-type";
-import { Button } from "antd";
+import { Button, Tooltip } from "antd";
 
 interface Props {
   expectedByID: ExpectedOrdersType;
@@ -32,9 +32,15 @@ export const HeaderParts: FC<Props> = ({
           </h1>
         </div>
         <div className="flex gap-[16px] mt-[8px] mb-[8px]">
-          <h1 className="text-info text-oxford-blue-300">
-            {expectedByID?.customer_comment || ""}
-          </h1>
+          <Tooltip
+            title={<span>{expectedByID?.customer_comment || ""}</span>}
+            trigger="hover"
+            color={"#0a2540"}
+          >
+            <h1 className="text-info text-oxford-blue-300 overflow-hidden text-ellipsis whitespace-nowrap max-w-[250px] cursor-pointer relative">
+              {expectedByID?.customer_comment || ""}
+            </h1>
+          </Tooltip>
 
           <h1 className="text-info whitespace-nowrap">
             <div className="flex items-center">
@@ -44,8 +50,12 @@ export const HeaderParts: FC<Props> = ({
             </div>
           </h1>
           {!!expectedByID?.invoice && (
-            <a href={expectedByID?.invoice?.file} target={"_blank"}>
-              <h1 className="text-info">
+            <a
+              href={expectedByID?.invoice?.file}
+              target={"_blank"}
+              className="hover:!text-green-500"
+            >
+              <h1 className="text-info whitespace-nowrap">
                 <div className="flex items-center">
                   <FileIcon className="mr-[7px]" />
                   Invoice
@@ -53,7 +63,7 @@ export const HeaderParts: FC<Props> = ({
               </h1>
             </a>
           )}
-          <h1 className="text-info">
+          <h1 className="text-info whitespace-nowrap">
             {expectedByID?.category?.name ? (
               <div className="flex items-center">
                 <ListIcon className="mr-[7px]" />
@@ -64,16 +74,24 @@ export const HeaderParts: FC<Props> = ({
             )}
           </h1>
 
-          <h1 className="text-info">
-            {expectedByID?.shop_name ? (
-              <div className="flex items-center">
-                <ShopIcon className="mr-[7px]" />
-                {expectedByID?.shop_name}
-              </div>
-            ) : (
-              ""
-            )}
-          </h1>
+          <div className="flex justify-start flex-nowrap" key={"shop_name"}>
+            <Tooltip
+              title={<span>{expectedByID?.shop_name}</span>}
+              trigger="hover"
+              color={"#0a2540"}
+            >
+              <h1 className="text-info text-oxford-blue-300 overflow-hidden text-ellipsis whitespace-nowrap max-w-[250px] cursor-pointer relative">
+                {expectedByID?.shop_name ? (
+                  <div className="flex items-center">
+                    <ShopIcon className="mr-[7px]" />
+                    {expectedByID?.shop_name}
+                  </div>
+                ) : (
+                  ""
+                )}
+              </h1>
+            </Tooltip>
+          </div>
         </div>
       </div>
       <div className="flex gap-[16px]">
