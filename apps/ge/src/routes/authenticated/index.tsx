@@ -1,4 +1,5 @@
 import {
+  Balance,
   Customers,
   Dashboard,
   Home,
@@ -25,6 +26,7 @@ const AuthRoutes = () => {
     shop_view,
     warehouse_view,
     api_version_view,
+    balance_edit,
   } = usePermission();
 
   const routes = [
@@ -75,7 +77,7 @@ const AuthRoutes = () => {
     },
     {
       path: "/balance",
-      component: <div>Balance</div>,
+      component: <Balance balance_edit={balance_edit} />,
       permission: balance_view,
     },
     {

@@ -11,3 +11,4 @@ export { default as Home } from "./pages/Home";
 export { default as Customers } from "./pages/Customers";
 export { default as PrimeUser } from "./pages/PrimeUsers";
 export { default as TestUsers } from "./pages/TestUsers";
+export { default as Balance } from "./pages/Balance";
