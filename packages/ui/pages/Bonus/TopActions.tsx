@@ -49,7 +49,6 @@ export default function BonusTopActions({ setFilterData }: Props) {
       form={form}
       className={"_paper !min-h-0"}
     >
-      {" "}
       <div className="flex justify-between gap-[16px]">
         <Form.Item name={"user_id"} style={{ width: 240 }}>
           <AutoComplete

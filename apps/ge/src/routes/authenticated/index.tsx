@@ -9,6 +9,7 @@ import {
   PrimeUser,
   ProtectedRoute,
   Reports,
+  Roles,
   TestUsers,
 } from "@repo/ui";
 import { Route, Routes } from "react-router-dom";
@@ -112,7 +113,7 @@ const AuthRoutes = () => {
     },
     {
       path: "/roles",
-      component: <div>Roles</div>,
+      component: <Roles />,
       permission: role_view,
     },
     {
