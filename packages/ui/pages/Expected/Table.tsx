@@ -15,7 +15,6 @@ interface Props {
   setId: (val: number | string) => void;
   data?: ExpectedOrdersType[];
   isLoading: boolean;
-  filter: Record<string, string | number | undefined | boolean>;
   setFilter: (
     val: Record<string, string | number | boolean | undefined>
   ) => void;
@@ -28,7 +27,6 @@ export default function ExpectedTable({
   setId,
   data,
   isLoading,
-  filter,
   setFilter,
   permissions,
   meta,
@@ -132,7 +130,11 @@ export default function ExpectedTable({
     invoice: (
       <div className="flex flex-col">
         {item.invoice && (
-          <a href={item.invoice.file} target={"_blank"}>
+          <a
+            href={item.invoice.file}
+            target={"_blank"}
+            className="hover:!text-green-500"
+          >
             <div className="flex items-center  flex-nowrap">
               <FileIcon />
               <h1 className="text-info pl-[8px]">Invoice</h1>
@@ -153,7 +155,7 @@ export default function ExpectedTable({
           trigger="hover"
           color={"#0a2540"}
         >
-          <h1 className="text-info text-oxford-blue-300 overflow-hidden text-ellipsis whitespace-nowrap max-w-[250px] cursor-pointer relative">
+          <h1 className="text-info text-green-500 overflow-hidden text-ellipsis whitespace-nowrap max-w-[250px] cursor-pointer relative">
             {item.shop_name}
           </h1>
         </Tooltip>
@@ -225,14 +227,14 @@ export default function ExpectedTable({
   return (
     <div className="w-[100%] h-[100%]">
       {contextHolder}
-
       <Table
         className="w-[100%] custom-table"
         columns={columns}
         dataSource={dataSource}
         loading={isLoading}
         meta={meta}
-        onChangePage={(page) => setFilter({ ...filter, page })}
+        onChangePage={(page) => setFilter((p) => ({ ...p, page }))}
+        onChangePerPage={(per_page) => setFilter((p) => ({ ...p, per_page }))}
         components={{
           header: {
             wrapper: (props: HTMLAttributes<HTMLTableSectionElement>) => (
