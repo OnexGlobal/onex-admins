@@ -13,3 +13,6 @@ export { default as PrimeUser } from "./pages/PrimeUsers";
 export { default as Expected } from "./pages/Expected";
 export { default as TestUsers } from "./pages/TestUsers";
 export { default as Balance } from "./pages/Balance";
+export { default as Reports } from "./pages/Reports";
+export { default as OnlinePayment } from "./pages/OnlinePayment";
+export { default as Bonus } from "./pages/Bonus/Bonus";

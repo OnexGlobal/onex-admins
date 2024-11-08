@@ -1,11 +1,14 @@
 import {
   Balance,
+  Bonus,
   Customers,
   Dashboard,
   Expected,
   Home,
+  OnlinePayment,
   PrimeUser,
   ProtectedRoute,
+  Reports,
   TestUsers,
 } from "@repo/ui";
 import { Route, Routes } from "react-router-dom";
@@ -28,8 +31,9 @@ const AuthRoutes = () => {
     warehouse_view,
     api_version_view,
     balance_edit,
+    bonus_create,
   } = usePermission();
-
+  console.log(bonus_create);
   const routes = [
     {
       path: "/",
@@ -83,17 +87,17 @@ const AuthRoutes = () => {
     },
     {
       path: "/reports",
-      component: <div>Report</div>,
+      component: <Reports />,
       permission: report_full,
     },
     {
       path: "/online-payment",
-      component: <div>Online payment</div>,
+      component: <OnlinePayment />,
       permission: balance_view,
     },
     {
       path: "/bonus",
-      component: <div>Bonus</div>,
+      component: <Bonus bonus_create={bonus_create} />,
       permission: bonus_view,
     },
     {

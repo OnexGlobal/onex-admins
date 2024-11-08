@@ -228,7 +228,10 @@ export default function BalanceTable({
         bordered
         columns={columns}
         dataSource={dataSource}
-        scroll={{ y: "54vh" }}
+        onChangePage={(value) => setFilterData((p) => ({ ...p, page: value }))}
+        onChangePerPage={(value) =>
+          setFilterData((p) => ({ ...p, per_page: value }))
+        }
       />
 
       <div className="flex justify-end gap-[8px]">
