@@ -1,5 +1,6 @@
 import {
   Balance,
+  Bonus,
   Customers,
   Dashboard,
   Expected,
@@ -30,8 +31,9 @@ const AuthRoutes = () => {
     warehouse_view,
     api_version_view,
     balance_edit,
+    bonus_create,
   } = usePermission();
-
+  console.log(bonus_create);
   const routes = [
     {
       path: "/",
@@ -95,7 +97,7 @@ const AuthRoutes = () => {
     },
     {
       path: "/bonus",
-      component: <div>Bonus</div>,
+      component: <Bonus bonus_create={bonus_create} />,
       permission: bonus_view,
     },
     {
