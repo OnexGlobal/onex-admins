@@ -38,7 +38,6 @@ const DashboardPage = () => {
 
       {dashboardData ? (
         <>
-          {" "}
           <Row gutter={24} style={{ width: "100%" }}>
             <Col lg={8} md={24} xs={24}>
               <DashboardTotalCards

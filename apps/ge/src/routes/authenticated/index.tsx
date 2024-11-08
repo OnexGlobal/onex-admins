@@ -6,6 +6,7 @@ import {
   Home,
   PrimeUser,
   ProtectedRoute,
+  Reports,
   TestUsers,
 } from "@repo/ui";
 import { Route, Routes } from "react-router-dom";
@@ -83,7 +84,7 @@ const AuthRoutes = () => {
     },
     {
       path: "/reports",
-      component: <div>Report</div>,
+      component: <Reports />,
       permission: report_full,
     },
     {
