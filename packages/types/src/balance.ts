@@ -1,3 +1,5 @@
+import { Report } from "./users";
+
 export interface UserType {
   id: number;
   email: string;

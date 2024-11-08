@@ -1,7 +1,7 @@
 import { Navigate, Route, Routes } from "react-router-dom";
 import SignIn from "./SignIn";
 
-const Unanuthenticated = () => {
+const Unauthenticated = () => {
   return (
     <Routes>
       <Route path="/" element={<SignIn />} />
@@ -10,4 +10,4 @@ const Unanuthenticated = () => {
   );
 };
 
-export default Unanuthenticated;
+export default Unauthenticated;

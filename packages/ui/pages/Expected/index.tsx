@@ -23,7 +23,9 @@ export default function Expected() {
 
   const [filters, setFilters] = useState<
     Record<string, string | number | undefined | boolean>
-  >({ status: "1" });
+  >({
+    status: "1",
+  });
   const { expectedList, isLoading, meta, refetch } = useGetExpected(filters);
   const [fullNameFromUrl, setFullNameFromUrl] = useState<
     null | string | undefined
@@ -40,6 +42,8 @@ export default function Expected() {
         e?.response?.data?.message || "something went wrong"
       )
   );
+
+  console.log(filters);
 
   useEffect(() => {
     const search = window.location.search;
@@ -71,13 +75,13 @@ export default function Expected() {
           data={expectedList}
           isLoading={isLoading}
           meta={meta}
-          filter={filters}
           setFilter={setFilters}
           permissions={[]}
         />
       ) : (
         <Loader />
       )}
+
       <DetailsExpectedOrder
         status={status === "detail-drawer"}
         setStatus={setStatus}

@@ -15,6 +15,7 @@ import FlyIcon from "@repo/ui/assets/icons/FlyIcon";
 import { SearchIcon } from "@repo/ui/assets/icons/SearchIcon";
 import useGetWarehouses from "@repo/ui/hooks/warehouses/useWarehouses.hook";
 import dayjs from "dayjs";
+import ShowLessIcon from "@repo/ui/assets/icons/ShowLessIcon";
 
 const { RangePicker } = DatePicker;
 
@@ -70,7 +71,11 @@ export default function ExpectedTopActions({
         ]}
         onFinish={onFinish}
       >
-        <div className={`w-[100%] justify-between`}>
+        <div
+          className={`w-[100%] overflow-hidden justify-between ${
+            more ? "max-h-[500px]" : "max-h-[55px]"
+          } transition-all transition-duration-[0.3s]`}
+        >
           <div className="flex flex-wrap">
             <Form.Item name="user_info" style={{ width: 200, marginRight: 16 }}>
               <AutoComplete
@@ -180,14 +185,14 @@ export default function ExpectedTopActions({
           </div>
         </div>
         <div className="flex w-[100%] justify-end gap-[16px] mb-[16px]">
-          {" "}
-          {/*<Primary*/}
-          {/*  type="text"*/}
-          {/*  onClick={() => setMore(!more)}*/}
-          {/*  icon={<ShowLessIcon rotate={more ? "0deg" : "-180deg"} />}*/}
-          {/*>*/}
-          {/*  {more ? "Show less" : "Show more"}*/}
-          {/*</Primary>*/}
+          <Button
+            onClick={() => setMore(!more)}
+            type="link"
+            className="text-oxford-blue-300 hover:!text-green-500"
+            icon={<ShowLessIcon rotate={more ? "0deg" : "-180deg"} />}
+          >
+            {more ? "Show less" : "Show more"}
+          </Button>
           <Button
             color="default"
             onClick={() => handleResetForm()}
