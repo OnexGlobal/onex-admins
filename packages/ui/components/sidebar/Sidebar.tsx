@@ -63,7 +63,7 @@ const Sidebar: FC<Props> = ({ menu, children, email }) => {
           />
         </div>
       </div>
-      <div className="p-[25px]">{children}</div>
+      <div className="p-[25px] max-h-[100dvh] overflow-auto">{children}</div>
     </div>
   );
 };

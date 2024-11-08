@@ -4,6 +4,7 @@ import {
   Dashboard,
   Expected,
   Home,
+  OnlinePayment,
   PrimeUser,
   ProtectedRoute,
   Reports,
@@ -89,7 +90,7 @@ const AuthRoutes = () => {
     },
     {
       path: "/online-payment",
-      component: <div>Online payment</div>,
+      component: <OnlinePayment />,
       permission: balance_view,
     },
     {
