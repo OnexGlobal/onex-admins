@@ -31,6 +31,7 @@ export interface UserType {
   registered_days: number;
   orders_count: number;
   orders_count_by_country: OrdersCountByCountry[];
+  is_active_admin: number;
 }
 
 export interface Recipient {

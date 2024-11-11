@@ -17,3 +17,4 @@ export { default as Reports } from "./pages/Reports";
 export { default as OnlinePayment } from "./pages/OnlinePayment";
 export { default as Bonus } from "./pages/Bonus/Bonus";
 export { default as Roles } from "./pages/Roles";
+export { default as Members } from "./pages/Members";

@@ -6,7 +6,7 @@ import { Status } from "../../../types/src/expected";
 interface DeletedProps {
   deleted: Status;
   deletedId?: Status;
-  setDeleted: Dispatch<SetStateAction<Status>>;
+  setDeleted: Dispatch<SetStateAction<any>>;
   handleDelete: (val: Record<string, Status>) => void;
   description?: string;
   title?: string;

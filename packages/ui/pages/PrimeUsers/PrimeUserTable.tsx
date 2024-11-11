@@ -8,7 +8,7 @@ import {
 import PrimeIcon from "../../assets/icons/PrimeIcon";
 import dayjs from "dayjs";
 import TrashIcon from "../../assets/icons/TrashIcon";
-import { DeleteModal } from "../../components/alerts/DeleteModal";
+import { DeleteModal } from "../../components/modals/DeleteModal";
 import Table from "../../components/table/Table";
 
 interface Props {

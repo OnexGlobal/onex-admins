@@ -9,7 +9,7 @@ import {
 import { clearTestUserData } from "../../hooks/testusers/clearTestUserData";
 import dayjs from "dayjs";
 import { Button, Table } from "antd";
-import { DeleteModal } from "../../components/alerts/DeleteModal";
+import { DeleteModal } from "../../components/modals/DeleteModal";
 import { order_icon } from "../../assets/images/prime";
 import prime from "../../assets/images/prime.svg";
 
