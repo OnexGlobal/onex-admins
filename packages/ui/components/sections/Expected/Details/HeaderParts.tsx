@@ -1,9 +1,9 @@
+import { FC } from "react";
 import MoneyIcon from "@repo/ui/assets/icons/MoneyIcon";
 import FileIcon from "@repo/ui/assets/icons/FlyIcon";
 import ListIcon from "@repo/ui/assets/icons/ListIcon";
 import ShopIcon from "@repo/ui/assets/icons/ShopIcon";
 import { EditIcon } from "@repo/ui/assets/icons/EditIcon";
-import React, { FC } from "react";
 import { ExpectedOrdersType } from "@repo/types/src/expected-orders-type";
 import { Button, Tooltip } from "antd";
 

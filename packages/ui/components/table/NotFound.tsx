@@ -9,33 +9,20 @@ interface Props {
 
 export const NotFound: FC<Props> = ({ icon, text, title, reset }) => {
   return (
-    <Flex
-      width={"100%"}
-      height={"100%"}
-      alignItems={"center"}
-      justifyContent={"center"}
-      flexDirection={"column"}
-      gap={"8px"}
-    >
+    <div className="w-full h-full flex items-center justify-center flex-col gap-[8px]">
       {icon}
       {!!title && (
-        <Typography
-          text={title}
-          color="#3B5166"
-          variant={"Title"}
-          level={4}
-          textAlign={"center"}
-        />
+        <span className="text-oxford-blue-400 text-[22px] text-center">
+          {title}
+        </span>
       )}
-      <Typography
-        text={text}
-        color={"#8E9BA7"}
-        fontSize={title ? "16px" : "20px"}
-        fontWeight={title ? "400" : "500"}
-        width={"360px"}
-        textAlign={"center"}
-      />
+      <span
+        className={`${title ? "text-[16px]" : "text-[20px]"} ${title ? "font-[400]" : "font-[500]"} max-w-[360px] text-center`}
+      >
+        {text}
+      </span>
+
       {reset}
-    </Flex>
+    </div>
   );
 };

@@ -5,6 +5,7 @@ import {
   Dashboard,
   Expected,
   Home,
+  Members,
   OnlinePayment,
   PrimeUser,
   ProtectedRoute,
@@ -33,8 +34,9 @@ const AuthRoutes = () => {
     api_version_view,
     balance_edit,
     bonus_create,
+    role_edit,
   } = usePermission();
-  console.log(bonus_create);
+
   const routes = [
     {
       path: "/",
@@ -108,7 +110,7 @@ const AuthRoutes = () => {
     },
     {
       path: "/members",
-      component: <div>Members</div>,
+      component: <Members role_edit={role_edit} />,
       permission: role_view,
     },
     {

@@ -1,7 +1,7 @@
 import { Dispatch, SetStateAction, useState } from "react";
 import { AutoComplete, Button, DatePicker, Form, Select } from "antd";
 import dayjs from "dayjs";
-import { UserType } from "@repo/types/src/users";
+import { Recipient } from "@repo/types/src/users";
 import { useBalancesTransferTypeHook } from "../../hooks/balances/useBalancesTransferType.hook";
 import { useBalancesPaymentTypeHook } from "../../hooks/balances/useBalancesPaymentType.hook";
 import { SearchIcon } from "../../assets/icons/SearchIcon";
@@ -13,7 +13,7 @@ const { RangePicker } = DatePicker;
 interface Props {
   setFilterData: Dispatch<SetStateAction<Record<string, string | number>>>;
   setUserInfo: Dispatch<SetStateAction<Record<string, string> | null>>;
-  usersList?: UserType[];
+  usersList: Recipient[];
 }
 
 export default function BalanceTopActions({

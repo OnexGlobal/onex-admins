@@ -30,5 +30,10 @@ export default function useGetRecipients(
       return { recipients, meta };
     },
   });
-  return { recipients: data?.recipients, meta: data?.meta, refetch, isLoading };
+  return {
+    recipients: data?.recipients,
+    meta: data?.meta,
+    refetch,
+    isLoading,
+  };
 }

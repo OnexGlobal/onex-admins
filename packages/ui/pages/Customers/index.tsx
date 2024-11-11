@@ -5,9 +5,7 @@ import useGetRecipients from "../../hooks/recipients/useGetRecipients.hook";
 import { Loader } from "../../components/loader/Loader";
 
 export default function Customers() {
-  const [filter, setFilter] = useState<
-    Record<string, string | number | undefined>
-  >({});
+  const [filter, setFilter] = useState<any>({});
 
   useEffect(() => {
     const search = window.location.search;
