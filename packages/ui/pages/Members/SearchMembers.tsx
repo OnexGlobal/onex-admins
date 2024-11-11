@@ -79,7 +79,8 @@ export default function MembersSearch({
           Search
         </Button>
         <Button
-          className="bg-oxford-blue-300 ml-auto"
+          className="bg-oxford-blue-300 ml-auto text-white"
+          type="default"
           onClick={() => setAdd(true)}
         >
           Add member
