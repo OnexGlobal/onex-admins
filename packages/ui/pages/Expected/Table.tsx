@@ -230,6 +230,7 @@ export default function ExpectedTable({
       <Table
         className="w-[100%] custom-table"
         columns={columns}
+        bordered
         dataSource={dataSource}
         loading={isLoading}
         meta={meta}
