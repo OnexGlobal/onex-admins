@@ -52,12 +52,7 @@ export default function BalanceTable({
       refetch();
     },
   });
-  const onShowSizeChange = (
-    current: number | string,
-    pageSize: number | string
-  ) => {
-    setFilterData({ ...params, page: current, per_page: pageSize });
-  };
+
   const handleSave = async (id?: number) => {
     const { created_at, ...row } = await form.validateFields();
     mutate({

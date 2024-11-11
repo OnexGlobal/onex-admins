@@ -1,4 +1,4 @@
-import React, { Dispatch, FC, SetStateAction } from "react";
+import { Dispatch, FC, SetStateAction } from "react";
 import { Button, Modal } from "antd";
 import { WarningCircleIcon } from "@repo/ui/assets/icons/WarningCircleIcon";
 

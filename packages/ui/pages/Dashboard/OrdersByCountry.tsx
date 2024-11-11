@@ -87,11 +87,10 @@ export default function OrdersByCountry({
       bullet.verticalCenter = "bottom";
 
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      const hoverState = bullet.states.create("hover");
       const outlineCircle = bullet.createChild(am4core.Circle);
-      outlineCircle.adapter.add("radius", function (radius, target) {
+      outlineCircle.adapter.add("radius", function () {
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
-        const circleBullet = target.parent;
+
         return 0;
       });
 
@@ -101,7 +100,7 @@ export default function OrdersByCountry({
       image.horizontalCenter = "middle";
       image.verticalCenter = "middle";
 
-      image.adapter.add("href", function (href, target) {
+      image.adapter.add("href", function (_, target) {
         const dataItem = target.dataItem;
         if (dataItem) {
           // @ts-ignore
@@ -109,7 +108,7 @@ export default function OrdersByCountry({
         }
       });
 
-      image.adapter.add("mask", function (mask, target) {
+      image.adapter.add("mask", function (_, target) {
         const circleBullet = target.parent;
         // @ts-ignore
         return circleBullet.circle;

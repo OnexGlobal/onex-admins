@@ -1,6 +1,6 @@
 import { Meta } from "@repo/types";
 import { Recipient } from "@repo/types/src/users";
-import { Pagination, Tag } from "antd";
+import { Tag } from "antd";
 import dayjs from "dayjs";
 import { Dispatch, FC, SetStateAction } from "react";
 import { EditIcon } from "../../assets/icons/EditIcon";

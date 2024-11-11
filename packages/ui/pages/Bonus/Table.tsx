@@ -1,4 +1,4 @@
-import { Button, Pagination } from "antd";
+import { Button } from "antd";
 import { Dispatch, SetStateAction } from "react";
 import { BonusDataType } from "@repo/types/src/bonus";
 import { Meta } from "@repo/types";
@@ -19,10 +19,6 @@ export default function BonusTable({
   bonusList,
   meta,
 }: Props) {
-  const onShowSizeChange = (current: number, pageSize: number) => {
-    setFilterData({ ...params, page: current, per_page: pageSize });
-  };
-
   const columns = [
     {
       key: "id",

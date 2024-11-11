@@ -19,7 +19,7 @@ export default function DashboardRegistration({
       chart.hiddenState.properties.opacity = 0; // this creates initial fade-in
 
       let data = Object.entries(dashboardData?.registration_by_time_info).map(
-        (key, value) => {
+        (key) => {
           return {
             category: key[0],
             value1: key[1].verified_total,

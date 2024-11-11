@@ -1,4 +1,3 @@
-import React from "react";
 export const RefundedCircleIcon = ({
   size = "43",
   cursor = "pointer",
