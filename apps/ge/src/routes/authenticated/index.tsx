@@ -1,4 +1,5 @@
 import {
+  ActionsHistory,
   Balance,
   Bonus,
   Customers,
@@ -120,7 +121,7 @@ const AuthRoutes = () => {
     },
     {
       path: "/actions-history",
-      component: <div>Actions history</div>,
+      component: <ActionsHistory />,
       permission: role_view,
     },
     {
