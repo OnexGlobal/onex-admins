@@ -1,6 +1,7 @@
 import {
   ActionsHistory,
   Balance,
+  Banners,
   Bonus,
   Customers,
   Dashboard,
@@ -36,6 +37,8 @@ const AuthRoutes = () => {
     balance_edit,
     bonus_create,
     role_edit,
+    header_message_edit,
+    header_message_create,
   } = usePermission();
 
   const routes = [
@@ -126,7 +129,12 @@ const AuthRoutes = () => {
     },
     {
       path: "/banners",
-      component: <div>Header</div>,
+      component: (
+        <Banners
+          header_message_edit={header_message_edit}
+          header_message_create={header_message_create}
+        />
+      ),
       permission: header_message_view,
     },
     {
