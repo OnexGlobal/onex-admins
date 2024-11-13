@@ -3,7 +3,7 @@ import * as React from "react";
 import { Meta } from "@repo/types";
 
 interface OnexTableProps extends TableProps {
-  meta: Meta;
+  meta?: Meta;
   onChangePage?: (value: number) => void;
   onChangePerPage?: (value: number) => void;
 }
