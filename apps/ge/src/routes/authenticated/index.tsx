@@ -10,6 +10,8 @@ import {
   Home,
   Members,
   OnlinePayment,
+  Orders,
+  OrdersCheck,
   PrimeUser,
   ProtectedRoute,
   Reports,
@@ -82,12 +84,12 @@ const AuthRoutes = () => {
     },
     {
       path: "/orders",
-      component: <div>Orders</div>,
+      component: <Orders />,
       permission: order_view,
     },
     {
       path: "/orders-check",
-      component: <div>Orders check</div>,
+      component: <OrdersCheck />,
       permission: order_view,
     },
     {

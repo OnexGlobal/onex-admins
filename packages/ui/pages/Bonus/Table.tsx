@@ -6,6 +6,7 @@ import dayjs from "dayjs";
 import Table from "../../components/table/Table";
 import DownloadIcon from "../../assets/icons/DownloadIcon";
 import { bonusApi } from "../../services/bonus";
+
 interface Props {
   params: Record<string, string>;
   setFilterData: Dispatch<SetStateAction<object>>;
@@ -67,7 +68,9 @@ export default function BonusTable({
     ),
     bonus_amount: (
       <span
-        className={`font-[500] ${list?.type === "in" ? "text-green-500" : "text-red-500"}`}
+        className={`font-[500] ${
+          list?.type === "in" ? "text-green-500" : "text-red-500"
+        }`}
       >
         {list?.sum && list?.type === "in"
           ? list?.sum + " ₾"

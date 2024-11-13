@@ -3,6 +3,7 @@ import { SVGProps } from "@repo/types";
 export default function CategoryIcon({ margin, ...props }: SVGProps) {
   return (
     <svg
+      {...props}
       width="18"
       height="14"
       style={{ margin }}

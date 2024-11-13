@@ -12,10 +12,10 @@ export interface MetaType {
   to: number;
   total: number;
   options?: {
-    total_cost: string;
-    total_additional_cost: string;
-    total_weight: string;
-    total_v_weight: string;
+    total_cost?: string;
+    total_additional_cost?: string;
+    total_weight?: string;
+    total_v_weight?: string;
     total_sum?: number;
   };
 }

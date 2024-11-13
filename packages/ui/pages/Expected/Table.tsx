@@ -3,7 +3,6 @@ import { ExpectedOrdersType } from "@repo/types/src/expected-orders-type";
 import FileIcon from "@repo/ui/assets/icons/FileIcon";
 import ExpectedIcon from "@repo/ui/assets/icons/ExpectedIcon";
 import { MetaType } from "@repo/types/src/meta-type";
-import { PermissionFinder } from "@repo/ui/helpers/permissionFinder";
 import { EyeIcon } from "@repo/ui/assets/icons/EyeIcon";
 import TrashIcon from "@repo/ui/assets/icons/TrashIcon";
 import { Users } from "@repo/types";
@@ -30,6 +29,7 @@ export default function ExpectedTable({
   setFilter,
   permissions,
   meta,
+  ...props
 }: Users.CustomersTableType & Props) {
   const [messageApi, contextHolder] = message.useMessage();
 
@@ -202,7 +202,7 @@ export default function ExpectedTable({
     ) : (
       <Tag className="bg-orange-50 text-orange-600 ml-[8px]">Deleted</Tag>
     ),
-    eye: !PermissionFinder(permissions, "expected-view") ? (
+    eye: (
       <div className="flex">
         <EyeIcon
           onClick={() => {
@@ -219,8 +219,6 @@ export default function ExpectedTable({
           }}
         />
       </div>
-    ) : (
-      ""
     ),
   }));
 
@@ -228,8 +226,10 @@ export default function ExpectedTable({
     <div className="w-[100%] h-[100%]">
       {contextHolder}
       <Table
+        {...props}
         className="w-[100%] custom-table"
         columns={columns}
+        bordered
         dataSource={dataSource}
         loading={isLoading}
         meta={meta}

@@ -43,8 +43,6 @@ export default function Expected() {
       )
   );
 
-  console.log(filters);
-
   useEffect(() => {
     const search = window.location.search;
     if (search) {

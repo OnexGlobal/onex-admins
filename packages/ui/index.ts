@@ -18,6 +18,8 @@ export { default as OnlinePayment } from "./pages/OnlinePayment";
 export { default as Bonus } from "./pages/Bonus/Bonus";
 export { default as Roles } from "./pages/Roles";
 export { default as Members } from "./pages/Members";
+export { default as Orders } from "./pages/Orders";
+export { default as OrdersCheck } from "./pages/Orders/Check";
 export { default as ActionsHistory } from "./pages/ActionsHistory";
 export { default as Banners } from "./pages/Banners";
 export { default as Slides } from "./pages/Slides";

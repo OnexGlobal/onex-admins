@@ -239,7 +239,9 @@ export default function BalanceTable({
           {-sumOut?.toFixed(2)}
         </span>{" "}
         <span className="text-oxford-blue-300">Balance</span>{" "}
-        <span className="text-oxford-blue-300 font-[500]">{`${(sumIn - sumOut)?.toFixed(2)} ₾`}</span>{" "}
+        <span className="text-oxford-blue-300 font-[500]">{`${(
+          sumIn - sumOut
+        )?.toFixed(2)} ₾`}</span>{" "}
       </div>
       <div>
         <Button

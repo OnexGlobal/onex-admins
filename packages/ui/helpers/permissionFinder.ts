@@ -4,5 +4,5 @@ export const PermissionFinder = (
   permissions: PermissionObject[],
   findElement: string
 ) => {
-  return permissions?.find((permission) => permission.name == findElement);
+  return permissions?.find((permission) => permission?.name == findElement);
 };
