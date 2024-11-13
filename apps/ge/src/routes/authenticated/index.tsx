@@ -11,6 +11,7 @@ import {
   OnlinePayment,
   Orders,
   OrdersCheck,
+  OrdersFailed,
   PrimeUser,
   ProtectedRoute,
   Reports,
@@ -86,7 +87,7 @@ const AuthRoutes = () => {
     },
     {
       path: "/failed-orders",
-      component: <div>Failed orders</div>,
+      component: <OrdersFailed />,
       permission: order_view,
     },
     {

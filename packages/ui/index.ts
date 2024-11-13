@@ -22,3 +22,4 @@ export { default as Orders } from "./pages/Orders";
 export { default as OrdersCheck } from "./pages/Orders/Check";
 export { default as ActionsHistory } from "./pages/ActionsHistory";
 export { default as Banners } from "./pages/Banners";
+export { default as OrdersFailed } from "./pages/OrdersFailed";
