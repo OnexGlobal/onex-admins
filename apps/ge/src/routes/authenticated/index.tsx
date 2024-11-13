@@ -2,6 +2,7 @@ import {
   ActionsHistory,
   Balance,
   Banners,
+  Blogs,
   Bonus,
   Customers,
   Dashboard,
@@ -13,6 +14,7 @@ import {
   ProtectedRoute,
   Reports,
   Roles,
+  Slides,
   TestUsers,
 } from "@repo/ui";
 import { Route, Routes } from "react-router-dom";
@@ -39,6 +41,12 @@ const AuthRoutes = () => {
     role_edit,
     header_message_edit,
     header_message_create,
+    slider_delete,
+    slider_create,
+    slider_edit,
+    blog_create,
+    blog_edit,
+    blog_delete,
   } = usePermission();
 
   const routes = [
@@ -139,12 +147,24 @@ const AuthRoutes = () => {
     },
     {
       path: "/slides",
-      component: <div>Slides</div>,
+      component: (
+        <Slides
+          slider_delete={slider_delete}
+          slider_create={slider_create}
+          slider_edit={slider_edit}
+        />
+      ),
       permission: slider_view,
     },
     {
       path: "/blog",
-      component: <div>Blog</div>,
+      component: (
+        <Blogs
+          blog_create={blog_create}
+          blog_edit={blog_edit}
+          blog_delete={blog_delete}
+        />
+      ),
       permission: blog_view,
     },
     {

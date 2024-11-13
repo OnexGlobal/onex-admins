@@ -20,3 +20,5 @@ export { default as Roles } from "./pages/Roles";
 export { default as Members } from "./pages/Members";
 export { default as ActionsHistory } from "./pages/ActionsHistory";
 export { default as Banners } from "./pages/Banners";
+export { default as Slides } from "./pages/Slides";
+export { default as Blogs } from "./pages/Blog";

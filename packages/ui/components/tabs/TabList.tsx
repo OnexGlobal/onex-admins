@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import { FC } from "react";
 import { Tabs } from "antd";
 import { LanguagesType } from "@repo/types/src/marketing-content";
 import { AroundCheckedIcon } from "../../assets/icons/AroundCheckedIcon";
