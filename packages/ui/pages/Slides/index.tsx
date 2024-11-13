@@ -20,7 +20,8 @@ export default function Slides({
   slider_create,
   slider_edit,
 }: Props) {
-  const { slides = [], refetch, isLoading, meta } = useFetchSlides({});
+  const [filters, setFilters] = useState<object>({});
+  const { slides = [], refetch, isLoading, meta } = useFetchSlides(filters);
   const [dataSource, setDataSource] = useState<SlidesType[]>([]);
   const [slider, setSlider] = useState<boolean | SlidesType>(false);
   const { languages } = useFetchLanguages();
@@ -55,6 +56,7 @@ export default function Slides({
           slider_delete={slider_delete}
           meta={meta}
           slider_edit={slider_edit}
+          setFilters={setFilters}
         />
       ) : (
         <NotFound

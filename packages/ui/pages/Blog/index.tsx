@@ -16,7 +16,8 @@ interface Props {
 }
 
 export default function Blog({ blog_create, blog_edit, blog_delete }: Props) {
-  const { blogs = [], meta, refetch, isLoading } = useFetchBlog({});
+  const [filters, setFilters] = useState<object>({});
+  const { blogs = [], meta, refetch, isLoading } = useFetchBlog(filters);
   const [blog, setBlog] = useState<boolean | BlogType>(false);
   const [dataSource, setDataSource] = useState<BlogType[]>([]);
   const { languages = [] } = useFetchLanguages();
@@ -69,6 +70,7 @@ export default function Blog({ blog_create, blog_edit, blog_delete }: Props) {
           meta={meta}
           languages={languages}
           blog_edit={blog_edit}
+          setFilters={setFilters}
         />
       )}
 

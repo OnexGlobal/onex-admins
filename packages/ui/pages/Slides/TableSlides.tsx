@@ -58,6 +58,7 @@ interface Props {
   dataSource: SlidesType[];
   setDataSource: Dispatch<SetStateAction<SlidesType[]>>;
   setSlider: Dispatch<SetStateAction<SlidesType | boolean>>;
+  setFilters: Dispatch<SetStateAction<object>>;
   languages: LanguagesType[];
   slider_delete?: boolean;
   meta: Meta;
@@ -67,6 +68,7 @@ interface Props {
 const TableSlides = ({
   dataSource,
   setDataSource = () => {},
+  setFilters = () => {},
   setSlider = () => {},
   languages,
   slider_edit,
@@ -219,6 +221,10 @@ const TableSlides = ({
             dataSource={newData}
             scroll={{ y: "54vh" }}
             pagination={false}
+            onChangePage={(page) => setFilters((p) => ({ ...p, page }))}
+            onChangePerPage={(per_page) =>
+              setFilters((p) => ({ ...p, per_page }))
+            }
           />
         </SortableContext>
       </DndContext>

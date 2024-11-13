@@ -59,7 +59,7 @@ interface Props {
   dataSource: BlogType[];
   setDataSource: Dispatch<SetStateAction<BlogType[]>>;
   setBlog: Dispatch<SetStateAction<BlogType | boolean>>;
-
+  setFilters: Dispatch<SetStateAction<object>>;
   languages: LanguagesType[];
   blog_edit?: boolean;
   meta: Meta;
@@ -69,6 +69,7 @@ const TableBlog: FC<Props> = ({
   dataSource,
   setDataSource = () => {},
   setBlog = () => {},
+  setFilters,
   languages,
   meta,
   blog_edit,
@@ -222,6 +223,10 @@ const TableBlog: FC<Props> = ({
             dataSource={newData}
             pagination={false}
             scroll={{ y: "54vh" }}
+            onChangePage={(page) => setFilters((p) => ({ ...p, page }))}
+            onChangePerPage={(per_page) =>
+              setFilters((p) => ({ ...p, per_page }))
+            }
           />
         </SortableContext>
       </DndContext>
