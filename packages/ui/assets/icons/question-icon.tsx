@@ -5,9 +5,11 @@ export const QuestionIcon: FC<SVGProps> = ({
   size = "24",
   margin,
   color = "#3B5166",
+  ...props
 }) => {
   return (
     <svg
+      {...props}
       width={size}
       height={size}
       style={{ margin }}

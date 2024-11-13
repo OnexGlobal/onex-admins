@@ -1,30 +1,10 @@
-import { styled } from "@linaria/react";
 import { Table } from "antd";
-import Flex from "components/elements/Flex";
-import { Typography } from "components/elements/Typography";
-import FlyIcon from "components/svg-components/FlyIcon";
-import InArmeniaIcon from "components/svg-components/InArmeniaIcon";
-import LockerIcon from "components/svg-components/LockerIcon";
-import ReadyIcon from "components/svg-components/ReadyIcon";
-import UsFlag from "components/svg-components/UsFlag";
+import FlyIcon from "@repo/ui/assets/icons/FlyIcon";
+import InArmeniaIcon from "@repo/ui/assets/icons/InArmeniaIcon";
+import LockerIcon from "@repo/ui/assets/icons/LockerIcon";
+import ReadyIcon from "@repo/ui/assets/icons/ReadyIcon";
+import UsFlag from "@repo/ui/assets/icons/UsFlag";
 
-const StyledCaption = styled.div`
-  .caption-item {
-    display: flex;
-  }
-`;
-
-const StyledTable = styled.div`
-  width: 100%;
-  thead {
-    display: none;
-  }
-  .ant-table-title {
-    background: #f5f5f5;
-    padding: 8px !important;
-    border-radius: 12px 12px 0 0;
-  }
-`;
 export default function CheckTable() {
   const columns = [
     {
@@ -72,1070 +52,593 @@ export default function CheckTable() {
   const data = [
     {
       id: 1,
+      key: 1,
       country: (
         <div>
-          <Flex>
+          <div className="flex">
             <UsFlag />
-            <div
-              style={{ paddingLeft: 8 }}
-              id="dispatch"
-              data-tip="React-tooltip"
-            >
+            <div className="pl-[8px]" id="dispatch" data-tip="React-tooltip">
               <FlyIcon />
             </div>
-          </Flex>
-          <Typography
-            text="UK 336"
-            color="#262626"
-            fontSize="14px"
-            width="500"
-            padding="8px 0 0 0"
-          />
+          </div>
+          <h1 className="text-info max-w-[500px] pt-[8px]">UK 336</h1>
         </div>
       ),
       name: (
-        <Flex>
-          <Typography
-            text="Harutyun Abrahamyan ARM750350"
-            fontSize="14px"
-            fontWeight="500"
-            color=" #262626"
-          />
-        </Flex>
+        <div className="flex">
+          <h1 className="text-info">Harutyun Abrahamyan ARM750350</h1>
+        </div>
       ),
       tracking: (
-        <div>
-          <Typography
-            text="4201980493612896810158"
-            color="#262626"
-            fontSize="14px"
-            fontWeight="400"
-          />
-          <Flex>
+        <div className="flex flex-col">
+          <h1 className="text-info">4201980493612896810158</h1>
+
+          <div className="flex">
             <div className="product-description">
-              <Typography
-                text="Lorem Ipsum is simply dummy text"
-                color="#5B6D7F"
-                fontSize="12px"
-                fontWeight="400"
-                padding="10px 0 0 0 "
-              />
+              <h1 className="text-info pt-[10px] text-[12px] text-oxford-blue-300">
+                Lorem Ipsum is simply dummy text
+              </h1>
             </div>
-          </Flex>
+          </div>
         </div>
       ),
       weight: (
         <>
           <div>
-            <Typography
-              text="0.4 kg"
-              color="#262626"
-              fontWeight="400"
-              fontSize="14px"
-            />
+            <h1 className="text-info">0.4 kg</h1>
           </div>
           <div>
-            <Typography
-              text="0.8 kg"
-              color="#262626"
-              fontWeight="400"
-              fontSize="14px"
-              padding="10px 0 0 0 "
-            />
+            <h1 className="text-info pt-[10px]">0.8 kg</h1>
           </div>
         </>
       ),
       price: (
         <>
-          <Typography
-            text="1400 ֏"
-            color="#262626"
-            fontWeight="400"
-            fontSize="14px"
-            padding="0 7px 0 0"
-          />
-          <Typography
-            text="60 $"
-            color="#5B6D7F"
-            fontWeight="400"
-            fontSize="14px"
-            padding="10px 0 0 0"
-          />
+          <h1 className="text-info pr-[7px]">1400 ֏</h1>
+          <h1 className="text-info pt-[10px] text-oxford-blue-300">60 $</h1>
         </>
       ),
       status: (
         <div>
-          <Flex alignItems="center">
+          <div className="flex items-center">
             <InArmeniaIcon />
-            <Flex>
-              <Typography
-                text="In Armenia"
-                color="#5B6D7F"
-                fontSize="14px"
-                fontWeight="400"
-                margin="0 0 0 5px"
-              />
-              <Typography
-                text="23.08.2022"
-                color="#262626"
-                fontSize="14px"
-                fontWeight="400"
-                margin="0 0 0 5px"
-              />
-            </Flex>
-          </Flex>
-          <Flex alignItems="center" style={{ paddingTop: 10 }}>
+            <div className="flex">
+              <h1 className="text-info pl-[5px] text-oxford-blue-300">
+                In Armenia
+              </h1>
+              <h1 className="text-info pl-[5px]">23.08.2022a</h1>
+            </div>
+          </div>
+          <div className="flex items-center mt-[10px]">
             <ReadyIcon />
-            <Typography
-              text="Ready"
-              color="#5DBA2F"
-              fontSize="12px"
-              fontWeight="400"
-              margin="0 0 0 5px"
-            />
-          </Flex>
+            <h1 className="text-info pl-[5px] text-oxford-blue-300 text-[12px]">
+              Ready
+            </h1>
+          </div>
         </div>
       ),
       pickup_point: (
         <>
-          <Typography text="Citadel" fontSize="14px" fontWeight="400" />
-          <Flex style={{ marginTop: 10 }}>
+          <h1 className="text-info">Citadel</h1>
+          <div className="flex mt-[10px]">
             <LockerIcon />
-            <Typography
-              text="Megamall"
-              color="#262626"
-              fontSize="12px"
-              fontWeight="400"
-              margin="0 0 0 5px"
-            />
-          </Flex>
+            <h1 className="text-info ml-[5px]">Megamall</h1>
+          </div>
         </>
       ),
     },
     {
       id: 2,
+      key: 2,
       country: (
         <div>
-          <Flex>
+          <div className="flex">
             <UsFlag />
-            <div
-              style={{ paddingLeft: 8 }}
-              id="dispatch"
-              data-tip="React-tooltip"
-            >
+            <div className="pl-[8px]" id="dispatch" data-tip="React-tooltip">
               <FlyIcon />
             </div>
-          </Flex>
-          <Typography
-            text="UK 336"
-            color="#262626"
-            fontSize="14px"
-            fontWeight="500"
-            padding="8px 0 0 0"
-          />
+          </div>
+          <h1 className="text-info max-w-[500px] pt-[8px]">UK 336</h1>
         </div>
       ),
       name: (
-        <Flex>
-          <Typography
-            text="Harutyun Abrahamyan ARM750350"
-            fontSize="14px"
-            fontWeight="500"
-            color=" #262626"
-          />
-        </Flex>
+        <div className="flex">
+          <h1 className="text-info">Harutyun Abrahamyan ARM750350</h1>
+        </div>
       ),
       tracking: (
-        <div>
-          <Typography
-            text="4201980493612896810158"
-            color="#262626"
-            fontSize="14px"
-            fontWeight="400"
-          />
-          <Flex>
+        <div className="flex flex-col">
+          <h1 className="text-info">4201980493612896810158</h1>
+
+          <div className="flex">
             <div className="product-description">
-              <Typography
-                text="Lorem Ipsum is simply dummy text"
-                color="#5B6D7F"
-                fontSize="12px"
-                fontWeight="400"
-                padding="10px 0 0 0 "
-              />
+              <h1 className="text-info pt-[10px] text-[12px] text-oxford-blue-300">
+                Lorem Ipsum is simply dummy text
+              </h1>
             </div>
-          </Flex>
+          </div>
         </div>
       ),
       weight: (
         <>
           <div>
-            <Typography
-              text="0.4 kg"
-              color="#262626"
-              fontWeight="400"
-              fontSize="14px"
-            />
+            <h1 className="text-info">0.4 kg</h1>
           </div>
           <div>
-            <Typography
-              text="0.8 kg"
-              color="#262626"
-              fontWeight="400"
-              fontSize="14px"
-              padding="10px 0 0 0 "
-            />
+            <h1 className="text-info pt-[10px]">0.8 kg</h1>
           </div>
         </>
       ),
       price: (
         <>
-          <Typography
-            text="1400 ֏"
-            color="#262626"
-            fontWeight="400"
-            fontSize="14px"
-            padding="0 7px 0 0"
-          />
-          <Typography
-            text="60 $"
-            color="#5B6D7F"
-            fontWeight="400"
-            fontSize="14px"
-            padding="10px 0 0 0"
-          />
+          <h1 className="text-info pr-[7px]">1400 ֏</h1>
+          <h1 className="text-info pt-[10px] text-oxford-blue-300">60 $</h1>
         </>
       ),
       status: (
         <div>
-          <Flex alignItems="center">
+          <div className="flex items-center">
             <InArmeniaIcon />
-            <Flex>
-              <Typography
-                text="In Armenia"
-                color="#5B6D7F"
-                fontSize="14px"
-                fontWeight="400"
-                margin="0 0 0 5px"
-              />
-              <Typography
-                text="23.08.2022"
-                color="#262626"
-                fontSize="14px"
-                fontWeight="400"
-                margin="0 0 0 5px"
-              />
-            </Flex>
-          </Flex>
-          <Flex alignItems="center" style={{ paddingTop: 10 }}>
+            <div className="flex">
+              <h1 className="text-info pl-[5px] text-oxford-blue-300">
+                In Armenia
+              </h1>
+              <h1 className="text-info pl-[5px]">23.08.2022a</h1>
+            </div>
+          </div>
+          <div className="flex items-center mt-[10px]">
             <ReadyIcon />
-            <Typography
-              text="Ready"
-              color="#5DBA2F"
-              fontSize="12px"
-              fontWeight="400"
-              margin="0 0 0 5px"
-            />
-          </Flex>
+            <h1 className="text-info pl-[5px] text-oxford-blue-300 text-[12px]">
+              Ready
+            </h1>
+          </div>
         </div>
       ),
       pickup_point: (
         <>
-          <Typography text="Citadel" fontSize="14px" fontWeight="400" />
-          <Flex style={{ marginTop: 10 }}>
+          <h1 className="text-info">Citadel</h1>
+          <div className="flex mt-[10px]">
             <LockerIcon />
-            <Typography
-              text="Megamall"
-              color="#262626"
-              fontSize="12px"
-              fontWeight="400"
-              margin="0 0 0 5px"
-            />
-          </Flex>
+            <h1 className="text-info ml-[5px]">Megamall</h1>
+          </div>
         </>
       ),
     },
     {
       id: 3,
+      key: 3,
       country: (
         <div>
-          <Flex>
+          <div className="flex">
             <UsFlag />
-            <div
-              style={{ paddingLeft: 8 }}
-              id="dispatch"
-              data-tip="React-tooltip"
-            >
+            <div className="pl-[8px]" id="dispatch" data-tip="React-tooltip">
               <FlyIcon />
             </div>
-          </Flex>
-          <Typography
-            text="UK 336"
-            color="#262626"
-            fontSize="14px"
-            fontWeight="500"
-            padding="8px 0 0 0"
-          />
+          </div>
+          <h1 className="text-info max-w-[500px] pt-[8px]">UK 336</h1>
         </div>
       ),
       name: (
-        <Flex>
-          <Typography
-            text="Harutyun Abrahamyan ARM750350"
-            fontSize="14px"
-            fontWeight="500"
-            color=" #262626"
-          />
-        </Flex>
+        <div className="flex">
+          <h1 className="text-info">Harutyun Abrahamyan ARM750350</h1>
+        </div>
       ),
       tracking: (
-        <div>
-          <Typography
-            text="4201980493612896810158"
-            color="#262626"
-            fontSize="14px"
-            fontWeight="400"
-          />
-          <Flex>
+        <div className="flex flex-col">
+          <h1 className="text-info">4201980493612896810158</h1>
+
+          <div className="flex">
             <div className="product-description">
-              <Typography
-                text="Lorem Ipsum is simply dummy text"
-                color="#5B6D7F"
-                fontSize="12px"
-                fontWeight="400"
-                padding="10px 0 0 0 "
-              />
+              <h1 className="text-info pt-[10px] text-[12px] text-oxford-blue-300">
+                Lorem Ipsum is simply dummy text
+              </h1>
             </div>
-          </Flex>
+          </div>
         </div>
       ),
       weight: (
         <>
           <div>
-            <Typography
-              text="0.4 kg"
-              color="#262626"
-              fontWeight="400"
-              fontSize="14px"
-            />
+            <h1 className="text-info">0.4 kg</h1>
           </div>
           <div>
-            <Typography
-              text="0.8 kg"
-              color="#262626"
-              fontWeight="400"
-              fontSize="14px"
-              padding="10px 0 0 0 "
-            />
+            <h1 className="text-info pt-[10px]">0.8 kg</h1>
           </div>
         </>
       ),
       price: (
         <>
-          <Typography
-            text="1400 ֏"
-            color="#262626"
-            fontWeight="400"
-            fontSize="14px"
-            padding="0 7px 0 0"
-          />
-          <Typography
-            text="60 $"
-            color="#5B6D7F"
-            fontWeight="400"
-            fontSize="14px"
-            padding="10px 0 0 0"
-          />
+          <h1 className="text-info pr-[7px]">1400 ֏</h1>
+          <h1 className="text-info pt-[10px] text-oxford-blue-300">60 $</h1>
         </>
       ),
       status: (
         <div>
-          <Flex alignItems="center">
+          <div className="flex items-center">
             <InArmeniaIcon />
-            <Flex>
-              <Typography
-                text="In Armenia"
-                color="#5B6D7F"
-                fontSize="14px"
-                fontWeight="400"
-                margin="0 0 0 5px"
-              />
-              <Typography
-                text="23.08.2022"
-                color="#262626"
-                fontSize="14px"
-                fontWeight="400"
-                margin="0 0 0 5px"
-              />
-            </Flex>
-          </Flex>
-          <Flex alignItems="center" style={{ paddingTop: 10 }}>
+            <div className="flex">
+              <h1 className="text-info pl-[5px] text-oxford-blue-300">
+                In Armenia
+              </h1>
+              <h1 className="text-info pl-[5px]">23.08.2022a</h1>
+            </div>
+          </div>
+          <div className="flex items-center mt-[10px]">
             <ReadyIcon />
-            <Typography
-              text="Ready"
-              color="#5DBA2F"
-              fontSize="12px"
-              fontWeight="400"
-              margin="0 0 0 5px"
-            />
-          </Flex>
+            <h1 className="text-info pl-[5px] text-oxford-blue-300 text-[12px]">
+              Ready
+            </h1>
+          </div>
         </div>
       ),
       pickup_point: (
         <>
-          <Typography text="Citadel" fontSize="14px" fontWeight="400" />
-          <Flex style={{ marginTop: 10 }}>
+          <h1 className="text-info">Citadel</h1>
+          <div className="flex mt-[10px]">
             <LockerIcon />
-            <Typography
-              text="Megamall"
-              color="#262626"
-              fontSize="12px"
-              fontWeight="400"
-              margin="0 0 0 5px"
-            />
-          </Flex>
+            <h1 className="text-info ml-[5px]">Megamall</h1>
+          </div>
         </>
       ),
     },
     {
       id: 4,
+      key: 4,
       country: (
         <div>
-          <Flex>
+          <div className="flex">
             <UsFlag />
-            <div
-              style={{ paddingLeft: 8 }}
-              id="dispatch"
-              data-tip="React-tooltip"
-            >
+            <div className="pl-[8px]" id="dispatch" data-tip="React-tooltip">
               <FlyIcon />
             </div>
-          </Flex>
-          <Typography
-            text="UK 336"
-            color="#262626"
-            fontSize="14px"
-            fontWeight="500"
-            padding="8px 0 0 0"
-          />
+          </div>
+          <h1 className="text-info max-w-[500px] pt-[8px]">UK 336</h1>
         </div>
       ),
       name: (
-        <Flex>
-          <Typography
-            text="Harutyun Abrahamyan ARM750350"
-            fontSize="14px"
-            fontWeight="500"
-            color=" #262626"
-          />
-        </Flex>
+        <div className="flex">
+          <h1 className="text-info">Harutyun Abrahamyan ARM750350</h1>
+        </div>
       ),
       tracking: (
-        <div>
-          <Typography
-            text="4201980493612896810158"
-            color="#262626"
-            fontSize="14px"
-            fontWeight="400"
-          />
-          <Flex>
+        <div className="flex flex-col">
+          <h1 className="text-info">4201980493612896810158</h1>
+
+          <div className="flex">
             <div className="product-description">
-              <Typography
-                text="Lorem Ipsum is simply dummy text"
-                color="#5B6D7F"
-                fontSize="12px"
-                fontWeight="400"
-                padding="10px 0 0 0 "
-              />
+              <h1 className="text-info pt-[10px] text-[12px] text-oxford-blue-300">
+                Lorem Ipsum is simply dummy text
+              </h1>
             </div>
-          </Flex>
+          </div>
         </div>
       ),
       weight: (
         <>
           <div>
-            <Typography
-              text="0.4 kg"
-              color="#262626"
-              fontWeight="400"
-              fontSize="14px"
-            />
+            <h1 className="text-info">0.4 kg</h1>
           </div>
           <div>
-            <Typography
-              text="0.8 kg"
-              color="#262626"
-              fontWeight="400"
-              fontSize="14px"
-              padding="10px 0 0 0 "
-            />
+            <h1 className="text-info pt-[10px]">0.8 kg</h1>
           </div>
         </>
       ),
       price: (
         <>
-          <Typography
-            text="1400 ֏"
-            color="#262626"
-            fontWeight="400"
-            fontSize="14px"
-            padding="0 7px 0 0"
-          />
-          <Typography
-            text="60 $"
-            color="#5B6D7F"
-            fontWeight="400"
-            fontSize="14px"
-            padding="10px 0 0 0"
-          />
+          <h1 className="text-info pr-[7px]">1400 ֏</h1>
+          <h1 className="text-info pt-[10px] text-oxford-blue-300">60 $</h1>
         </>
       ),
       status: (
         <div>
-          <Flex alignItems="center">
+          <div className="flex items-center">
             <InArmeniaIcon />
-            <Flex>
-              <Typography
-                text="In Armenia"
-                color="#5B6D7F"
-                fontSize="14px"
-                fontWeight="400"
-                margin="0 0 0 5px"
-              />
-              <Typography
-                text="23.08.2022"
-                color="#262626"
-                fontSize="14px"
-                fontWeight="400"
-                margin="0 0 0 5px"
-              />
-            </Flex>
-          </Flex>
-          <Flex alignItems="center" style={{ paddingTop: 10 }}>
+            <div className="flex">
+              <h1 className="text-info pl-[5px] text-oxford-blue-300">
+                In Armenia
+              </h1>
+              <h1 className="text-info pl-[5px]">23.08.2022a</h1>
+            </div>
+          </div>
+          <div className="flex items-center mt-[10px]">
             <ReadyIcon />
-            <Typography
-              text="Ready"
-              color="#5DBA2F"
-              fontSize="12px"
-              fontWeight="400"
-              margin="0 0 0 5px"
-            />
-          </Flex>
+            <h1 className="text-info pl-[5px] text-oxford-blue-300 text-[12px]">
+              Ready
+            </h1>
+          </div>
         </div>
       ),
       pickup_point: (
         <>
-          <Typography text="Citadel" fontSize="14px" fontWeight="400" />
-          <Flex style={{ marginTop: 10 }}>
+          <h1 className="text-info">Citadel</h1>
+          <div className="flex mt-[10px]">
             <LockerIcon />
-            <Typography
-              text="Megamall"
-              color="#262626"
-              fontSize="12px"
-              fontWeight="400"
-              margin="0 0 0 5px"
-            />
-          </Flex>
+            <h1 className="text-info ml-[5px]">Megamall</h1>
+          </div>
         </>
       ),
     },
     {
       id: 5,
+      key: 5,
       country: (
         <div>
-          <Flex>
+          <div className="flex">
             <UsFlag />
-            <div
-              style={{ paddingLeft: 8 }}
-              id="dispatch"
-              data-tip="React-tooltip"
-            >
+            <div className="pl-[8px]" id="dispatch" data-tip="React-tooltip">
               <FlyIcon />
             </div>
-          </Flex>
-          <Typography
-            text="UK 336"
-            color="#262626"
-            fontSize="14px"
-            fontWeight="500"
-            padding="8px 0 0 0"
-          />
+          </div>
+          <h1 className="text-info max-w-[500px] pt-[8px]">UK 336</h1>
         </div>
       ),
       name: (
-        <Flex>
-          <Typography
-            text="Harutyun Abrahamyan ARM750350"
-            fontSize="14px"
-            fontWeight="500"
-            color=" #262626"
-          />
-        </Flex>
+        <div className="flex">
+          <h1 className="text-info">Harutyun Abrahamyan ARM750350</h1>
+        </div>
       ),
       tracking: (
-        <div>
-          <Typography
-            text="4201980493612896810158"
-            color="#262626"
-            fontSize="14px"
-            fontWeight="400"
-          />
-          <Flex>
+        <div className="flex flex-col">
+          <h1 className="text-info">4201980493612896810158</h1>
+
+          <div className="flex">
             <div className="product-description">
-              <Typography
-                text="Lorem Ipsum is simply dummy text"
-                color="#5B6D7F"
-                fontSize="12px"
-                fontWeight="400"
-                padding="10px 0 0 0 "
-              />
+              <h1 className="text-info pt-[10px] text-[12px] text-oxford-blue-300">
+                Lorem Ipsum is simply dummy text
+              </h1>
             </div>
-          </Flex>
+          </div>
         </div>
       ),
       weight: (
         <>
           <div>
-            <Typography
-              text="0.4 kg"
-              color="#262626"
-              fontWeight="400"
-              fontSize="14px"
-            />
+            <h1 className="text-info">0.4 kg</h1>
           </div>
           <div>
-            <Typography
-              text="0.8 kg"
-              color="#262626"
-              fontWeight="400"
-              fontSize="14px"
-              padding="10px 0 0 0 "
-            />
+            <h1 className="text-info pt-[10px]">0.8 kg</h1>
           </div>
         </>
       ),
       price: (
         <>
-          <Typography
-            text="1400 ֏"
-            color="#262626"
-            fontWeight="400"
-            fontSize="14px"
-            padding="0 7px 0 0"
-          />
-          <Typography
-            text="60 $"
-            color="#5B6D7F"
-            fontWeight="400"
-            fontSize="14px"
-            padding="10px 0 0 0"
-          />
+          <h1 className="text-info pr-[7px]">1400 ֏</h1>
+          <h1 className="text-info pt-[10px] text-oxford-blue-300">60 $</h1>
         </>
       ),
       status: (
         <div>
-          <Flex alignItems="center">
+          <div className="flex items-center">
             <InArmeniaIcon />
-            <Flex>
-              <Typography
-                text="In Armenia"
-                color="#5B6D7F"
-                fontSize="14px"
-                fontWeight="400"
-                margin="0 0 0 5px"
-              />
-              <Typography
-                text="23.08.2022"
-                color="#262626"
-                fontSize="14px"
-                fontWeight="400"
-                margin="0 0 0 5px"
-              />
-            </Flex>
-          </Flex>
-          <Flex alignItems="center" style={{ paddingTop: 10 }}>
+            <div className="flex">
+              <h1 className="text-info pl-[5px] text-oxford-blue-300">
+                In Armenia
+              </h1>
+              <h1 className="text-info pl-[5px]">23.08.2022a</h1>
+            </div>
+          </div>
+          <div className="flex items-center mt-[10px]">
             <ReadyIcon />
-            <Typography
-              text="Ready"
-              color="#5DBA2F"
-              fontSize="12px"
-              fontWeight="400"
-              margin="0 0 0 5px"
-            />
-          </Flex>
+            <h1 className="text-info pl-[5px] text-oxford-blue-300 text-[12px]">
+              Ready
+            </h1>
+          </div>
         </div>
       ),
       pickup_point: (
         <>
-          <Typography text="Citadel" fontSize="14px" fontWeight="400" />
-          <Flex style={{ marginTop: 10 }}>
+          <h1 className="text-info">Citadel</h1>
+          <div className="flex mt-[10px]">
             <LockerIcon />
-            <Typography
-              text="Megamall"
-              color="#262626"
-              fontSize="12px"
-              fontWeight="400"
-              margin="0 0 0 5px"
-            />
-          </Flex>
+            <h1 className="text-info ml-[5px]">Megamall</h1>
+          </div>
         </>
       ),
     },
     {
       id: 6,
+      key: 6,
       country: (
         <div>
-          <Flex>
+          <div className="flex">
             <UsFlag />
-            <div
-              style={{ paddingLeft: 8 }}
-              id="dispatch"
-              data-tip="React-tooltip"
-            >
+            <div className="pl-[8px]" id="dispatch" data-tip="React-tooltip">
               <FlyIcon />
             </div>
-          </Flex>
-          <Typography
-            text="UK 336"
-            color="#262626"
-            fontSize="14px"
-            fontWeight="500"
-            padding="8px 0 0 0"
-          />
+          </div>
+          <h1 className="text-info max-w-[500px] pt-[8px]">UK 336</h1>
         </div>
       ),
       name: (
-        <Flex>
-          <Typography
-            text="Harutyun Abrahamyan ARM750350"
-            fontSize="14px"
-            fontWeight="500"
-            color=" #262626"
-          />
-        </Flex>
+        <div className="flex">
+          <h1 className="text-info">Harutyun Abrahamyan ARM750350</h1>
+        </div>
       ),
       tracking: (
-        <div>
-          <Typography
-            text="4201980493612896810158"
-            color="#262626"
-            fontSize="14px"
-            fontWeight="400"
-          />
-          <Flex>
+        <div className="flex flex-col">
+          <h1 className="text-info">4201980493612896810158</h1>
+
+          <div className="flex">
             <div className="product-description">
-              <Typography
-                text="Lorem Ipsum is simply dummy text"
-                color="#5B6D7F"
-                fontSize="12px"
-                fontWeight="400"
-                padding="10px 0 0 0 "
-              />
+              <h1 className="text-info pt-[10px] text-[12px] text-oxford-blue-300">
+                Lorem Ipsum is simply dummy text
+              </h1>
             </div>
-          </Flex>
+          </div>
         </div>
       ),
       weight: (
         <>
           <div>
-            <Typography
-              text="0.4 kg"
-              color="#262626"
-              fontWeight="400"
-              fontSize="14px"
-            />
+            <h1 className="text-info">0.4 kg</h1>
           </div>
           <div>
-            <Typography
-              text="0.8 kg"
-              color="#262626"
-              fontWeight="400"
-              fontSize="14px"
-              padding="10px 0 0 0 "
-            />
+            <h1 className="text-info pt-[10px]">0.8 kg</h1>
           </div>
         </>
       ),
       price: (
         <>
-          <Typography
-            text="1400 ֏"
-            color="#262626"
-            fontWeight="400"
-            fontSize="14px"
-            padding="0 7px 0 0"
-          />
-          <Typography
-            text="60 $"
-            color="#5B6D7F"
-            fontWeight="400"
-            fontSize="14px"
-            padding="10px 0 0 0"
-          />
+          <h1 className="text-info pr-[7px]">1400 ֏</h1>
+          <h1 className="text-info pt-[10px] text-oxford-blue-300">60 $</h1>
         </>
       ),
       status: (
         <div>
-          <Flex alignItems="center">
+          <div className="flex items-center">
             <InArmeniaIcon />
-            <Flex>
-              <Typography
-                text="In Armenia"
-                color="#5B6D7F"
-                fontSize="14px"
-                fontWeight="400"
-                margin="0 0 0 5px"
-              />
-              <Typography
-                text="23.08.2022"
-                color="#262626"
-                fontSize="14px"
-                fontWeight="400"
-                margin="0 0 0 5px"
-              />
-            </Flex>
-          </Flex>
-          <Flex alignItems="center" style={{ paddingTop: 10 }}>
+            <div className="flex">
+              <h1 className="text-info pl-[5px] text-oxford-blue-300">
+                In Armenia
+              </h1>
+              <h1 className="text-info pl-[5px]">23.08.2022a</h1>
+            </div>
+          </div>
+          <div className="flex items-center mt-[10px]">
             <ReadyIcon />
-            <Typography
-              text="Ready"
-              color="#5DBA2F"
-              fontSize="12px"
-              fontWeight="400"
-              margin="0 0 0 5px"
-            />
-          </Flex>
+            <h1 className="text-info pl-[5px] text-oxford-blue-300 text-[12px]">
+              Ready
+            </h1>
+          </div>
         </div>
       ),
       pickup_point: (
         <>
-          <Typography text="Citadel" fontSize="14px" fontWeight="400" />
-          <Flex style={{ marginTop: 10 }}>
+          <h1 className="text-info">Citadel</h1>
+          <div className="flex mt-[10px]">
             <LockerIcon />
-            <Typography
-              text="Megamall"
-              color="#262626"
-              fontSize="12px"
-              fontWeight="400"
-              margin="0 0 0 5px"
-            />
-          </Flex>
+            <h1 className="text-info ml-[5px]">Megamall</h1>
+          </div>
         </>
       ),
     },
     {
       id: 7,
+      key: 7,
       country: (
         <div>
-          <Flex>
+          <div className="flex">
             <UsFlag />
-            <div
-              style={{ paddingLeft: 8 }}
-              id="dispatch"
-              data-tip="React-tooltip"
-            >
+            <div className="pl-[8px]" id="dispatch" data-tip="React-tooltip">
               <FlyIcon />
             </div>
-          </Flex>
-          <Typography
-            text="UK 336"
-            color="#262626"
-            fontSize="14px"
-            fontWeight="500"
-            padding="8px 0 0 0"
-          />
+          </div>
+          <h1 className="text-info max-w-[500px] pt-[8px]">UK 336</h1>
         </div>
       ),
       name: (
-        <Flex>
-          <Typography
-            text="Harutyun Abrahamyan ARM750350"
-            fontSize="14px"
-            fontWeight="500"
-            color=" #262626"
-          />
-        </Flex>
+        <div className="flex">
+          <h1 className="text-info">Harutyun Abrahamyan ARM750350</h1>
+        </div>
       ),
       tracking: (
-        <div>
-          <Typography
-            text="4201980493612896810158"
-            color="#262626"
-            fontSize="14px"
-            fontWeight="400"
-          />
-          <Flex>
+        <div className="flex flex-col">
+          <h1 className="text-info">4201980493612896810158</h1>
+          <div className="flex">
             <div className="product-description">
-              <Typography
-                text="Lorem Ipsum is simply dummy text"
-                color="#5B6D7F"
-                fontSize="12px"
-                fontWeight="400"
-                padding="10px 0 0 0 "
-              />
+              <h1 className="text-info pt-[10px] text-[12px] text-oxford-blue-300">
+                Lorem Ipsum is simply dummy text
+              </h1>
             </div>
-          </Flex>
+          </div>
         </div>
       ),
       weight: (
         <>
           <div>
-            <Typography
-              text="0.4 kg"
-              color="#262626"
-              fontWeight="400"
-              fontSize="14px"
-            />
+            <h1 className="text-info">0.4 kg</h1>
           </div>
           <div>
-            <Typography
-              text="0.8 kg"
-              color="#262626"
-              fontWeight="400"
-              fontSize="14px"
-              padding="10px 0 0 0 "
-            />
+            <h1 className="text-info pt-[10px]">0.8 kg</h1>
           </div>
         </>
       ),
       price: (
         <>
-          <Typography
-            text="1400 ֏"
-            color="#262626"
-            fontWeight="400"
-            fontSize="14px"
-            padding="0 7px 0 0"
-          />
-          <Typography
-            text="60 $"
-            color="#5B6D7F"
-            fontWeight="400"
-            fontSize="14px"
-            padding="10px 0 0 0"
-          />
+          <h1 className="text-info pr-[7px]">1400 ֏</h1>
+          <h1 className="text-info pt-[10px] text-oxford-blue-300">60 $</h1>
         </>
       ),
       status: (
         <div>
-          <Flex alignItems="center">
+          <div className="flex items-center">
             <InArmeniaIcon />
-            <Flex>
-              <Typography
-                text="In Armenia"
-                color="#5B6D7F"
-                fontSize="14px"
-                fontWeight="400"
-                margin="0 0 0 5px"
-              />
-              <Typography
-                text="23.08.2022"
-                color="#262626"
-                fontSize="14px"
-                fontWeight="400"
-                margin="0 0 0 5px"
-              />
-            </Flex>
-          </Flex>
-          <Flex alignItems="center" style={{ paddingTop: 10 }}>
+            <div className="flex">
+              <h1 className="text-info pl-[5px] text-oxford-blue-300">
+                In Armenia
+              </h1>
+              <h1 className="text-info pl-[5px]">23.08.2022a</h1>
+            </div>
+          </div>
+          <div className="flex items-center mt-[10px]">
             <ReadyIcon />
-            <Typography
-              text="Ready"
-              color="#5DBA2F"
-              fontSize="12px"
-              fontWeight="400"
-              margin="0 0 0 5px"
-            />
-          </Flex>
+            <h1 className="text-info pl-[5px] text-oxford-blue-300 text-[12px]">
+              Ready
+            </h1>
+          </div>
         </div>
       ),
       pickup_point: (
         <>
-          <Typography text="Citadel" fontSize="14px" fontWeight="400" />
-          <Flex style={{ marginTop: 10 }}>
+          <h1 className="text-info">Citadel</h1>
+          <div className="flex mt-[10px]">
             <LockerIcon />
-            <Typography
-              text="Megamall"
-              color="#262626"
-              fontSize="12px"
-              fontWeight="400"
-              margin="0 0 0 5px"
-            />
-          </Flex>
+            <h1 className="text-info ml-[5px]">Megamall</h1>
+          </div>
         </>
       ),
     },
   ];
 
   return (
-    <StyledTable>
+    <div className="w-full">
       <Table
         columns={columns}
         dataSource={data}
         pagination={false}
+        rowSelection={{}}
         title={() => (
           <caption>
-            <StyledCaption>
-              <Flex style={{ width: 850 }}>
-                <Typography
-                  text="All"
-                  fontSize="14px"
-                  fontWeight="500"
-                  color="#5B6D7F"
-                  padding="0 16px 0 0"
-                />
-                <div className="caption-item">
-                  <Typography
-                    text="Packages"
-                    fontSize="14px"
-                    fontWeight="400"
-                    color="#8E9BA7"
-                    padding="0 8px 0 0"
-                  />
-                  <Typography
-                    text="26"
-                    fontSize="14px"
-                    fontWeight="400"
-                    color="#5B6D7F"
-                    padding="0 8px 0 0"
-                  />
+            <div className="flex">
+              <div className="flex w-[850px]">
+                <h1 className="text-info pr-[16px] font-[500] text-oxford-blue-300">
+                  All
+                </h1>
+
+                <div className="flex">
+                  <h1 className="text-info pr-[8px] text-oxford-blue-200">
+                    Packages
+                  </h1>
+                  <h1 className="text-info pr-[8px] text-oxford-blue-300">
+                    26
+                  </h1>
                 </div>
-                <div className="caption-item">
-                  <Typography
-                    text="Total weight"
-                    fontSize="14px"
-                    fontWeight="400"
-                    color="#8E9BA7"
-                    padding="0 8px 0 0"
-                  />
-                  <Typography
-                    text="0.4 kg"
-                    fontSize="14px"
-                    fontWeight="400"
-                    color="#5B6D7F"
-                    padding="0 8px 0 0"
-                  />
+                <div className="flex">
+                  <h1 className="text-info pr-[8px] text-oxford-blue-200">
+                    Total weight
+                  </h1>
+                  <h1 className="text-info pr-[8px] text-oxford-blue300">
+                    0.4 kg
+                  </h1>
                 </div>
-                <div className="caption-item">
-                  <Typography
-                    text="Total price"
-                    fontSize="14px"
-                    fontWeight="400"
-                    color="#8E9BA7"
-                    padding="0 8px 0 0"
-                  />
-                  <Typography
-                    text="5464 ֏"
-                    fontSize="14px"
-                    fontWeight="400"
-                    color="#5B6D7F"
-                    padding="0 8px 0 0"
-                  />
+                <div className="flex">
+                  <h1 className="text-info pr-[8px] text-oxford-blue-200">
+                    Total price
+                  </h1>
+                  <h1 className="text-info pr-[8px] text-oxford-blue300">
+                    5464 ֏
+                  </h1>
                 </div>
-              </Flex>
-            </StyledCaption>
+              </div>
+            </div>
           </caption>
         )}
+        components={{
+          header: {
+            wrapper: () => null,
+          },
+        }}
       />
-    </StyledTable>
+    </div>
   );
 }

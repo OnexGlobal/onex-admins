@@ -2,27 +2,20 @@ import { useState } from "react";
 import OrdersTopActions from "./TopActions";
 import OrdersTable from "./Table";
 import OrdersDetailsModal from "./DetailsModal";
-import { Typography } from "components/elements/Typography";
-import { StylePage } from "../style-page";
-import useGetOrders from "hooks/orders/useGetOrders.hook";
-import { PermissionsType } from "types/permissions";
+import useGetOrders from "@repo/ui/hooks/orders/useGetOrders.hook";
 
-interface Props {
-  permissions: PermissionsType["order"];
-}
-
-export default function Orders({ permissions }: Props) {
-  const [id, setId] = useState<string | number | undefined>();
+export default function Orders() {
+  const permissions =
+    JSON.parse(localStorage.getItem("permissions") || "") || {};
+  const [id, setId] = useState<string>("");
   const [detailsStatus, setDetailsStatus] = useState(false);
   const [filters, setFilters] = useState({});
   const { orders, isLoading, meta } = useGetOrders(filters);
 
   return (
-    <StylePage>
-      <Typography text="Orders" level={3} margin="0 0 24px 0" variant="Title" />
-
+    <div className="flex flex-col items-start justify-start w-full h-full">
+      <h1 className="text-title mb-[24px]">Orders</h1>
       <OrdersTopActions setFilters={setFilters} />
-
       <OrdersTable
         setDetailsStatus={setDetailsStatus}
         id={id}
@@ -34,13 +27,12 @@ export default function Orders({ permissions }: Props) {
         isLoading={isLoading}
         permissions={permissions}
       />
-
       <OrdersDetailsModal
         status={detailsStatus}
         setStatus={setDetailsStatus}
         id={id || ""}
         permissions={permissions}
       />
-    </StylePage>
+    </div>
   );
 }

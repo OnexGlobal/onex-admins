@@ -22,9 +22,9 @@ export interface Link {
 }
 
 export interface Options {
-  total_cost: string;
-  total_additional_cost: string;
-  total_weight: string;
-  total_v_weight: string;
+  total_cost?: string;
+  total_additional_cost?: string;
+  total_weight?: string;
+  total_v_weight?: string;
   total_sum?: string;
 }

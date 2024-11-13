@@ -12,12 +12,10 @@ export default function OrdersCheck() {
     {
       key: "2",
       label: `Checked`,
-      children: `Content of Tab Pane 2`,
     },
     {
       key: "3",
       label: `Unchecked`,
-      children: `Content of Tab Pane 3`,
     },
   ];
 
@@ -25,18 +23,15 @@ export default function OrdersCheck() {
     <div className="flex flex-col items-start justify-start w-[100%] h-[100%] ">
       <h1 className="text-title mb-[24px]">Orders check</h1>
       <OrdersTopActions setFilters={() => {}} />
-      <div className="flex mt-[16px]">
+      <div className="w-full flex mt-[16px] items-center">
         <Search
           className="w-[330px]"
           enterButton="Check"
           placeholder="Tracking code"
         />
-        <Tabs
-          className="tabs"
-          items={items}
-          defaultActiveKey="1"
-          style={{ width: "100%" }}
-        />
+        <div className="w-max ml-[24px]">
+          <Tabs items={items} defaultActiveKey="1" />
+        </div>
       </div>
       <CheckTable />
     </div>

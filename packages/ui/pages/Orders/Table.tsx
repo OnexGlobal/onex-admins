@@ -1,29 +1,25 @@
-import { Pagination, Table, Tooltip } from "antd";
-import { PrimaryButton } from "components/elements/Button";
-import Flex from "components/elements/Flex";
-import { Tag } from "components/elements/Tag";
-import { Typography } from "components/elements/Typography";
-import AlertCircleIcon from "components/svg-components/AlertCircleIcon";
-import BfmIcon from "components/svg-components/BfmIcon";
-import DownloadIcon from "components/svg-components/DownloadIcon";
-import PrimeIcon from "components/svg-components/PrimeIcon";
+import { Button, Table, Tag, Tooltip } from "antd";
+import AlertCircleIcon from "@repo/ui/assets/icons/AlertCircleIcon";
+import BfmIcon from "@repo/ui/assets/icons/BfmIcon";
+import DownloadIcon from "@repo/ui/assets/icons/DownloadIcon";
+import PrimeIcon from "@repo/ui/assets/icons/PrimeIcon";
 import dayjs from "dayjs";
-import { Dispatch, SetStateAction } from "react";
-import { DownloadOrdersExcelService } from "services/downloadExcel";
-import { Filters, OrderData } from "types/orders";
-import OrderStatusIcon from "constants/order-status-icon";
-import { orderStatusTexts } from "constants/order-status-texts";
-import ReadyIcon from "components/svg-components/ReadyIcon";
-import EstimateIcon from "components/svg-components/EstimateIcon";
-import DeliveryIcon from "components/svg-components/DeliveryIcon";
-import InfoIcon from "components/svg-components/InfoIcon";
-import { notificationSuccess } from "helpers/notification";
-import { PermissionsType } from "types/permissions";
-import { MetaType } from "types/meta-type";
-import { PermissionFinder } from "helpers/permissionFinder";
-import { EyeIcon } from "components/svg-components/EyeIcon";
+import { Dispatch, HTMLAttributes, SetStateAction } from "react";
+import { DownloadOrdersExcelService } from "@repo/ui/services/downloadExcel";
+import { Filters, OrderData } from "@repo/types/src/orders";
+import OrderStatusIcon from "../../constants/order-status-icon";
+import { orderStatusTexts } from "@repo/ui/constants/order-status-texts";
+import ReadyIcon from "@repo/ui/assets/icons/ReadyIcon";
+import EstimateIcon from "@repo/ui/assets/icons/EstimateIcon";
+import DeliveryIcon from "@repo/ui/assets/icons/DeliveryIcon";
+import InfoIcon from "@repo/ui/assets/icons/InfoIcon";
+import { notificationSuccess } from "@repo/ui/helpers/notification";
+import { Permissions } from "@repo/types/src/permissions";
+import { Meta } from "@repo/types";
+import { EyeIcon } from "@repo/ui/assets/icons/EyeIcon";
+import OnexTable from "../../components/table/Table";
 
-type ID = string | number | undefined;
+type ID = string;
 type SetState<T> = Dispatch<SetStateAction<T>>;
 
 interface Props {
@@ -31,11 +27,11 @@ interface Props {
   id: ID;
   setId: SetState<ID>;
   orders: OrderData[];
-  meta: MetaType;
+  meta: Meta;
   setFilters: SetState<Filters>;
   filters: Filters;
   isLoading?: boolean;
-  permissions: PermissionsType["order"];
+  permissions: Permissions["order"];
 }
 
 export default function OrdersTable({
@@ -46,7 +42,7 @@ export default function OrdersTable({
   setFilters,
   filters,
   isLoading,
-  permissions,
+  ...props
 }: Props) {
   const handleDownloadExcel = () => DownloadOrdersExcelService(filters);
 
@@ -81,11 +77,6 @@ export default function OrdersTable({
       title: "",
     },
     {
-      key: "date",
-      dataIndex: "date",
-      title: "",
-    },
-    {
       key: "status",
       dataIndex: "status",
       title: "",
@@ -105,250 +96,245 @@ export default function OrdersTable({
 
   const data = orders?.map((order, index) => ({
     key: index,
-    id: order.id,
+    id: String(order.id),
     country: (
       <div>
-        <Flex alignItems={"center"} gap={"8px"}>
+        <div className="flex items-center gap-[8px]">
           <Tooltip title={"Warehouse"} placement={"bottom"}>
-            <img src={order?.warehouse?.round_flag || ""} alt="" />
+            <img src={order?.warehouse?.round_flag || ""} width={24} alt="" />
           </Tooltip>
-
-          <img src={order?.dispatch?.icon || ""} alt="" />
-        </Flex>
-        <Typography text={order?.parcel?.name || ""} fontWeight="500" />
+          <img src={order?.dispatch?.icon || ""} width={24} alt="" />
+        </div>
+        <h1 className="text-info font-[500]">{order?.parcel?.name || ""}</h1>
       </div>
     ),
     name: (
-      <Flex gap={"4px"}>
-        <Typography
-          text={`${order?.recipient?.first_name || ""} ${
-            order?.recipient?.last_name || ""
-          } ${order?.recipient?.company_name || ""} ${order?.recipient
-            ?.user_code}`}
-          fontWeight="500"
-        />
+      <div className="flex gap-[4px]">
+        <h1 className="text-info font-[500]">{`${
+          order?.recipient?.first_name || ""
+        } ${order?.recipient?.last_name || ""} ${
+          order?.recipient?.company_name || ""
+        } ${order?.recipient?.user_code}`}</h1>
         {order?.recipient?.user?.is_prime ? (
           <Tooltip title={"Prime"}>
             <PrimeIcon />
           </Tooltip>
         ) : null}
-      </Flex>
+      </div>
     ),
     tracking: (
-      <Flex flexDirection={"column"} gap={"8px"}>
-        <Flex
-          gap={"4px"}
+      <div className="flex flex-col gap-[8px]">
+        <div
+          className="flex gap-[4px]"
           onClick={() => {
             navigator.clipboard.writeText(order?.tracking_code);
             notificationSuccess("Copied");
           }}
         >
           <Tooltip title={"Click to copy"} placement={"bottom"}>
-            <Typography text={order?.tracking_code} />
+            <h1 className="text-info">{order?.tracking_code}</h1>
           </Tooltip>
           {order?.purchase_type === "buy_for_me" ? (
             <Tooltip title={"Buy for me"} placement={"bottom"}>
               <BfmIcon />
             </Tooltip>
           ) : null}
-        </Flex>
+        </div>
+
         {order?.customer_comment ? (
-          <Typography text={order?.customer_comment} color="#5B6D7F" />
+          <Tooltip
+            title={<span>{order?.customer_comment || ""}</span>}
+            trigger="hover"
+            color={"#0a2540"}
+          >
+            <h1 className="text-info text-oxford-blue-300 overflow-hidden text-ellipsis whitespace-nowrap max-w-[250px] cursor-pointer relative">
+              {order?.customer_comment}
+            </h1>
+          </Tooltip>
         ) : null}
+
         {order?.dangerous ? (
           <Tooltip placement={"top"} title={"Dangerous"}>
             <AlertCircleIcon />
           </Tooltip>
         ) : null}
-      </Flex>
+      </div>
     ),
     weight: (
       <Tooltip title={"Weight"} placement={"bottom"}>
-        <Typography text={`${order?.weight} kg`} />
+        <h1 className="text-info">{`${order?.weight} kg`}</h1>
       </Tooltip>
     ),
     price: (
-      <Flex flexDirection={"column"} gap={"4px"}>
-        <Flex>
-          <Typography text={`${order?.cost}  $`} padding="0 7px 0 0" />
+      <div className="flex flex-col gap-[4px]">
+        <div className="flex">
+          <h1 className="text-info mr-[7px]">{`${order?.cost}  $`}</h1>
           {order?.additional_cost ? (
             <Tooltip title={"Add cost"} placement={"bottom"}>
-              <Typography
-                text={order?.additional_cost + " $"}
-                color={"#8E9BA7"}
-                fontSize={"14px"}
-              />
+              <h1 className="text-info text-oxford-blue-200">
+                {order?.additional_cost + " $"}
+              </h1>
             </Tooltip>
           ) : null}
-        </Flex>
+        </div>
         {!order?.declaration_price ? (
-          <Typography text="Not declared" color="#FC4447" />
+          <h1 className="text-info text-red-500 whitespace-nowrap">
+            Not declared
+          </h1>
         ) : (
-          <Typography
-            text={`${
-              order?.declaration_price
-                ? order?.declaration_price + " " + order?.declaration_currency
-                : ""
-            } `}
-            color="#5B6D7F"
-          />
+          <h1 className="text-info text-oxford-blue-300 whitespace-nowrap">{`${
+            order?.declaration_price
+              ? order?.declaration_price + " " + order?.declaration_currency
+              : ""
+          } `}</h1>
         )}
-      </Flex>
+      </div>
     ),
     status: (
       <div>
-        <Flex flexWrap={"nowrap"} gap={"5px"}>
+        <div className="flex flex-nowrap gap-[5px]">
           <OrderStatusIcon status={order?.status} />
-          <Flex>
-            <Typography
-              text={orderStatusTexts[order?.status]}
-              color="#5B6D7F"
-            />
+          <div className="flex">
+            <h1 className="text-info text-oxford-blue-300 whitespace-nowrap">
+              {orderStatusTexts[order?.status]}
+            </h1>
+
             <Tooltip
               title={order?.histories[order?.histories?.length - 1]?.date}
               placement={"bottom"}
             >
-              <Typography
-                text={
-                  order?.histories?.length > 0
-                    ? dayjs(
-                        order?.histories[order?.histories?.length - 1]?.date,
-                      ).format("DD.MM.YYYY")
-                    : ""
-                }
-              />
+              <h1 className="text-info ml-[6px]">
+                {order?.histories?.length > 0
+                  ? dayjs(
+                      order?.histories[order?.histories?.length - 1]?.date
+                    ).format("DD.MM.YYYY")
+                  : ""}
+              </h1>
             </Tooltip>
-          </Flex>
-        </Flex>
-        <Flex alignItems="center" padding={"10px 0 0 0"}>
-          <Flex>
+          </div>
+        </div>
+        <div className="flex items-center mt-[10px]">
+          <div className="flex">
             {order?.status === "in_georgia" ? (
-              <Flex gap={"5px"}>
+              <div className="flex gap-[5px]">
                 {order?.ready_for_pickup ? (
                   <>
                     <ReadyIcon />
-                    <Typography text={`Ready`} color="#5dba2f" />
+                    <h1 className="text-info text-green-500">Ready</h1>
                   </>
                 ) : order?.custom?.custom_status?.status === "double_check" ? (
-                  <Typography text={`Double Check`} color="#FC4447" />
+                  <h1 className="text-info text-red-500">Double Check</h1>
                 ) : order?.custom?.custom_tax_id?.id ? (
-                  <Typography text={`Tax occurred`} color="#FC4447" />
+                  <h1 className="text-info text-red-500">Tax occurred</h1>
                 ) : order?.custom?.declaration_group_id ? (
-                  <Typography text={`Need declaration`} color="#FC4447" />
+                  <h1 className="text-info text-red-500">Need declaration</h1>
                 ) : order?.custom ? (
-                  <Typography text={`In customs`} color="#FC4447" />
+                  <h1 className="text-info text-red-500">In customs</h1>
                 ) : (
-                  <Typography text={`Not Ready`} color="#FC4447" />
+                  <h1 className="text-info text-red-500">Not Ready</h1>
                 )}
-              </Flex>
+              </div>
             ) : (
-              <Flex gap={"5px"} flexWrap={"nowrap"}>
+              <div className="flex flex-nowrap items-center gap-[5px]">
                 <EstimateIcon />
-                <Flex flexDirection={"column"}>
-                  <Typography text={`Estimated`} color="#5B6D7F" />
-                  <Typography
-                    text={
-                      order?.estimated_date_to
-                        ? dayjs(order?.estimated_date_to).format("DD.MM.YYYY")
-                        : ""
-                    }
-                  />
-                </Flex>
-              </Flex>
+                <div className="flex items-center">
+                  <h1 className="text-info text-oxford-blue-300">Estimated</h1>
+                  <h1 className="text-info ml-[6px]">
+                    {order?.estimated_date_to
+                      ? dayjs(order?.estimated_date_to).format("DD.MM.YYYY")
+                      : ""}
+                  </h1>
+                </div>
+              </div>
             )}
-          </Flex>
-        </Flex>
+          </div>
+        </div>
         {!!order.service && (
-          <Flex alignItems="center">
+          <div className="flex items-center">
             <img src={order?.service?.smart_service.image} width="25" />
-            <Flex alignItems="center" gap={"8px"}>
-              <Typography
-                text={
-                  order?.service?.smart_service?.current_smart_service?.name ||
-                  ""
-                }
-                color="#5B6D7F"
-              />
-              <Tag
-                text={order?.service?.status || ""}
-                background="#EDFBFE"
-                color="#47BFE1"
-              />
-            </Flex>
-          </Flex>
+            <div className="flex items-center gap-[8px]">
+              <h1 className="text-info text-oxford-blue-300">
+                {order?.service?.smart_service?.current_smart_service?.name ||
+                  ""}
+              </h1>
+              <Tag className="bg-cyan-50 text-cyan-600">
+                {order?.service?.status || ""}
+              </Tag>
+            </div>
+          </div>
         )}
       </div>
     ),
     pickup_point: (
       <>
-        <Typography text={order?.pickup_point?.name} />
+        <h1 className="text-info">{order?.pickup_point?.name}</h1>
         {order?.delivery && order?.delivery?.type === "home" ? (
-          <Flex gap={"8px"}>
+          <div className="flex gap-[8px]">
             <DeliveryIcon />
-            <Typography text={"Home delivery"} />
+            <h1 className="text-info">Home delivery</h1>
             <Tooltip
               placement={"top"}
               title={`${order?.delivery?.delivery_home?.delivery_date}`}
             >
               <InfoIcon />
             </Tooltip>
-          </Flex>
+          </div>
         ) : (
           ""
         )}
       </>
     ),
-    eye: PermissionFinder(permissions, "order-view") ? (
+    eye: (
       <EyeIcon
         onClick={() => {
           setDetailsStatus(true);
-          setId(order.id);
+          setId(String(order.id));
         }}
       />
-    ) : (
-      ""
     ),
   }));
 
   return (
-    <div className={"table_wrapper_without_head"}>
-      <Table
+    <>
+      <OnexTable
+        {...props}
+        className="w-[100%] custom-table"
         columns={columns}
+        bordered
+        meta={meta}
         dataSource={data}
-        pagination={false}
         loading={isLoading}
-        scroll={{ y: "60vh" }}
+        onChangePage={(page) => setFilters((p) => ({ ...p, page }))}
+        onChangePerPage={(per_page) => setFilters((p) => ({ ...p, per_page }))}
+        components={{
+          header: {
+            wrapper: (props: HTMLAttributes<HTMLTableSectionElement>) => (
+              <thead {...props} className="hidden" />
+            ),
+          },
+        }}
         summary={() => (
           <Table.Summary fixed={"bottom"}>
             <Table.Summary.Row>
               <Table.Summary.Cell index={0} colSpan={24}>
-                <Typography
-                  fontSize={"16px"}
-                  text={`Cost: ${meta?.options?.total_cost}  $ |  Add.Cost: ${meta?.options?.total_additional_cost}  $ |  V Weight: ${meta?.options?.total_v_weight} |  Weight: ${meta?.options?.total_weight}`}
-                />
+                <h1 className="text-info text-[16px]">
+                  {`Cost: ${meta?.options?.total_cost}  $ |  Add.Cost: ${meta?.options?.total_additional_cost}  $ |  V Weight: ${meta?.options?.total_v_weight} |  Weight: ${meta?.options?.total_weight}`}
+                </h1>
               </Table.Summary.Cell>
             </Table.Summary.Row>
           </Table.Summary>
         )}
       />
-
-      <div className={"new-pagination"}>
-        <PrimaryButton
-          text="Excel"
+      <div className="flex pb-[24px]">
+        <Button
           onClick={() => handleDownloadExcel()}
+          type="primary"
           icon={<DownloadIcon color={"#ffffff"} />}
-          margin={"16px auto 0 0"}
-        />
-        <Pagination
-          total={meta?.total || 1}
-          showTotal={(total, range) =>
-            `${range[0]}-${range[1]} of ${total} items`
-          }
-          onChange={(page) => setFilters({ ...filters, page })}
-          // defaultPagefontSize={meta?.per_page || 15}
-          defaultCurrent={meta?.current_page || 1}
-        />
+          className="mt-[16px]"
+        >
+          Excel
+        </Button>
       </div>
-    </div>
+    </>
   );
 }

@@ -1,31 +1,28 @@
 import {
   AutoComplete,
-  Col,
+  Button,
   DatePicker,
   Form,
   Input,
-  Row,
   Select,
   Space,
 } from "antd";
-import { PrimaryButton } from "components/elements/Button";
-import Flex from "components/elements/Flex";
-import { AdditionalInfoIcon } from "components/svg-components/AdditionalInfoIcon";
-import DangerousIcon from "components/svg-components/DangerousIcon";
-import FlyIcon from "components/svg-components/FlyIcon";
-import MissingIcon from "components/svg-components/MissingIcon";
-import { SearchIcon } from "components/svg-components/SearchIcon";
-import ShowLessIcon from "components/svg-components/ShowLessIcon";
-import useCategories from "hooks/categories/useCategories.hook";
-import useGetRecipients from "hooks/recipients/useGetRecipients.hook";
-import useSmartServices from "hooks/smart-services/useSmartServices.hook";
-import useGetWarehouses from "hooks/warehouses/useWarehouses.hook";
+import { AdditionalInfoIcon } from "@repo/ui/assets/icons/AdditionalInfoIcon";
+import DangerousIcon from "@repo/ui/assets/icons/DangerousIcon";
+import FlyIcon from "@repo/ui/assets/icons/FlyIcon";
+import MissingIcon from "@repo/ui/assets/icons/MissingIcon";
+import { SearchIcon } from "@repo/ui/assets/icons/SearchIcon";
+import ShowLessIcon from "@repo/ui/assets/icons/ShowLessIcon";
+import useCategories from "@repo/ui/hooks/categories/useCategories.hook";
+import useGetRecipients from "@repo/ui/hooks/recipients/useGetRecipients.hook";
+import useSmartServices from "@repo/ui/hooks/smart-services/useSmartServices.hook";
+import useGetWarehouses from "@repo/ui/hooks/warehouses/useWarehouses.hook";
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
-import { Filters } from "types/orders";
-import useGetParcel from "hooks/parcel/useGetParcel.hook";
-import useGetPickupPoints from "hooks/pickup-point/useGetPickupPoints.hook";
+import { Filters } from "@repo/types/src/orders";
+import useGetParcel from "@repo/ui/hooks/parcel/useGetParcel.hook";
+import useGetPickupPoints from "@repo/ui/hooks/pickup-point/useGetPickupPoints.hook";
 import dayjs from "dayjs";
-import ShipIcon from "components/svg-components/ShipIcon";
+import ShipIcon from "@repo/ui/assets/icons/ShipIcon";
 
 const { RangePicker } = DatePicker;
 
@@ -42,7 +39,7 @@ export default function OrdersTopActions({ setFilters }: Props) {
   const [userInfo, setUserInfo] = useState<{ user_info: string } | null>(null);
   const [hasCost, setHasCost] = useState(false);
   const { recipients: usersList } = useGetRecipients(
-    userInfo && userInfo?.user_info?.trim()?.length === 0 ? null : userInfo,
+    userInfo && userInfo?.user_info?.trim()?.length === 0 ? null : userInfo
   );
   const { categories } = useCategories();
   const [form] = Form.useForm();
@@ -90,21 +87,17 @@ export default function OrdersTopActions({ setFilters }: Props) {
   return (
     <Form
       form={form}
-      className={"_paper"}
+      className="rounded-[12px] bg-white pt-[16px] pl-[16px] pr-[16px] mb-[16px] h-max"
       layout="vertical"
       onFinish={handleFinish}
     >
-      <Row
-        gutter={16}
-        className="row"
-        style={{
-          overflow: "hidden",
-          maxHeight: more ? "1000px" : "55px",
-          transition: "0.3s",
-        }}
+      <div
+        className={`w-[100%] overflow-hidden justify-between ${
+          more ? "max-h-[500px]" : "max-h-[55px]"
+        } transition-all transition-duration-[0.3s]`}
       >
-        <Col lg={4}>
-          <Form.Item name="user_info">
+        <div className="flex flex-wrap gap-x-[16px]">
+          <Form.Item name="user_info" className="w-[250px]">
             <AutoComplete
               placeholder="Full name or GA"
               onSearch={(val) => {
@@ -113,28 +106,28 @@ export default function OrdersTopActions({ setFilters }: Props) {
               options={usersList}
             />
           </Form.Item>
-        </Col>
-        <Col lg={4}>
-          <Form.Item name="tracking_code" rules={[{ min: 7 }]}>
+
+          <Form.Item
+            name="tracking_code"
+            rules={[{ min: 7 }]}
+            className="w-[250px]"
+          >
             <Input placeholder="Tracking code" />
           </Form.Item>
-        </Col>
-        <Col lg={3}>
-          <Form.Item name="parcel_id">
+
+          <Form.Item name="parcel_id" className="w-[250px]">
             <AutoComplete
               placeholder="Parcel"
               onSearch={(val) => setParcelSearch({ name: val || null })}
               options={parcelList}
             />
           </Form.Item>
-        </Col>
-        <Col lg={4}>
+
           <Form.Item name={"date"}>
             <RangePicker />
           </Form.Item>
-        </Col>
-        <Col lg={3}>
-          <Form.Item name="order_status">
+
+          <Form.Item name="order_status" className="w-[250px]">
             <Select placeholder="Order Status">
               <Select.Option value="at_warehouse">At Warehouse</Select.Option>
               <Select.Option value="on_the_way">On the way</Select.Option>
@@ -143,70 +136,61 @@ export default function OrdersTopActions({ setFilters }: Props) {
               <Select.Option value="received">Received</Select.Option>
             </Select>
           </Form.Item>
-        </Col>
-        <Col lg={3}>
-          <Form.Item name="warehouse_id">
+
+          <Form.Item name="warehouse_id" className="w-[180px]">
             <Select placeholder="All Warehouses" options={warehouses} />
           </Form.Item>
-        </Col>
-        <Col lg={3}>
-          <Form.Item name="is_declared">
+
+          <Form.Item name="is_declared" className="w-[250px]">
             <Select placeholder="Declaration">
               <Select.Option value="1">Declared</Select.Option>
               <Select.Option value="0">Not Declared</Select.Option>
             </Select>
           </Form.Item>
-        </Col>
-        <Col lg={2} className="fly-sea">
-          <Form.Item name="dispatch_type">
+
+          <Form.Item name="dispatch_type" className="w-[120px]">
             <Select
               placeholder={
-                <Flex alignItems="center" gap={"8px"}>
+                <div className="flex items-center gap-[8px]">
                   <FlyIcon />
                   <ShipIcon />
-                </Flex>
+                </div>
               }
             >
               <Select.Option value="air">
-                <Flex alignItems={"center"}>
+                <div className="flex items-center">
                   <FlyIcon margin={"0 5px 0 0"} />
                   Air
-                </Flex>
+                </div>
               </Select.Option>
             </Select>
           </Form.Item>
-        </Col>
-        <Col lg={4}>
-          <Form.Item name="comment">
+
+          <Form.Item name="comment" className="w-[250px]">
             <Input placeholder="Comment" />
           </Form.Item>
-        </Col>
-        <Col lg={4}>
-          <Form.Item name="pickup_point_id">
+
+          <Form.Item name="pickup_point_id" className="w-[250px]">
             <AutoComplete
               placeholder="Pickup Point"
               onSearch={(val) => setPointSearch({ address: val || null })}
               options={pickupPointList}
             />
           </Form.Item>
-        </Col>
 
-        <Col lg={3}>
-          <Form.Item name="category_id">
+          <Form.Item name="category_id" className="w-[250px]">
             <Select placeholder="Select category" options={categories || []} />
           </Form.Item>
-        </Col>
-        <Col lg={4}>
-          <Form.Item name="services">
+
+          <Form.Item name="services" className="w-[250px]">
             <Select
               placeholder="Service type"
               options={[{ value: null, label: "All" }, ...smartServices]}
               mode={"multiple"}
             />
           </Form.Item>
-        </Col>
-        <Col lg={3}>
-          <Form.Item name="has_invoice">
+
+          <Form.Item name="has_invoice" className="w-[250px]">
             <Select
               placeholder={"Invoice"}
               options={[
@@ -215,53 +199,48 @@ export default function OrdersTopActions({ setFilters }: Props) {
               ]}
             />
           </Form.Item>
-        </Col>
-        <Col lg={3}>
-          <Form.Item name="indicator">
+
+          <Form.Item name="indicator" className="w-[250px]">
             <Select
               placeholder={"Indicators"}
               options={[
                 {
                   value: 1,
                   label: (
-                    <Flex alignItems={"center"} style={{ color: "#5B6D7F" }}>
-                      {" "}
+                    <div className="flex items-center text-oxford-blue-300">
                       <AdditionalInfoIcon margin={"0 8px 0 0"} />
                       Additional info text{" "}
-                    </Flex>
+                    </div>
                   ),
                 },
                 {
                   value: "missing",
                   label: (
-                    <Flex alignItems={"center"} style={{ color: "#5B6D7F" }}>
+                    <div className="flex items-center text-oxford-blue-300">
                       {" "}
                       <MissingIcon margin={"0 8px 0 0"} />
                       Missing{" "}
-                    </Flex>
+                    </div>
                   ),
                 },
                 {
                   value: "dangerous",
                   label: (
-                    <Flex alignItems={"center"} style={{ color: "#5B6D7F" }}>
+                    <div className="flex items-center text-oxford-blue-300">
                       {" "}
                       <DangerousIcon margin={"0 8px 0 0"} />
                       Dangerous{" "}
-                    </Flex>
+                    </div>
                   ),
                 },
               ]}
             />
           </Form.Item>
-        </Col>
-        <Col lg={3}>
+
           <Form.Item name="cost">
             <Input placeholder={"Onex cost"} />
           </Form.Item>
-        </Col>
 
-        <Col>
           <Space.Compact>
             <Form.Item name="has_additional_cost">
               <Select
@@ -285,27 +264,33 @@ export default function OrdersTopActions({ setFilters }: Props) {
               />
             </Form.Item>
           </Space.Compact>
-        </Col>
-      </Row>
-      <Flex width={"100%"} justifyContent={"flex-end"} gap={"16px"}>
-        {" "}
-        <PrimaryButton
-          text={more ? "Show less" : "Show more"}
+        </div>
+      </div>
+      <div className="flex w-[100%] justify-end gap-[16px] mb-[16px]">
+        <Button
           onClick={() => setMore(!more)}
           type={"link"}
+          className="text-oxford-blue-300 hover:!text-green-500"
           icon={<ShowLessIcon rotate={more ? "0deg" : "-180deg"} />}
-        />
-        <PrimaryButton
-          text="Reset"
-          type={"default"}
+        >
+          {more ? "Show less" : "Show more"}
+        </Button>
+        <Button
+          color="default"
           onClick={() => handleResetForm()}
-        />
-        <PrimaryButton
-          text="Search"
+          className="hover:!text-black hover:!border-oxford-blue-50"
+        >
+          Reset
+        </Button>
+        <Button
           icon={<SearchIcon />}
-          htmlType={"submit"}
-        />
-      </Flex>
+          htmlType="submit"
+          color="primary"
+          variant="solid"
+        >
+          Search
+        </Button>
+      </div>
     </Form>
   );
 }

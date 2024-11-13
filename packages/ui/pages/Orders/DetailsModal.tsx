@@ -1,23 +1,22 @@
-import useShowOrder from "hooks/orders/useShowOrder.hook";
+import useShowOrder from "@repo/ui/hooks/orders/useShowOrder.hook";
 import { Dispatch, SetStateAction, useState } from "react";
-import OrdersDetailsHeader from "components/sections/Orders/DetailsHeader";
-import OrderDetailsInfo from "components/sections/Orders/DetailsInfo";
-import OrderDetailStatuses from "components/sections/Orders/DetailsStatuses";
-import OrderDetailsCosts from "components/sections/Orders/DetailsCosts";
-import OrderDetailsCustomer from "components/sections/Orders/DetailsCustomer";
-import OrderDetailsSmartService from "components/sections/Orders/DetailsSmartService";
-import OrderDetailsEdit from "components/sections/Orders/Edit";
-import { Loader } from "components/common/Loader";
-import { PermissionsType } from "types/permissions";
-import { DrawerModal } from "components/elements/ModalDrawer";
-import OrderDetailsFooter from "components/sections/Orders/DetailFooter";
-import Flex from "components/elements/Flex";
+import OrdersDetailsHeader from "@repo/ui/components/sections/Orders/DetailsHeader";
+import OrderDetailsInfo from "@repo/ui/components/sections/Orders/DetailsInfo";
+import OrderDetailStatuses from "@repo/ui/components/sections/Orders/DetailsStatuses";
+import OrderDetailsCosts from "@repo/ui/components/sections/Orders/DetailsCosts";
+import OrderDetailsCustomer from "@repo/ui/components/sections/Orders/DetailsCustomer";
+import OrderDetailsSmartService from "@repo/ui/components/sections/Orders/DetailsSmartService";
+import OrderDetailsEdit from "@repo/ui/components/sections/Orders/Edit";
+import { Loader } from "@repo/ui/components/loader/Loader";
+import { Permissions } from "@repo/types/src/permissions";
+import OrderDetailsFooter from "@repo/ui/components/sections/Orders/DetailFooter";
+import { Drawer } from "antd";
 
 interface Props {
   status: boolean;
   setStatus: Dispatch<SetStateAction<boolean>>;
   id: number | string;
-  permissions: PermissionsType["order"];
+  permissions: Permissions["order"];
 }
 
 export default function OrdersDetailsModal({
@@ -30,12 +29,17 @@ export default function OrdersDetailsModal({
   const { order, refetch } = useShowOrder(id);
 
   return (
-    <DrawerModal
+    <Drawer
       title=""
       placement="right"
       onClose={() => setStatus(false)}
       open={status}
       width="80%"
+      styles={{
+        header: { display: "none" },
+        footer: { borderTop: "none" },
+        body: { background: "#f9fafb" },
+      }}
       footer={
         <OrderDetailsFooter
           id={order?.id || ""}
@@ -43,10 +47,12 @@ export default function OrdersDetailsModal({
           setStatus={setStatus}
         />
       }
-      _padding={editStatus ? "16px 16px 0 16px" : "16px"}
+      className={`${
+        editStatus ? "pt-[16px]  pr-[16px] pl-[16px]" : "p-[16px]"
+      }`}
     >
       {order ? (
-        <Flex flexDirection={"column"}>
+        <div className="flex flex-col">
           {!editStatus ? (
             <>
               <OrdersDetailsHeader
@@ -78,10 +84,10 @@ export default function OrdersDetailsModal({
           {!!order?.service && (
             <OrderDetailsSmartService service={order?.service || {}} />
           )}
-        </Flex>
+        </div>
       ) : (
         <Loader />
       )}
-    </DrawerModal>
+    </Drawer>
   );
 }
