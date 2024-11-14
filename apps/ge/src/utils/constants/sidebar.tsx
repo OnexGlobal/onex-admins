@@ -18,7 +18,6 @@ import banner_icon from "../../assets/images/banner.svg";
 import blog_icon from "../../assets/images/blog.svg";
 import shops_icon from "../../assets/images/shops.svg";
 import warehouses_icon from "../../assets/images/warehouses.svg";
-import settings_icon from "../../assets/images/settings-icon.svg";
 import logout_icon from "../../assets/images/log-out-icon.svg";
 import onex_logo from "../../assets/images/onex_logo_closed.svg";
 import app_versions from "../../assets/images/api-versions.svg";
@@ -239,11 +238,6 @@ export const sidebar = (permissions: Record<string, boolean>): MenuItem[] => {
       label: "App version",
       icon: <img alt="App version" src={app_versions} />,
       style: !api_version_view ? { display: "none" } : undefined,
-    },
-    {
-      key: "/settings",
-      label: "Settings",
-      icon: <img alt="Settings" src={settings_icon} />,
     },
     {
       key: "/log-out",

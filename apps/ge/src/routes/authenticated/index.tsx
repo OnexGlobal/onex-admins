@@ -16,6 +16,7 @@ import {
   ProtectedRoute,
   Reports,
   Roles,
+  Shops,
   Slides,
   TestUsers,
 } from "@repo/ui";
@@ -49,6 +50,9 @@ const AuthRoutes = () => {
     blog_create,
     blog_edit,
     blog_delete,
+    shop_create,
+    shop_edit,
+    shop_delete,
   } = usePermission();
 
   const routes = [
@@ -171,7 +175,13 @@ const AuthRoutes = () => {
     },
     {
       path: "/shops",
-      component: <div>Shops</div>,
+      component: (
+        <Shops
+          shop_create={shop_create}
+          shop_edit={shop_edit}
+          shop_delete={shop_delete}
+        />
+      ),
       permission: shop_view,
     },
     {
@@ -183,11 +193,6 @@ const AuthRoutes = () => {
       path: "/app-versions",
       component: <div>App version</div>,
       permission: api_version_view,
-    },
-    {
-      path: "/settings",
-      component: <div>Settings</div>,
-      permission: true,
     },
   ];
 

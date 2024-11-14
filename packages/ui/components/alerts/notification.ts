@@ -7,9 +7,7 @@ export const notificationSuccess = (
   notification.success({
     message: title,
     description: description,
-    onClick: () => {
-      console.log("Notification Clicked!");
-    },
+    onClick: () => {},
   });
 };
 export const notificationError = (
@@ -19,8 +17,6 @@ export const notificationError = (
   notification.error({
     message: title,
     description: description,
-    onClick: () => {
-      console.log("Notification Clicked!");
-    },
+    onClick: () => {},
   });
 };

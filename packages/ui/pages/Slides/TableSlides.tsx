@@ -210,6 +210,7 @@ const TableSlides = ({
           strategy={verticalListSortingStrategy}
         >
           <Table
+            bordered
             components={{
               body: {
                 row: Row,
