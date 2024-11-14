@@ -1,5 +1,6 @@
 import {
   ActionsHistory,
+  AppVersions,
   Balance,
   Banners,
   Blogs,
@@ -192,7 +193,7 @@ const AuthRoutes = () => {
     },
     {
       path: "/app-versions",
-      component: <div>App version</div>,
+      component: <AppVersions />,
       permission: api_version_view,
     },
   ];

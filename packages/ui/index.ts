@@ -26,3 +26,4 @@ export { default as OrdersFailed } from "./pages/OrdersFailed";
 export { default as Slides } from "./pages/Slides";
 export { default as Blogs } from "./pages/Blog";
 export { default as Shops } from "./pages/Shops";
+export { default as AppVersions } from "./pages/AppVersions";
