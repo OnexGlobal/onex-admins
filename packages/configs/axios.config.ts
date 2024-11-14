@@ -14,8 +14,8 @@ axios.interceptors.response.use(
   (error) => {
     const { status } = error.response;
     if (status === 500 || status === 401) {
-      localStorage.clear();
-      window.location.reload();
+      // localStorage.clear();
+      // window.location.reload();
     }
     return Promise.reject(error);
   }
