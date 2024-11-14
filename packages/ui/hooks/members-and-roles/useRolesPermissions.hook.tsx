@@ -243,7 +243,6 @@ export const useRolesPermissions = () => {
           ),
         },
       ];
-      // console.log(permission, "rolePer");
       return permission;
     },
   });

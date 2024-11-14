@@ -30,11 +30,11 @@ export default function Blog({ blog_create, blog_edit, blog_delete }: Props) {
 
   return (
     <>
-      <span className="text-title mb-[24px]">Blog</span>
+      <h1 className="text-title mb-[24px]">Blog</h1>
 
       {dataSource?.length > 0 && blog_create ? (
         <Button
-          className="bg-oxford-blue-300 text-white"
+          className="bg-oxford-blue-300 text-white mb-[16px]"
           type="default"
           onClick={() => setBlog(true)}
         >

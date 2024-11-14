@@ -77,15 +77,10 @@ const TableBlog: FC<Props> = ({
   const [isDrag, setIsDrag] = useState(false);
   const [activeStatus, setActiveStatus] = useState(0);
   const [overStatus, setOverSatus] = useState(0);
-  const { mutate } = useSortBlogs(
-    (data) => {
-      notificationSuccess(`Success`, data?.data?.message);
-      setIsDrag(false);
-    },
-    (e) => {
-      console.log(e, "error");
-    }
-  );
+  const { mutate } = useSortBlogs((data) => {
+    notificationSuccess(`Success`, data?.data?.message);
+    setIsDrag(false);
+  });
 
   const onDragEnd = ({ active, over }: DragEndEvent) => {
     setIsDrag(true);
@@ -195,7 +190,11 @@ const TableBlog: FC<Props> = ({
       </div>
     ),
     status: (
-      <Tag color={el?.is_active ? "green" : "red"}>
+      <Tag
+        color={el?.is_active ? "green" : "red"}
+        //@ts-ignore
+        text={el?.is_active ? "Active" : "Inactive"}
+      >
         {el?.is_active ? "Active" : "Inactive"}
       </Tag>
     ),
@@ -212,6 +211,7 @@ const TableBlog: FC<Props> = ({
           strategy={verticalListSortingStrategy}
         >
           <Table
+            bordered
             meta={meta}
             components={{
               body: {

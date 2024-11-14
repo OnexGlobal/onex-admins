@@ -37,9 +37,7 @@ export default function RoleEditModal({
       setStatus(false);
       refetchRoles();
     },
-    () => {
-      console.log("error");
-    }
+    () => {}
   );
   const { mutate } = useUpdateRole(
     () => {
@@ -133,10 +131,7 @@ export default function RoleEditModal({
                 </span>
 
                 {checkedList?.length ? (
-                  <Checkbox.Group
-                    defaultValue={checkedList}
-                    onChange={(values) => console.log(values)}
-                  >
+                  <Checkbox.Group defaultValue={checkedList}>
                     <Row gutter={[36, 26]}>
                       {(group[1] as [])?.map(
                         (

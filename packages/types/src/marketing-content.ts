@@ -74,3 +74,61 @@ export interface BlogType {
     updated_at: string;
   }[];
 }
+
+export interface ShopsType {
+  id: number;
+  blog_url: string;
+  name: string;
+  url: string;
+  affilate_url: string;
+  logo: string;
+  mobile_logo: string;
+  description: string;
+  price: number;
+  is_buyforme: number;
+  is_dropify: number;
+  is_one_click: number;
+  is_special: number;
+  vlog: string;
+  for_home_page: number;
+  is_active: number;
+  sorting: number;
+  created_at: string;
+  updated_at: string;
+  rating: string;
+  categories: {
+    id: number;
+    name: string;
+    type: string;
+  }[];
+  details: {
+    id: number;
+    shop_id: number;
+    language_id: number;
+    description: string;
+    vlog: string;
+    created_at: string;
+    updated_at?: string;
+  }[];
+  blog: string;
+  warehouse: {
+    id: number;
+    reference_id: number;
+    type: string;
+    address: string;
+    country: string;
+    iso_3: string;
+    country_code: string;
+    city: string;
+    state: string;
+    zip: string;
+    phone: string;
+    flag: string;
+    round_flag: string;
+    warning_url: string;
+    timezone: string;
+    created_at: string;
+    updated_at: string;
+    deleted_at: string;
+  };
+}

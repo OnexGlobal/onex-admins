@@ -20,7 +20,7 @@ export default function CreateRoleModal({ createRole, setCreateRole }: Props) {
     Record<string, (number | string | boolean)[]>
   >({});
   const { rolesPermissions = [] } = useRolesPermissions();
-  console.log(rolesPermissions);
+
   const [form] = Form.useForm();
   const { mutate } = useAddNewRole((data) => {
     notificationSuccess("Create role", data?.data?.message);
