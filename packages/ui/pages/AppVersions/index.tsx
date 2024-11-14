@@ -30,13 +30,13 @@ export default function ActionsHistory() {
     <>
       <>
         <div className="page-title">
-          <h1 className="text-title">App Versions</h1>
+          <h1 className="text-title mb-[24px]">App Versions</h1>
         </div>
         <ActionSearch setFilter={setFilters} />
         <Button
           onClick={() => setOpenDrawer(undefined)}
           type="default"
-          className="bg-oxford-blue-200 text-white"
+          className="bg-oxford-blue-200 text-white mt-[24px]"
         >
           Create version
         </Button>
@@ -65,7 +65,7 @@ export default function ActionsHistory() {
               width: "auto",
             },
           ]}
-          dataSource={data.map((item: ApiVersions) => ({
+          dataSource={data?.map((item: ApiVersions) => ({
             version: item.version,
             operating_system: (
               <div className="flex items-center gap-[5px]">
@@ -91,7 +91,10 @@ export default function ActionsHistory() {
             actions: (
               <div className="flex items-center justify-end gap-[16px] ">
                 <EditIcon onClick={() => setOpenDrawer(item)} />
-                <TrashIcon onClick={() => setOpenDeleteModal(item.id)} />
+                <TrashIcon
+                  color="fc4447"
+                  onClick={() => setOpenDeleteModal(item.id)}
+                />
               </div>
             ),
           }))}

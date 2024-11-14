@@ -1,9 +1,10 @@
 import { Meta } from "@repo/types";
 import { BannersType, LanguagesType } from "@repo/types/src/marketing-content";
-import { Pagination, Table, Tag } from "antd";
+import { Pagination, Tag } from "antd";
 import dayjs from "dayjs";
 import { Dispatch, FC, SetStateAction } from "react";
 import { EditIcon } from "../../assets/icons/EditIcon";
+import Table from "../../components/table/Table";
 
 interface Props {
   data: BannersType[];
@@ -126,24 +127,24 @@ const TableBanners: FC<Props> = ({
 
   return (
     <div className={"table_wrapper"}>
-      <Table dataSource={newData} columns={columns} pagination={false} />
-      <div className={"new-pagination"}>
-        <Pagination
-          total={meta?.total || 1}
-          showTotal={(total, range) =>
-            `${range[0]}-${range[1]} of ${total} items`
-          }
-          onChange={(page, per_page) =>
-            setFilters((pre) => ({
-              ...pre,
-              page,
-              per_page,
-            }))
-          }
-          defaultPageSize={meta?.per_page || 15}
-          defaultCurrent={meta?.current_page || 1}
-        />
-      </div>
+      <Table
+        bordered
+        dataSource={newData}
+        meta={meta}
+        columns={columns}
+        onChangePage={(page) =>
+          setFilters((pre) => ({
+            ...pre,
+            page,
+          }))
+        }
+        onChangePerPage={(per_page) =>
+          setFilters((pre) => ({
+            ...pre,
+            per_page,
+          }))
+        }
+      />
     </div>
   );
 };
