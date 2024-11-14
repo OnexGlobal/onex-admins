@@ -25,7 +25,9 @@ export default function CustomersSearch({
   };
   return (
     <div className="flex flex-col">
-      <h2 className="text-info">Search by</h2>
+      <h2 className="text-info text-oxford-blue-300 mb-[4px] font-[500] mr-[16px]">
+        Search by
+      </h2>
 
       <Form
         form={form}

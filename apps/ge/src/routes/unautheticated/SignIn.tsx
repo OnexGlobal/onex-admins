@@ -39,8 +39,13 @@ export default function SignIn() {
       {contextHolder}
       <Row>
         <Col lg={10}>
-          <div className="flex flex-col justify-center h-[100vh] px-[24px]">
-            <img src={logo} alt="" style={{ width: 150 }} />
+          <div className="flex flex-col items-center justify-center h-[100vh] max-w-[80%] px-[24px]">
+            <img
+              className="mb-[24px]"
+              src={logo}
+              alt=""
+              style={{ width: 150 }}
+            />
             <Form
               name="login-form"
               onFinish={(values) => {

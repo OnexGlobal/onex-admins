@@ -36,12 +36,13 @@ export default function ActionsHistory() {
         <Button
           onClick={() => setOpenDrawer(undefined)}
           type="default"
-          className="bg-oxford-blue-200 text-white mt-[24px]"
+          className="bg-oxford-blue-400 text-white my-[24px]"
         >
           Create version
         </Button>
 
         <Table
+          bordered
           columns={[
             {
               key: "version",
