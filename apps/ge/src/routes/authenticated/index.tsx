@@ -211,6 +211,7 @@ const AuthRoutes = () => {
           }
         />
       ))}
+      <Route path="*" element={<Home />} />
     </Routes>
   );
 };

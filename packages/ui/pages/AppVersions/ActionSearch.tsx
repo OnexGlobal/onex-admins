@@ -25,7 +25,11 @@ export default function ActionSearch({ setFilter = () => {} }: Props) {
   };
 
   return (
-    <Row gutter={16} align={"bottom"} className="filters-row">
+    <Row
+      gutter={16}
+      align={"bottom"}
+      className="bg-white p-[16px] rounded-[12px]"
+    >
       <Col>
         <Select
           style={{ height: "35px" }}
@@ -83,7 +87,7 @@ export default function ActionSearch({ setFilter = () => {} }: Props) {
         <Button
           onClick={handleReset}
           type="default"
-          className="ml-[8px] h-[35px]"
+          className="ml-[16px] h-[35px]"
           htmlType="reset"
         >
           Reset
@@ -94,6 +98,7 @@ export default function ActionSearch({ setFilter = () => {} }: Props) {
           onClick={() => setFilter(myFilter)}
           icon={<SearchIcon />}
           className="h-[35px]"
+          type="primary"
         >
           Search
         </Button>

@@ -23,7 +23,7 @@ export default function Customers() {
   });
   return (
     <>
-      <h1 className="text-title">Customers</h1>
+      <h1 className="text-title mb-[24px]">Customers</h1>
       <CustomersSearch setFilter={setFilter} refetch={refetch} />
       {isLoading ? (
         <Loader />

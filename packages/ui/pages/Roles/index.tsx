@@ -18,7 +18,7 @@ export default function Roles() {
 
   return (
     <>
-      <span className="text-title sm:mb-[24px] md:mb-0">Roles</span>
+      <h1 className="text-title mb-[24px]">Roles</h1>
 
       <SearchRoles
         setCreateRole={setCreateRole}

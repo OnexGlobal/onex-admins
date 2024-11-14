@@ -1,6 +1,6 @@
-import { Permissions, Refetch } from "@repo/types";
+import { Meta, Permissions, Refetch } from "@repo/types";
 import { UserType } from "@repo/types/src/users";
-import { FC, useState } from "react";
+import { Dispatch, FC, SetStateAction, useState } from "react";
 import { deleteTestUserHook } from "../../hooks/testusers/deleteTestUser.hook";
 import {
   notificationError,
@@ -8,21 +8,24 @@ import {
 } from "../../components/alerts/notification";
 import { clearTestUserData } from "../../hooks/testusers/clearTestUserData";
 import dayjs from "dayjs";
-import { Button, Table } from "antd";
+import { Button } from "antd";
 import { DeleteModal } from "../../components/modals/DeleteModal";
 import { order_icon } from "../../assets/images/prime";
 import prime from "../../assets/images/prime.svg";
+import Table from "../../components/table/Table";
 
 interface Props {
-  page: number;
+  setFilters: Dispatch<SetStateAction<Record<string, string | number>>>;
   usersList: UserType[];
   reFetch: Refetch;
+  meta?: Meta;
 }
 
 export const TableTestUsers: FC<Props> = ({
   usersList,
   reFetch = () => {},
-  page = 1,
+  setFilters,
+  meta,
 }) => {
   const permissions =
     JSON.parse(localStorage.getItem("permissions") || "") || {};
@@ -74,7 +77,7 @@ export const TableTestUsers: FC<Props> = ({
       title: "Total orders",
       dataIndex: "total_orders",
       key: "total_orders",
-      sorter: (a: { count: number }, b: { count: number }) => a.count - b.count,
+      sorter: (a: any, b: any) => a.count - b.count,
     },
     {
       title: "Orders",
@@ -87,7 +90,7 @@ export const TableTestUsers: FC<Props> = ({
       title: "Created date",
       dataIndex: "created_date",
       key: "created_date",
-      sorter: (a: { created: string }, b: { created: string }) =>
+      sorter: (a: any, b: any) =>
         new Date(a.created).getTime() - new Date(b.created).getTime(),
     },
     {
@@ -105,7 +108,7 @@ export const TableTestUsers: FC<Props> = ({
     full_name: (
       <div className="flex">
         <span className="text-[14px] text-oxford-blue-300">
-          {i + (page - 1) * 15 + 1}
+          {i + (Number(meta?.current_page) - 1) * 15 + 1}
         </span>
         <span className="text-[14px] text-oxford-blue-300 mx-[16px]">
           {el?.full_name + " " + el?.recipient?.user_code || ""}
@@ -220,7 +223,9 @@ export const TableTestUsers: FC<Props> = ({
       <Table
         dataSource={dataSource}
         columns={columns}
-        style={{ width: "100%" }}
+        meta={meta}
+        onChangePage={(page) => setFilters((p) => ({ ...p, page }))}
+        onChangePerPage={(page) => setFilters((p) => ({ ...p, page }))}
         rowSelection={{
           onChange: (_, selectedRowsArray) => {
             setSelectedUsers(selectedRowsArray.map((item) => item.id));

@@ -25,15 +25,6 @@ const Sidebar: FC<Props> = ({ menu, children, email }) => {
       className={`grid ${collapsed ? "grid-cols-[80px_auto]" : "grid-cols-[200px_auto]"}`}
     >
       <div className=" bg-white h-[100dvh] relative">
-        <div
-          className="absolute w-[61px] h-[61px] bg-white right-[-20px] rounded-[18px] top-[50%] translate-y-[-50%] transition-all cursor-pointer z-[0]"
-          onClick={() => setCollapsed((p) => !p)}
-        >
-          <img
-            src={chevron_left}
-            className={`absolute transition-all right-[5px] top-[50%] translate-y-[-50%] ${collapsed ? "rotate-180" : "rotate-0"} `}
-          />
-        </div>
         <div className="px-[24px]">
           <div className="mt-[32px]">
             {collapsed ? <img src={logo_closed} /> : <img src={logo_open} />}
@@ -62,7 +53,17 @@ const Sidebar: FC<Props> = ({ menu, children, email }) => {
             items={menu}
           />
         </div>
+        <div
+          className="absolute w-[20px] h-[61px] bg-white right-[-20px] rounded-[0_18px_18px_0] top-[50%] translate-y-[-50%] transition-all cursor-pointer z-[0]"
+          onClick={() => setCollapsed((p) => !p)}
+        >
+          <img
+            src={chevron_left}
+            className={`absolute transition-all right-[5px] top-[50%] translate-y-[-50%] ${collapsed ? "rotate-180" : "rotate-0"} `}
+          />
+        </div>
       </div>
+
       <div className="p-[25px] max-h-[100dvh] overflow-auto">{children}</div>
     </div>
   );

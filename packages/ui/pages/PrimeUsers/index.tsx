@@ -14,7 +14,7 @@ const PrimeUsers = () => {
     usePrimeUsersAutocomplete(filter);
   return (
     <div className="h-full">
-      <h2 className="text-info mb-[24px]">Prime Users</h2>
+      <h2 className="text-title mb-[24px]">Prime Users</h2>
       <PrimeUsersSearch setFilter={setFilter} refetch={refetch} />
       {isLoading ? (
         <Loader />

@@ -25,7 +25,7 @@ const Balance = ({ balance_edit = false }) => {
   } = useBalancesList(filterData);
   return (
     <>
-      <span className="text-[24px] mb-[24px] text-black">Balance</span>
+      <h1 className="text-[24px] mb-[24px] text-black">Balance</h1>
 
       <BalanceTopActions
         setFilterData={setFilterData}

@@ -13,6 +13,7 @@ const App = () => {
 
   if (loading) return <Loading />;
   if (!auth) return <Unauthenticated />;
+
   return (
     <Sidebar menu={sidebar(permissions)} email={user?.email}>
       <Authenticated />

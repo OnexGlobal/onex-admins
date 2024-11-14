@@ -38,7 +38,7 @@ export default function CustomersSearch({
           <Space.Compact>
             <Form.Item name={"search_key"}>
               <Select
-                style={{ width: 180 }}
+                style={{ width: 220 }}
                 options={[
                   { value: "user_info", label: "Full name or User Code" },
                   {

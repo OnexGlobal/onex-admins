@@ -18,7 +18,12 @@ export default function TestUsers() {
     string,
     string | number
   > | null>(null);
-  const { usersList = [], refetch, isLoading } = testUsersAutocomplete(filters);
+  const {
+    usersList = [],
+    meta,
+    refetch,
+    isLoading,
+  } = testUsersAutocomplete(filters);
 
   return (
     <>
@@ -29,17 +34,16 @@ export default function TestUsers() {
         userInfo={userInfo}
         setUserInfo={setUserInfo}
       />
-      <div className="page-title">
-        <h2 className="text-info mb-[24px]">Prime Users</h2>
-      </div>
-      <div style={{ display: "flex", alignItems: "flex-start" }}>
+      <h2 className="text-title mb-[24px]">Test Users</h2>
+      <div className="flex items-start justify-between">
         <TestUsersTopActions
           setFilters={setFilters}
           userInfo={userInfo}
           setUserInfo={setUserInfo}
         />
         <Button
-          type="primary"
+          type="default"
+          className="bg-oxford-blue-400 text-white"
           onClick={() => setAddTest(true)}
           icon={<img alt="" src={plus} />}
         >
@@ -52,7 +56,8 @@ export default function TestUsers() {
         <TableTestUsers
           usersList={usersList}
           reFetch={refetch}
-          page={filters.page as number}
+          setFilters={setFilters}
+          meta={meta}
         />
       ) : (
         <div className="flex items-center justify-center flex-col h-[80vh]">
