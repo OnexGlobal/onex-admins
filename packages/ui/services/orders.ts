@@ -3,7 +3,9 @@ import axios from "axios";
 type ID = string | number;
 
 export const ordersApi = {
-  async getOrdersService(params: object | null) {
+  async getOrdersService(
+    params: object | null | string | number | undefined | boolean
+  ) {
     return await axios.get("/orders", {
       params,
     });

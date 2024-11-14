@@ -1,7 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
 import { ordersApi } from "@repo/ui/services/orders";
 
-export default function useGetOrders(filters: object | null) {
+export default function useGetOrders(
+  filters: Record<string, string | number | undefined | boolean> | null
+) {
   const { data, isLoading, refetch } = useQuery({
     queryKey: ["get-orders", filters],
     queryFn: () => ordersApi.getOrdersService(filters),

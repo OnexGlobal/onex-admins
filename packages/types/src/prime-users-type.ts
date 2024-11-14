@@ -60,7 +60,7 @@ export interface Recipient {
     email: string;
     phone: string;
     verified_type: string;
-    email_verified_at: null | string;
+    email_verified_at: string | null | undefined;
     birthday_date: null | string;
     prime_start_at: null | string;
     prime_end_at: null | string;

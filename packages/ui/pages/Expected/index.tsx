@@ -21,9 +21,10 @@ export default function Expected() {
   );
   const [selectedId, setSelectedId] = useState<string | number | null>(null);
 
-  const [filters, setFilters] = useState<
-    Record<string, string | number | undefined | boolean>
-  >({
+  const [filters, setFilters] = useState<Record<
+    string,
+    string | number | undefined | boolean
+  > | null>({
     status: "1",
   });
   const { expectedList, isLoading, meta, refetch } = useGetExpected(filters);

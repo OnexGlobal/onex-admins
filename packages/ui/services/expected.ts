@@ -15,11 +15,11 @@ export const expectedApi = {
       },
     });
   },
-  async deleteExpected({ id }: Record<string, string>) {
+  async deleteExpected({ id }: Record<string, string | null>) {
     return await axios.delete(`/order-expected/${id}`);
   },
   async getExpected(
-    filters: Record<string, string | number | boolean | undefined>
+    filters: Record<string, string | number | undefined | boolean | any>
   ) {
     return await axios.get(
       "/order-expected",

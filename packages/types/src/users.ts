@@ -1051,7 +1051,7 @@ export interface CustomersTableType {
   recipients?: Recipient[];
   meta?: Paginated<any>["meta"];
   filter?: Record<string, string | number | undefined | boolean>;
-  setFilter: Dispatch<
-    SetStateAction<Record<string, string | boolean | number | undefined>>
+  setFilter?: Dispatch<
+    SetStateAction<Record<string, string | number | undefined | boolean> | null>
   >;
 }

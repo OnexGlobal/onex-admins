@@ -7,16 +7,16 @@ import { EyeIcon } from "@repo/ui/assets/icons/EyeIcon";
 import TrashIcon from "@repo/ui/assets/icons/TrashIcon";
 import { Users } from "@repo/types";
 import Table from "../../components/table/Table";
-import { HTMLAttributes } from "react";
+import { Dispatch, HTMLAttributes, SetStateAction } from "react";
 
 interface Props {
   setStatus: (val: string) => void;
   setId: (val: number | string) => void;
   data?: ExpectedOrdersType[];
   isLoading: boolean;
-  setFilter: (
-    val: Record<string, string | number | boolean | undefined>
-  ) => void;
+  setFilter: Dispatch<
+    SetStateAction<Record<string, string | number | undefined | boolean> | null>
+  >;
   permissions: [];
   meta: MetaType;
 }

@@ -15,6 +15,7 @@ import {
   OrdersFailed,
   PrimeUser,
   ProtectedRoute,
+  ReceiveOrders,
   Reports,
   Roles,
   Slides,
@@ -120,7 +121,7 @@ const AuthRoutes = () => {
     },
     {
       path: "/receive-orders",
-      component: <div>Receive orders</div>,
+      component: <ReceiveOrders />,
       permission: order_view,
     },
     {
