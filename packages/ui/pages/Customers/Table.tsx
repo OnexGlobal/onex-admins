@@ -12,7 +12,7 @@ import Table from "../../components/table/Table";
 export default function CustomersTable({
   recipients,
   meta,
-  setFilter,
+  setFilter = () => {},
   filter,
 }: Users.CustomersTableType) {
   const navigate = useNavigate();

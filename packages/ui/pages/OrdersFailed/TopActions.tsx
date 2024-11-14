@@ -4,11 +4,11 @@ import { orderStatusOptions } from "@repo/ui/constants/order-status-texts";
 import { Dispatch, SetStateAction } from "react";
 
 interface Props {
-  setFilters: Dispatch<SetStateAction<Record<string, string>>>;
+  setFilters: Dispatch<SetStateAction<Record<string, string | number>>>;
 }
 
 export default function OrdersFailedTopActions({ setFilters }: Props) {
-  const handleFinish = (values: Record<string, string>) => {
+  const handleFinish = (values: Record<string, string | number>) => {
     setFilters(values);
   };
 

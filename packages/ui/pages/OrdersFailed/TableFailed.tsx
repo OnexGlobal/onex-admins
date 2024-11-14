@@ -7,14 +7,13 @@ import OrderStatusIcon from "@repo/ui/constants/order-status-icon";
 import { SendToIcon } from "@repo/ui/assets/icons/send-to-icon";
 import DownloadIcon from "@repo/ui/assets/icons/DownloadIcon";
 import { balanceApi } from "@repo/ui/services/balance";
-import { MetaType } from "@repo/types/src/meta-type";
+import { Meta } from "@repo/types";
 import { FailedOrderData } from "@repo/types/src/orders";
 import Table from "../../components/table/Table";
-import { Users } from "@repo/types";
 
 interface Props {
-  setFilter: Dispatch<SetStateAction<Record<string, string>>>;
-  meta: MetaType;
+  setFilter: Dispatch<SetStateAction<Record<string, string | number>>>;
+  meta: Meta;
   orders: FailedOrderData[];
   isLoading: boolean;
   permissions?: [];
@@ -23,9 +22,9 @@ interface Props {
 export default function FailedOrdersTable({
   orders,
   meta,
-  setFilter,
+  setFilter = () => {},
   isLoading,
-}: Users.CustomersTableType & Props) {
+}: Props) {
   const [messageApi, contextHolder] = message.useMessage();
   const [sendToHub, setSendToHub] = useState<FailedOrderData["order"] | false>(
     false

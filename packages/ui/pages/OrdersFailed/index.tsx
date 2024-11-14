@@ -5,7 +5,7 @@ import FailedOrdersTable from "./TableFailed";
 import { Loader } from "@repo/ui/components/loader/Loader";
 
 export default function OrdersFailed() {
-  const [filters, setFilters] = useState({});
+  const [filters, setFilters] = useState<Record<string, string | number>>({});
   const { failedOrders, meta, isLoading } = useGetFailedOrders(filters);
   return (
     <div className="flex flex-col items-start justify-start w-full h-full p-0">

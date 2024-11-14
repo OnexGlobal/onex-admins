@@ -1,6 +1,6 @@
 import { Meta } from "@repo/types";
 import { BannersType, LanguagesType } from "@repo/types/src/marketing-content";
-import { Pagination, Tag } from "antd";
+import { Tag } from "antd";
 import dayjs from "dayjs";
 import { Dispatch, FC, SetStateAction } from "react";
 import { EditIcon } from "../../assets/icons/EditIcon";

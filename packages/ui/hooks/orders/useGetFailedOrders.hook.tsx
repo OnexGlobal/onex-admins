@@ -1,7 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
 import { ordersApi } from "@repo/ui/services/orders";
 
-export default function useGetFailedOrders(filters: Record<string, string>) {
+export default function useGetFailedOrders(
+  filters: Record<string, string | number>
+) {
   const { data, isLoading, refetch } = useQuery({
     queryKey: ["get-failed-orders", filters],
     queryFn: () => ordersApi.getOrdersFailedService(filters),

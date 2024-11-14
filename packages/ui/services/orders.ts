@@ -32,7 +32,7 @@ export const ordersApi = {
   async refundOrder(id: object) {
     return await axios.post(`/orders/${id}/refund`);
   },
-  async getOrdersFailedService(params: Record<string, string>) {
+  async getOrdersFailedService(params: Record<string, string | number>) {
     return await axios.get("/hub-failed-orders", { params: { ...params } });
   },
 };
