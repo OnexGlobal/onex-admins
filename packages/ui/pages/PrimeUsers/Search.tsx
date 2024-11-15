@@ -7,6 +7,7 @@ import dayjs from "dayjs";
 import { SearchIcon } from "../../assets/icons/SearchIcon";
 import { RefreshIcon } from "../../assets/icons/RefreshIcon";
 import { PlusIcon } from "../../assets/icons/PlusIcon";
+import { Loading } from "../../components/loader/Loading";
 
 const { RangePicker } = DatePicker;
 export default function PrimeUsersSearch({
@@ -14,7 +15,11 @@ export default function PrimeUsersSearch({
   refetch,
 }: PrimeUser.PrimeUsersSearchType) {
   const [userInfo, setUserInfo] = useState({});
-  const { usersList } = usePrimeUsersAutocomplete(userInfo);
+  const { usersList, isLoading } = usePrimeUsersAutocomplete({
+    is_prime: 1,
+    per_page: 1000,
+    ...userInfo,
+  });
   const [form] = Form.useForm();
   const [add, setAdd] = useState(false);
   const handleRefresh = () => {
@@ -47,13 +52,27 @@ export default function PrimeUsersSearch({
         }}
       >
         <div className="flex gap-[16px]">
-          <Form.Item name={"user_info"} style={{ width: 260 }}>
+          <Form.Item name={"user_info"} className="w-[260px]">
             <AutoComplete
               placeholder="Full name or GA"
               onSearch={(val) => {
                 setUserInfo({ user_info: val, is_prime: 1 });
               }}
-              options={usersList}
+              options={
+                isLoading
+                  ? [
+                      {
+                        value: "NULL",
+                        disabled: true,
+                        label: (
+                          <div className="flex items-center justify-center w-full h-[100px]">
+                            <Loading />
+                          </div>
+                        ),
+                      },
+                    ]
+                  : usersList
+              }
             />
           </Form.Item>
           <Form.Item name={"date"}>

@@ -94,9 +94,12 @@ export const TableTestUsers: FC<Props> = ({
         new Date(a.created).getTime() - new Date(b.created).getTime(),
     },
     {
-      title: " ",
+      title: "",
       dataIndex: "actions",
       key: "actions",
+      hidden:
+        !actionAvailable("test-user-relations-delete") &&
+        !actionAvailable("test-user-delete"),
     },
   ];
 
@@ -113,7 +116,7 @@ export const TableTestUsers: FC<Props> = ({
         <span className="text-[14px] text-oxford-blue-300 mx-[16px]">
           {el?.full_name + " " + el?.recipient?.user_code || ""}
         </span>
-        <img alt={"prime"} src={prime} />
+        {el?.is_prime ? <img alt={"prime"} src={prime} /> : null}
       </div>
     ),
     orders: (
@@ -222,6 +225,7 @@ export const TableTestUsers: FC<Props> = ({
       )}
       <Table
         dataSource={dataSource}
+        bordered
         columns={columns}
         meta={meta}
         onChangePage={(page) => setFilters((p) => ({ ...p, page }))}

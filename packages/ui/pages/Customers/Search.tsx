@@ -70,11 +70,7 @@ export default function CustomersSearch({
             </Form.Item>
           </Space.Compact>
 
-          <Button
-            htmlType="submit"
-            type="primary"
-            className="mb-[16px] h-[35px]"
-          >
+          <Button htmlType="submit" type="primary" className="mb-[16px]">
             Search
           </Button>
           <Button

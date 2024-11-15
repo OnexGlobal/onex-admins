@@ -9,7 +9,7 @@ import { PrimeUsersNotFondIcon } from "../../assets/icons/PrimeUsersNotFondIcon"
 const PrimeUsers = () => {
   const [filter, setFilter] = useState<
     Record<string, string | number | undefined | null>
-  >({});
+  >({ is_prime: 1 });
   const { usersList, refetch, meta, isLoading } =
     usePrimeUsersAutocomplete(filter);
   return (

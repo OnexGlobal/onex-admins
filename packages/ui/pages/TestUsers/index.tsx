@@ -43,7 +43,7 @@ export default function TestUsers() {
         />
         <Button
           type="default"
-          className="bg-oxford-blue-400 text-white"
+          className="bg-oxford-blue-400 text-white hover:!bg-oxford-blue-400 hover:!text-white hover:!border-oxford-blue-400"
           onClick={() => setAddTest(true)}
           icon={<img alt="" src={plus} />}
         >

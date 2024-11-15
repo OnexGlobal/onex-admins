@@ -7,15 +7,14 @@ import {
   notificationSuccess,
 } from "../../components/alerts/notification";
 import { UserType } from "@repo/types/src/users";
-import {
-  mail_icon,
-  order_icon,
-  phone_icon,
-  recipients_icon,
-  user_icon,
-  year_icon,
-} from "../../assets/images/prime";
 import { Refetch } from "@repo/types";
+import UserIcon from "../../assets/icons/UserIcon";
+import CalendarIcon from "../../assets/icons/CalendarIcon";
+import { analyzeDay } from "../../helpers/analyzeDayOfYear";
+import OrdersCountIcon from "../../assets/icons/OrdersCountIcon";
+import { CustomersIcon } from "../../assets/icons/CustomersIcon";
+import PhoneIcon from "../../assets/icons/PhoneIcon";
+import EmailIcon from "../../assets/icons/EmailIcon";
 
 interface Props {
   setAddTest: Dispatch<SetStateAction<boolean>>;
@@ -34,7 +33,10 @@ export const AddTestUsersModal: FC<Props> = ({
 }) => {
   const [form] = Form.useForm();
   const [user, setUser] = useState<UserType | null>(null);
-  const { usersList = [] } = testUsersAutocomplete({ is_test: 0 });
+  const { usersList = [] } = testUsersAutocomplete({
+    is_test: 0,
+    per_page: 1000,
+  });
   const { mutate } = makeUserTest({
     onSuccess: () => {
       notificationSuccess("Make Test", "Test successfully created");
@@ -70,34 +72,35 @@ export const AddTestUsersModal: FC<Props> = ({
       width={600}
       styles={{
         header: { display: "none" },
+        body: { background: "#f9fafb" },
       }}
     >
       <>
         <Form form={form} layout="vertical" onFinish={onFinish}>
           <div className="flex items-center justify-between">
-            <span className="text-black text-[22px] font-[500]">
-              Add Test User
-            </span>
+            <span className="text-title">Add Test User</span>
 
-            <div className="flex items-center">
+            <div className="flex items-center gap-x-[16px]">
               <Button
-                type="default"
-                danger
-                htmlType="reset"
-                style={{ margin: "0 16px" }}
-                onClick={() => closeModal()}
+                className="bg-red-50 text-red-500 border-red-50 hover:!bg-red-50 hover:!text-red-500 hover:!border-red-50"
+                onClick={closeModal}
               >
                 Cancel
               </Button>
-              <Button type="primary" htmlType="submit">
-                Save
+              <Button
+                type="primary"
+                className="disabled:!bg-oxford-blue-100 disabled:!text-white"
+                htmlType="submit"
+                disabled={user === null}
+              >
+                Make test
               </Button>
             </div>
           </div>
-          <div className="p-[16px] mx-[24px] bg-white rounded-[12px]">
+          <div className="p-[16px] mt-[24px] mb-[16px] bg-white rounded-[12px]">
             <Form.Item name="user_info" label={"Full name or User code"}>
               <AutoComplete
-                style={{ width: "520px" }}
+                className="w-full"
                 placeholder="Full name or User code"
                 value={userInfo}
                 onSearch={(val) => {
@@ -112,55 +115,48 @@ export const AddTestUsersModal: FC<Props> = ({
           </div>
         </Form>
         {user ? (
-          <div className="flex flex-col p-[16px] bg-white mx-[24px] rounded-[12px]">
-            <div className="flex items-center justify-between gap-[8px]">
-              <img alt={"user"} src={user_icon} />
-              <span className="text-black font-[500] text-[14px]">
-                {user?.full_name + " " + user?.recipient?.user_code}
-              </span>
+          <div className="rounded-[12px] bg-white p-[16px] mb-[16px] h-max grid gap-[16px] [&>div]:flex [&>div]:items-center [&>div]:gap-[8px]">
+            <div>
+              <UserIcon size={"30"} />
+              <span className="text-[16px] font-[500]">{user?.label}</span>
             </div>
-            <div className="flex items-center justify-between gap-[8px]">
-              <img alt={"user"} src={year_icon} />
-              <span className="font-[500] text-[14px] text-oxford-blue-300">
-                {user?.full_name + " " + user?.recipient?.user_code}
+            <div>
+              <CalendarIcon />
+              <span className="text-oxford-blue-300">
+                {analyzeDay(user?.registered_days)}
               </span>
-              <img alt={"user"} src={order_icon} />
-              <span className="font-[500] text-[14px] text-oxford-blue-300">
-                {user?.full_name + " " + user?.recipient?.user_code}
+
+              <OrdersCountIcon />
+              <span className="text-oxford-blue-300 ">
+                {user?.orders_count}
               </span>
-              {user?.orders_count_by_country?.map((el, index) => (
-                <div className="flex items-center ml-[16px]" key={index}>
+
+              {user?.orders_count_by_country?.map((count, index) => (
+                <>
                   <img
                     alt={`country${index}`}
                     width={24}
                     height={24}
-                    src={`https://devbackadmin.onex.ge/storage/images/warehouses/${el?.round_flag}`}
+                    src={`https://devbackadmin.onex.ge/storage/images/warehouses/${count?.round_flag}`}
                   />
-                  <span className="ml-[8px] text-oxford-blue-300 font-[400] ">
-                    {el?.total}
-                  </span>
-                </div>
+                  <span className="text-oxford-blue-300 ">{count?.total}</span>
+                </>
               ))}
             </div>
-            <div className="flex items-center justify-center mt-[18px] gap-[8px]">
-              <img alt={"recipients"} src={recipients_icon} />
-              <span className="font-[400] text-oxford-blue-300 text-[14px]">
-                {(user?.recipients?.length === 1
-                  ? user?.recipients?.length + " " + "recipient"
-                  : user?.recipients?.length + " " + "recipients") || 0}
+
+            <div>
+              <CustomersIcon color={"#8E9BA7"} />
+              <span className="text-[16px]">
+                {user?.recipients?.length + " " + "recipients"}
               </span>
             </div>
-            <div className="flex items-center justify-center mt-[18px] gap-[8px]">
-              <img alt={"recipients"} src={phone_icon} />
-              <span className="font-[400] text-oxford-blue-300 text-[14px]">
-                {user?.phone}
-              </span>
+            <div>
+              <PhoneIcon color={"#8E9BA7"} />
+              <span className="text-[16px]">{user?.phone}</span>
             </div>
-            <div className="flex items-center justify-center mt-[18px] gap-[8px]">
-              <img alt={"recipients"} src={mail_icon} />
-              <span className="font-[400] text-oxford-blue-300 text-[14px]">
-                {user?.email}
-              </span>
+            <div>
+              <EmailIcon color={"#8E9BA7"} />
+              <span className="text-[16px]">{user?.email}</span>
             </div>
           </div>
         ) : null}

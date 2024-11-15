@@ -14,6 +14,7 @@ import UserIcon from "../../assets/icons/UserIcon";
 import { CustomersIcon } from "../../assets/icons/CustomersIcon";
 import PhoneIcon from "../../assets/icons/PhoneIcon";
 import EmailIcon from "../../assets/icons/EmailIcon";
+import { Loading } from "../../components/loader/Loading";
 
 interface AddProps {
   add: boolean;
@@ -22,7 +23,11 @@ interface AddProps {
 
 export const AddPrimeUsers: FC<AddProps> = ({ add, setAdd }) => {
   const [userInfo, setUserInfo] = useState({});
-  const { usersList } = usePrimeUsersAutocomplete(userInfo);
+  const { usersList, isLoading } = usePrimeUsersAutocomplete({
+    is_prime: 0,
+    per_page: 1000,
+    ...userInfo,
+  });
   const [selected, setSelected] = useState<PrimeUser.PrimeUserType | null>(
     null
   );
@@ -53,21 +58,26 @@ export const AddPrimeUsers: FC<AddProps> = ({ add, setAdd }) => {
     <Drawer
       styles={{
         header: { display: "none" },
+        body: { background: "#f9fafb" },
       }}
       placement="right"
       onClose={handleCanceled}
       open={add}
-      width="485px"
+      width="600px"
     >
-      <h1 className="text-title">Customers</h1>
       <div className="flex items-center justify-between mb-[16px]">
-        <h2 className="text-[22px] ">Add prime</h2>
+        <h1 className="text-title">Add prime</h1>
+
         <div className="flex items-center gap-[16px]">
-          <Button danger onClick={handleCanceled}>
+          <Button
+            className="bg-red-50 text-red-500 border-red-50 hover:!bg-red-50 hover:!text-red-500 hover:!border-red-50"
+            onClick={handleCanceled}
+          >
             Cancel
           </Button>
           <Button
             type="primary"
+            className="disabled:!bg-oxford-blue-100 disabled:!text-white"
             onClick={onFinish}
             disabled={selected === null}
           >
@@ -75,22 +85,42 @@ export const AddPrimeUsers: FC<AddProps> = ({ add, setAdd }) => {
           </Button>
         </div>
       </div>
-      <div className={"_paper"}>
-        <span className="font-[500] text-black">Full name or user code</span>
+      <div className="rounded-[12px] bg-white pt-[16px] gap-[16px] pl-[16px] pr-[16px] mb-[16px] h-max">
+        <span className="font-[500] text-oxford-blue-400">
+          Full name or user code
+        </span>
         <AutoComplete
           value={completeVal}
-          style={{ marginBottom: 16, width: "100%" }}
+          className="w-full mb-[16px] mt-[8px]"
           placeholder="Full name or user code"
           onChange={(val) => setCompleteVal(val)}
           onSearch={(val) => {
-            setUserInfo({ user_info: val, is_prime: 1 });
+            setUserInfo({ user_info: val, is_prime: 0 });
           }}
           onSelect={(_, val: PrimeUser.PrimeUserType) => setSelected(val)}
-          options={usersList}
+          options={
+            isLoading
+              ? [
+                  {
+                    value: "NULL",
+                    disabled: true,
+                    label: (
+                      <div className="flex items-center justify-center w-full h-[100px]">
+                        <Loading />
+                      </div>
+                    ),
+                  },
+                ]
+              : usersList
+          }
         />
       </div>
       {!!selected && (
-        <div className="grid gap-[16px] [&>div]:flex [&>div]:items-center [&>div]:gap-[8px]">
+        <div className="rounded-[12px] bg-white p-[16px] mb-[16px] h-max grid gap-[16px] [&>div]:flex [&>div]:items-center [&>div]:gap-[8px]">
+          <div>
+            <UserIcon size={"30"} />
+            <span className="text-[16px] font-[500]">{selected?.label}</span>
+          </div>
           <div>
             <CalendarIcon />
             <span className="text-oxford-blue-300">
@@ -116,29 +146,18 @@ export const AddPrimeUsers: FC<AddProps> = ({ add, setAdd }) => {
           </div>
 
           <div>
-            <UserIcon size={"30"} />
-            <span className="text-[16px] font-[500] text-oxford-blue-200">
-              {selected?.label}
-            </span>
-          </div>
-
-          <div>
             <CustomersIcon color={"#8E9BA7"} />
-            <span className="text-[16px] font-[500] text-oxford-blue-200">
+            <span className="text-[16px]">
               {selected?.recipients?.length + " " + "recipients"}
             </span>
           </div>
           <div>
             <PhoneIcon color={"#8E9BA7"} />
-            <span className="text-[16px] font-[500] text-oxford-blue-200">
-              {selected?.phone}
-            </span>
+            <span className="text-[16px]">{selected?.phone}</span>
           </div>
           <div>
             <EmailIcon color={"#8E9BA7"} />
-            <span className="text-[16px] font-[500] text-oxford-blue-200">
-              {selected?.email}
-            </span>
+            <span className="text-[16px]">{selected?.email}</span>
           </div>
         </div>
       )}
