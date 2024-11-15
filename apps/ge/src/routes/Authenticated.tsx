@@ -25,6 +25,7 @@ import {
   usePermission,
 } from "@repo/ui";
 import { Route, Routes } from "react-router-dom";
+import { georgiaRegions } from "onex-ge/src/constants/georgia-regions";
 
 const AuthRoutes = () => {
   const {
@@ -66,7 +67,7 @@ const AuthRoutes = () => {
     },
     {
       path: "/dashboard",
-      component: <Dashboard />,
+      component: <Dashboard dashboardRegions={georgiaRegions} />,
       permission: dashboard_view,
     },
     {
