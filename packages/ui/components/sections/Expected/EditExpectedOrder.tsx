@@ -49,7 +49,7 @@ export const EditExpectedOrder: FC<Props> = ({
         value: dis?.id,
         label: (
           <div className="flex items-center">
-            <img src={dis?.icon} alt={dis?.name} width={24} />
+            <img src={dis?.icon} alt="" width={24} />
             {dis?.name}
           </div>
         ),
@@ -130,7 +130,7 @@ export const EditExpectedOrder: FC<Props> = ({
                       value: dis?.id,
                       label: (
                         <div className="flex items-center">
-                          <img src={dis?.icon} alt={dis?.name} width={24} />
+                          <img src={dis?.icon} alt="" width={24} />
                           {dis?.name}
                         </div>
                       ),

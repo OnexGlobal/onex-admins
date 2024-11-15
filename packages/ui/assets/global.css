@@ -4,6 +4,7 @@
 
 * {
   box-sizing: border-box;
+  font-family: "Montserrat arm2";
 }
 ::selection {
   background: #5dba2f !important;

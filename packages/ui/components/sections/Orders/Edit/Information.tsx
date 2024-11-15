@@ -27,7 +27,7 @@ export default function Information({ order }: Props) {
           </Form.Item>
 
           <Form.Item name={"cost"} label={"Cost"}>
-            <Input suffix={"₾"} />
+            <Input suffix={import.meta.env.VITE_APP_CURRENCY || ""} />
           </Form.Item>
         </div>
         <div className="flex rounded-[12px] bg-white p-[16px] mb-[16px] h-max w-[48%] gap-[16px] justify-between">

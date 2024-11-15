@@ -67,7 +67,7 @@ const ModalRefillBalance: FC<Props> = ({
             type={"number"}
             value={refillAmount}
             onChange={(e) => setRefillAmount(e.target.value)}
-            suffix="₾"
+            suffix={import.meta.env.VITE_APP_CURRENCY}
           />
         </div>
       </div>
@@ -77,7 +77,7 @@ const ModalRefillBalance: FC<Props> = ({
             <div className="flex justify-between w-[410px] items-center">
               <h1 className="text-info">Apply bonus</h1>
               <h1 className="text-info text-oxford-blue-200">
-                {(user?.bonus || "") + " ₾"}
+                {(user?.bonus || "") + import.meta.env.VITE_APP_CURRENCY}
               </h1>
             </div>
           </Radio>

@@ -133,12 +133,12 @@ export default function ReceiveTableContent({
     price: (
       <>
         <h1 className="text-info pb-[10px] pr-[7px]">
-          {`${item?.cost || "0 "} ₾`}
+          {`${item?.cost || "0 "} ${import.meta.env.VITE_APP_CURRENCY}`}
         </h1>
         {item?.additional_cost ? (
           <Tooltip title={`Add. cost`}>
             <h1 className="text-info text-oxford-blue-200">
-              {item?.additional_cost + " ₾"}
+              {item?.additional_cost + import.meta.env.VITE_APP_CURRENCY}
             </h1>
           </Tooltip>
         ) : null}
@@ -243,7 +243,7 @@ export default function ReceiveTableContent({
             Total price
           </h1>
           <h1 className="text-info text-oxford-blue-300 pr-[8px]">
-            {`${totalPrice} ₾ `}
+            {`${totalPrice} ${import.meta.env.VITE_APP_CURRENCY}`}
           </h1>
         </div>
       )}

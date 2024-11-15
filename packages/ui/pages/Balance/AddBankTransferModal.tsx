@@ -44,6 +44,7 @@ export const AddBankTransferModal: FC<Props> = ({
       ...values,
     });
   };
+
   return (
     <Modal
       title={<TransferCircleIcon />}
@@ -95,7 +96,7 @@ export const AddBankTransferModal: FC<Props> = ({
           ]}
         >
           <Input
-            suffix="₾"
+            suffix={import.meta.env.VITE_APP_CURRENCY || ""}
             type={"number"}
             placeholder={"Enter amount"}
             onChange={(e) => setTransfer(e.target.value)}
@@ -112,7 +113,8 @@ export const AddBankTransferModal: FC<Props> = ({
             Cancel
           </Button>
           <Button htmlType="submit">
-            Transfer ${transfer ? transfer + " ₾" : ""}
+            Transfer $
+            {transfer ? transfer + import.meta.env.VITE_APP_CURRENCY || "" : ""}
           </Button>
         </div>
       </Form>

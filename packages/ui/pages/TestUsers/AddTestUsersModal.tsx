@@ -134,7 +134,7 @@ export const AddTestUsersModal: FC<Props> = ({
                     alt={`country${index}`}
                     width={24}
                     height={24}
-                    src={`https://devbackadmin.onex.ge/storage/images/warehouses/${el?.round_flag}`}
+                    src={`${import.meta.env.VITE_APP_BASE_URL_DEV}/storage/images/warehouses/${el?.round_flag}`}
                   />
                   <span className="ml-[8px] text-oxford-blue-300 font-[400] ">
                     {el?.total}

@@ -4,6 +4,7 @@ import { BrowserRouter } from "react-router-dom";
 import { AntdConfigProvider } from "@repo/configs";
 import "@repo/configs/axios.config";
 import "@repo/ui/assets/global.css";
+import "@repo/ui/assets/fonts/font.css";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { AuthProvider } from "@repo/ui";
 

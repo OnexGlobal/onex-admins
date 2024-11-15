@@ -38,10 +38,10 @@ export default function SignIn() {
     <>
       {contextHolder}
       <Row>
-        <Col lg={10}>
-          <div className="flex flex-col items-center justify-center h-[100vh] max-w-[80%] px-[24px]">
+        <Col lg={10} className="bg-white">
+          <div className="flex flex-col  justify-center h-[100vh] px-[80px]">
             <img
-              className="mb-[24px]"
+              className="mb-[160px]"
               src={logo}
               alt=""
               style={{ width: 150 }}
@@ -54,10 +54,10 @@ export default function SignIn() {
               }}
               layout="vertical"
             >
-              <h1 className="text-green-500 text-[20px]">
+              <h1 className="text-green-500 text-[20px] ">
                 Log in to your account
               </h1>
-              <h2 className="text-black text-[30px]">
+              <h2 className="text-black text-[30px] font-[500] my-[24px]">
                 Please enter your details.
               </h2>
               <Form.Item
@@ -96,7 +96,6 @@ export default function SignIn() {
                 Sign in
               </Button>
             </Form>
-            <p>Welcome to your dashboard</p>
           </div>
         </Col>
         <Col lg={14}>
