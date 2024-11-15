@@ -17,6 +17,7 @@ const OnexTable: React.FC<OnexTableProps> = ({
   return (
     <Table
       {...props}
+      scroll={{ x: 500 }}
       pagination={
         meta
           ? {

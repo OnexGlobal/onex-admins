@@ -49,7 +49,7 @@ export default function PrimeUsersSearch({
         <div className="flex gap-[16px]">
           <Form.Item name={"user_info"} style={{ width: 260 }}>
             <AutoComplete
-              placeholder="Full name or GA"
+              placeholder="Full name or user code"
               onSearch={(val) => {
                 setUserInfo({ user_info: val, is_prime: 1 });
               }}

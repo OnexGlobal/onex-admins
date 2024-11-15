@@ -56,7 +56,7 @@ export default function ReceivedUserInfo({
               className="user-action_link"
             >
               <Tag
-                className="bg-green-50 text-oxford-blue-400 bg-oxford-blue-30"
+                className="text-oxford-blue-400 bg-oxford-blue-30"
                 color={"#5DBA2F"}
               >
                 {
@@ -75,7 +75,7 @@ export default function ReceivedUserInfo({
               className="user-action_link"
             >
               <Tag
-                className="bg-green-50 text-oxford-blue-400 bg-oxford-blue-30"
+                className="text-oxford-blue-400 bg-oxford-blue-30"
                 color={"#5DBA2F"}
               >
                 {

@@ -37,10 +37,12 @@ export default function ReceiveTopActions({
         <Space.Compact>
           <Select
             defaultValue="user_info"
-            className="w-[150px]"
+            className="w-[250px]"
             onSelect={(value) => setSearchKey(value)}
           >
-            <Select.Option value="user_info">Full name or GA</Select.Option>
+            <Select.Option value="user_info">
+              Full name or user code
+            </Select.Option>
             <Select.Option value="phone">Phone</Select.Option>
             <Select.Option value="user_id">ID</Select.Option>
             <Select.Option value="address">Address</Select.Option>
