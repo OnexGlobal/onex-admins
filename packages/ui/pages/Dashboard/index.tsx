@@ -14,9 +14,14 @@ import RegistrationType from "./RegistrationType";
 import UsersByGender from "./UsersByGender";
 import { Loader } from "../../components/loader/Loader";
 import { weekDays } from "onex-ge/src/constants/constants";
+import { Regions } from "@repo/types/src/regions";
+
+interface DashboardPageProps {
+  dashboardRegions: Regions[];
+}
 
 const currentWeekDay = weekDays[new Date().getDay()];
-const DashboardPage = () => {
+const DashboardPage = ({ dashboardRegions }: DashboardPageProps) => {
   const [filterType, setFilterType] = useState(FILTERS.day);
   const [customRange, setCustomRange] = useState<string[]>([]);
   const filters = {
@@ -63,6 +68,7 @@ const DashboardPage = () => {
           <MapChart
             dashboardData={dashboardData?.data}
             filterType={filterType}
+            dashboardRegions={dashboardRegions}
           />{" "}
           <Row gutter={[40, 40]} style={{ width: "100%" }}>
             <Col lg={12} md={24} xs={24}>

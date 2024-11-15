@@ -4,15 +4,16 @@ import { useLayoutEffect, useState } from "react";
 import am4themes_animated from "@amcharts/amcharts4/themes/animated";
 import am4geodata_georgiaHigh from "@amcharts/amcharts4-geodata/georgiaHigh";
 import { DashboardData } from "../../../types/src/dashboard";
-import { georgiaRegions } from "onex-ge/src/constants/georgia-regions";
 import { Loader } from "../../components/loader/Loader";
+import { Regions } from "@repo/types/src/regions";
 
 interface Props {
   dashboardData: DashboardData;
   filterType: string;
+  dashboardRegions: Regions[];
 }
 
-const MapChart = ({ dashboardData, filterType }: Props) => {
+const MapChart = ({ dashboardData, filterType, dashboardRegions }: Props) => {
   const [sortedNewData, setSortedNewData] = useState<
     Array<Record<string, string | unknown>> | undefined
   >();
@@ -64,7 +65,7 @@ const MapChart = ({ dashboardData, filterType }: Props) => {
       });
 
       let newData = sortedArr.map((region, index) => {
-        let id = georgiaRegions.find((i) => i.name === region[0]);
+        let id = dashboardRegions?.find((i) => i.name === region[0]);
 
         return {
           id: id?.shortName || "",
@@ -127,7 +128,7 @@ const MapChart = ({ dashboardData, filterType }: Props) => {
                             marginRight: 10,
                           }}
                         />
-                        {`${item.name} - ${item.value}`}
+                        <h1 className="whitespace-nowrap">{`${item.name} - ${item.value}`}</h1>
                       </div>
                     </li>
                   ) : null
