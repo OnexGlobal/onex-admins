@@ -5,7 +5,7 @@ import { AntdConfigProvider } from "@repo/configs";
 import "@repo/configs/axios.config";
 import "@repo/ui/assets/global.css";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { AuthProvider } from "./utils/hooks/useAuth";
+import { AuthProvider } from "@repo/ui";
 
 const root = document.getElementById("root-ge") as HTMLDivElement;
 ReactDOM.createRoot(root).render(

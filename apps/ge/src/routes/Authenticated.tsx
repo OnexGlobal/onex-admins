@@ -22,9 +22,9 @@ import {
   Shops,
   Slides,
   TestUsers,
+  usePermission,
 } from "@repo/ui";
 import { Route, Routes } from "react-router-dom";
-import { usePermission } from "../../utils/hooks/usePermissions";
 
 const AuthRoutes = () => {
   const {

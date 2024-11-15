@@ -1,5 +1,5 @@
+import { SignIn } from "@repo/ui";
 import { Navigate, Route, Routes } from "react-router-dom";
-import SignIn from "./SignIn";
 
 const Unauthenticated = () => {
   return (

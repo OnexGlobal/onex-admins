@@ -1,5 +1,5 @@
+import { AuthContext } from "@repo/ui";
 import { useContext, useMemo } from "react";
-import { AuthContext } from "./useAuth";
 
 const perm = localStorage.getItem("permissions");
 

@@ -2,10 +2,10 @@ import { Button, Col, Form, Input, notification, Row } from "antd";
 import logo from "../../assets/images/onex_logo_open.svg";
 import background from "../../assets/images/login-background.png";
 import { useMutation } from "@tanstack/react-query";
-import { auth } from "../../rest-api/auth";
-import { AuthContext } from "../../utils/hooks/useAuth";
 import axios from "axios";
 import { useContext } from "react";
+import { AuthContext } from "../../hooks/sign-in/useAuth";
+import { auth } from "../../services/auth";
 
 export default function SignIn() {
   const [api, contextHolder] = notification.useNotification();

@@ -3,8 +3,9 @@ export { default as SecondaryButton } from "./components/buttons/Secondary";
 export { default as Sidebar } from "./components/sidebar/Sidebar";
 export { default as Loader } from "./components/sidebar/Sidebar";
 export { default as ProtectedRoute } from "./components/routes/ProtectedRoute";
-export { usePermission } from "../../apps/ge/src/utils/hooks/usePermissions";
-
+export { AuthProvider, AuthContext } from "./hooks/sign-in/useAuth";
+export { usePermission } from "./hooks/permissions/usePermissions";
+export { Loading } from "./components/loader/Loading";
 //PAGES
 export { default as Dashboard } from "./pages/Dashboard";
 export { default as Home } from "./pages/Home";
@@ -28,3 +29,4 @@ export { default as Blogs } from "./pages/Blog";
 export { default as ReceiveOrders } from "./pages/ReceiveOrders";
 export { default as Shops } from "./pages/Shops";
 export { default as AppVersions } from "./pages/AppVersions";
+export { default as SignIn } from "./pages/sign-in/intex";
