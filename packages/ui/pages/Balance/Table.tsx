@@ -127,7 +127,6 @@ export default function BalanceTable({
       rowScope: "row",
     },
   ];
-  console.log(balancesList);
   const dataSource = balancesList?.map((list: BalancesList, i?: number) => ({
     id: 1,
     key: i,
