@@ -60,7 +60,7 @@ export const PaymentTable = ({
     ),
     approved: pay?.transfer_amount,
     deposit: +pay?.request_amount - +pay?.refund_amount || "",
-    refunded: (pay?.refund_amount || "") + " ₾",
+    refunded: (pay?.refund_amount || "") + import.meta.env.VITE_APP_CURRENCY,
     action: (
       <Tooltip title={"Refund to customer card"} placement="bottomRight">
         <RefundedIcon cursor={"pointer"} onClick={() => setRefund(pay)} />

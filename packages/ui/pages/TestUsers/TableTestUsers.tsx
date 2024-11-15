@@ -125,10 +125,10 @@ export const TableTestUsers: FC<Props> = ({
           ? el?.orders_count_by_country?.map((item, index) => (
               <div className="flex items-center ml-[8px]" key={index}>
                 <img
-                  alt={`country${index}`}
+                  alt=""
                   width={24}
                   height={24}
-                  src={`https://devbackadmin.onex.ge/storage/images/warehouses/${item?.round_flag}`}
+                  src={`${import.meta.env.VITE_APP_BASE_URL_DEV}/storage/images/warehouses/${item?.round_flag}`}
                 />
                 <span className="font-[400] text-[14px] ml-[8px] text-oxford-blue-300">
                   {item?.total}
@@ -227,6 +227,7 @@ export const TableTestUsers: FC<Props> = ({
         dataSource={dataSource}
         bordered
         columns={columns}
+        bordered
         meta={meta}
         onChangePage={(page) => setFilters((p) => ({ ...p, page }))}
         onChangePerPage={(page) => setFilters((p) => ({ ...p, page }))}

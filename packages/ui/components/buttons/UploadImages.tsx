@@ -84,7 +84,7 @@ export const UploadImages: React.FC<UploadImageProps> = ({
         {imageUrl || initialImage ? (
           <img
             src={imageUrl}
-            alt="avatar"
+            alt=""
             style={{
               width: "100%",
             }}

@@ -73,8 +73,8 @@ export default function BonusTable({
         }`}
       >
         {list?.sum && list?.type === "in"
-          ? list?.sum + " ₾"
-          : -list?.sum + " ₾"}
+          ? list?.sum + import.meta.env.VITE_APP_CURRENCY
+          : -list?.sum + import.meta.env.VITE_APP_CURRENCY}
       </span>
     ),
 

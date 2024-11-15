@@ -127,7 +127,6 @@ export default function BalanceTable({
       rowScope: "row",
     },
   ];
-
   const dataSource = balancesList?.map((list: BalancesList, i?: number) => ({
     id: 1,
     key: i,
@@ -152,15 +151,15 @@ export default function BalanceTable({
           name={"sum"}
           rules={[{ required: true, message: "Field is required" }]}
         >
-          <Input suffix="₾" />
+          <Input suffix={import.meta.env.VITE_APP_CURRENCY} />
         </Form.Item>
       ) : (
         <span
           className={list?.type === "in" ? "text-green-500" : "text-red-500"}
         >
           {list?.sum && list?.type === "in"
-            ? list?.sum + " ₾"
-            : -list?.sum + " ₾"}
+            ? list?.sum + import.meta.env.VITE_APP_CURRENCY
+            : -list?.sum + import.meta.env.VITE_APP_CURRENCY}
         </span>
       ),
     date:
@@ -241,7 +240,7 @@ export default function BalanceTable({
         <span className="text-oxford-blue-300">Balance</span>{" "}
         <span className="text-oxford-blue-300 font-[500]">{`${(
           sumIn - sumOut
-        )?.toFixed(2)} ₾`}</span>{" "}
+        )?.toFixed(2)} ${import.meta.env.VITE_APP_CURRENCY}`}</span>{" "}
       </div>
       <div>
         <Button

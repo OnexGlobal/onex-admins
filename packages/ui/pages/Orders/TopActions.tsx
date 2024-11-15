@@ -99,7 +99,7 @@ export default function OrdersTopActions({ setFilters }: Props) {
         <div className="flex flex-wrap gap-x-[16px]">
           <Form.Item name="user_info" className="w-[250px]">
             <AutoComplete
-              placeholder="Full name or GA"
+              placeholder="Full name or user code"
               onSearch={(val) => {
                 setUserInfo({ user_info: val });
               }}

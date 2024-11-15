@@ -204,6 +204,7 @@ const AuthRoutes = () => {
     <Routes>
       {routes.map((route) => (
         <Route
+          key={route.path}
           path={route?.path}
           element={
             <ProtectedRoute permission={route?.permission}>

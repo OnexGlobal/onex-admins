@@ -72,7 +72,7 @@ const ServiceParts: FC<Props> = ({ expectedByID, refetch }) => {
         </h1>
 
         <h1 className="text-info">
-          {`${expectedByID?.order_smart_services?.smart_service?.cost || ""} ₾`}
+          {`${expectedByID?.order_smart_services?.smart_service?.cost || ""} ${import.meta.env.VITE_APP_CURRENCY || ""}`}
         </h1>
       </div>
 

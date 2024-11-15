@@ -55,7 +55,10 @@ export const RefundPaymentModal = ({ refund, setRefund }: Props) => {
             },
           ]}
         >
-          <Input placeholder={"Refound amount"} suffix="₾" />
+          <Input
+            placeholder={"Refound amount"}
+            suffix={import.meta.env.VITE_APP_CURRENCY}
+          />
         </Form.Item>
         <div className="flex gap-[16px]">
           <Button

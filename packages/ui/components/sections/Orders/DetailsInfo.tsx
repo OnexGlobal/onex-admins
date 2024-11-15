@@ -30,7 +30,7 @@ export default function OrderDetailsInfo({ order }: Props) {
               <h1 className="text-info font-[500] text-oxford-blue-400">
                 Cost
               </h1>
-              <h1 className="text-info">{`${order?.cost} ₾`}</h1>
+              <h1 className="text-info">{`${order?.cost} ${import.meta.env.VITE_APP_CURRENCY || ""}`}</h1>
             </div>
           </div>
 

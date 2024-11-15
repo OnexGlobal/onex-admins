@@ -138,7 +138,7 @@ export const AddPrimeUsers: FC<AddProps> = ({ add, setAdd }) => {
                   alt={`country${index}`}
                   width={24}
                   height={24}
-                  src={`https://devbackadmin.onex.ge/storage/images/warehouses/${count?.round_flag}`}
+                  src={`${import.meta.env.VITE_APP_BASE_URL_DEV}/storage/images/warehouses/${count?.round_flag}`}
                 />
                 <span className="text-oxford-blue-300 ">{count?.total}</span>
               </>

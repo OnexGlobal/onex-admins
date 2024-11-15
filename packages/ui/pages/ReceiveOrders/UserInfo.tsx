@@ -56,7 +56,7 @@ export default function ReceivedUserInfo({
               className="user-action_link"
             >
               <Tag
-                className="bg-green-50 text-oxford-blue-400 bg-oxford-blue-30"
+                className="text-oxford-blue-400 bg-oxford-blue-30"
                 color={"#5DBA2F"}
               >
                 {
@@ -75,7 +75,7 @@ export default function ReceivedUserInfo({
               className="user-action_link"
             >
               <Tag
-                className="bg-green-50 text-oxford-blue-400 bg-oxford-blue-30"
+                className="text-oxford-blue-400 bg-oxford-blue-30"
                 color={"#5DBA2F"}
               >
                 {
@@ -96,7 +96,7 @@ export default function ReceivedUserInfo({
             </h1>
             <h1 className="text-description pr-[26px] pb-[4px]">{`${
               user?.user?.bonus || "0"
-            }  ₾`}</h1>
+            } ${import.meta.env.VITE_APP_CURRENCY}`}</h1>
           </div>
           <div className="left-border-item">
             <h1 className="text-info font-[500] text-oxford-blue-400 pr-[6px] pb-[5px]">
@@ -104,7 +104,7 @@ export default function ReceivedUserInfo({
             </h1>
             <h1 className="text-description  pb-[4px]">{`${
               user?.user?.balance || "0"
-            }  ₾`}</h1>
+            } ${import.meta.env.VITE_APP_CURRENCY}`}</h1>
           </div>
 
           <Button type="primary" onClick={() => setFillBalanceStatus(true)}>

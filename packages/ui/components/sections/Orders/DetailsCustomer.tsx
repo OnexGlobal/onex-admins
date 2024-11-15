@@ -112,7 +112,7 @@ export default function OrderDetailsCustomer({ order, refetch }: Props) {
             Balance
           </h1>
           <h1 className="text-info">
-            {`${order?.recipient?.user?.balance} ₾`}
+            {`${order?.recipient?.user?.balance} ${import.meta.env.VITE_APP_CURRENCY || ""}`}
           </h1>
         </div>
         <div>
