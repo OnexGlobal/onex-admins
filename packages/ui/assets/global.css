@@ -41,3 +41,8 @@ body {
   border: 1px solid #f5f5f5;
   min-height: 130px;
 }
+.actions {
+  position: absolute;
+  top: -63px;
+  right: 20px;
+}

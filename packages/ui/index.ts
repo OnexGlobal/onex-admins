@@ -30,3 +30,4 @@ export { default as ReceiveOrders } from "./pages/ReceiveOrders";
 export { default as Shops } from "./pages/Shops";
 export { default as AppVersions } from "./pages/AppVersions";
 export { default as SignIn } from "./pages/sign-in/intex";
+export { default as CustomerSingle } from "./pages/CustomerSingle";

@@ -59,6 +59,7 @@ export interface Recipient {
   label: string;
   user: UserType;
   recipient: UserType;
+  inn_number?: string;
 }
 
 export interface Recipient1 {

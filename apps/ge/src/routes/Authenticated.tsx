@@ -6,6 +6,7 @@ import {
   Blogs,
   Bonus,
   Customers,
+  CustomerSingle,
   Dashboard,
   Expected,
   Home,
@@ -41,7 +42,7 @@ const AuthRoutes = () => {
     slider_view,
     blog_view,
     shop_view,
-    warehouse_view,
+    recipient_edit,
     api_version_view,
     balance_edit,
     bonus_create,
@@ -189,14 +190,14 @@ const AuthRoutes = () => {
       permission: shop_view,
     },
     {
-      path: "/warehouses",
-      component: <div>Warehouses</div>,
-      permission: warehouse_view,
-    },
-    {
       path: "/app-versions",
       component: <AppVersions />,
       permission: api_version_view,
+    },
+    {
+      path: "/customer/:id",
+      component: <CustomerSingle recipient_edit={recipient_edit} />,
+      permission: true,
     },
   ];
 
