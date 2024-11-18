@@ -94,9 +94,12 @@ export const TableTestUsers: FC<Props> = ({
         new Date(a.created).getTime() - new Date(b.created).getTime(),
     },
     {
-      title: " ",
+      title: "",
       dataIndex: "actions",
       key: "actions",
+      hidden:
+        !actionAvailable("test-user-relations-delete") &&
+        !actionAvailable("test-user-delete"),
     },
   ];
 
@@ -113,7 +116,7 @@ export const TableTestUsers: FC<Props> = ({
         <span className="text-[14px] text-oxford-blue-300 mx-[16px]">
           {el?.full_name + " " + el?.recipient?.user_code || ""}
         </span>
-        <img alt={"prime"} src={prime} />
+        {el?.is_prime ? <img alt={"prime"} src={prime} /> : null}
       </div>
     ),
     orders: (
@@ -125,7 +128,9 @@ export const TableTestUsers: FC<Props> = ({
                   alt=""
                   width={24}
                   height={24}
-                  src={`${import.meta.env.VITE_APP_BASE_URL_DEV}/storage/images/warehouses/${item?.round_flag}`}
+                  src={`${
+                    import.meta.env.VITE_APP_BASE_URL_DEV
+                  }/storage/images/warehouses/${item?.round_flag}`}
                 />
                 <span className="font-[400] text-[14px] ml-[8px] text-oxford-blue-300">
                   {item?.total}
@@ -222,8 +227,8 @@ export const TableTestUsers: FC<Props> = ({
       )}
       <Table
         dataSource={dataSource}
-        columns={columns}
         bordered
+        columns={columns}
         meta={meta}
         onChangePage={(page) => setFilters((p) => ({ ...p, page }))}
         onChangePerPage={(page) => setFilters((p) => ({ ...p, page }))}

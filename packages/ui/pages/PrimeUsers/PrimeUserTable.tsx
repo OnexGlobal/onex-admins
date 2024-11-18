@@ -100,6 +100,7 @@ export const PrimeUserTable: FC<Props> = ({
         bordered
         meta={meta}
         onChangePage={(page) => setFilter((p) => ({ ...p, page }))}
+        onChangePerPage={(per_page) => setFilter((p) => ({ ...p, per_page }))}
         dataSource={dataSource}
         columns={columns}
       />
