@@ -1,4 +1,5 @@
 import { AutoComplete, Button, Col, DatePicker, Form, Input, Row } from "antd";
+import * as React from "react";
 import { Dispatch, FC, SetStateAction, useState } from "react";
 import { testUsersAutocomplete } from "../../hooks/testusers/useTestUsersAutocomplete.hook.js";
 import { SearchIcon } from "../../assets/icons/SearchIcon.js";
@@ -7,10 +8,18 @@ import { Loading } from "../../components/loader/Loading";
 const { RangePicker } = DatePicker;
 
 interface Props {
-  setFilters: Dispatch<SetStateAction<Record<string, string | number>>>;
+  setFilters: Dispatch<
+    SetStateAction<Record<string, string | number | undefined | null>>
+  >;
   userInfo: Record<string, string | number> | null;
   setUserInfo: Dispatch<SetStateAction<Record<string, string | number> | null>>;
 }
+
+type AutoCompleteOption = {
+  value: string;
+  label?: React.ReactNode;
+  disabled?: boolean;
+};
 
 const TestUsersTopActions: FC<Props> = ({
   setFilters,
@@ -63,7 +72,7 @@ const TestUsersTopActions: FC<Props> = ({
                 }}
                 options={
                   isLoading
-                    ? [
+                    ? ([
                         {
                           value: "NULL",
                           disabled: true,
@@ -73,8 +82,8 @@ const TestUsersTopActions: FC<Props> = ({
                             </div>
                           ),
                         },
-                      ]
-                    : usersList
+                      ] as AutoCompleteOption[])
+                    : (usersList as AutoCompleteOption[])
                 }
               />
             </Form.Item>
