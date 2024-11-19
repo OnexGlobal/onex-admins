@@ -132,7 +132,7 @@ export default function BalanceTable({
     key: i,
     orderId: <span className="text-green-500">{list?.id}</span>,
     changedBy: (
-      <span className="text-green-500">
+      <span className="text-black">
         {list?.user?.full_name + " " + list?.user?.recipient?.user_code || ""}
       </span>
     ),
@@ -193,7 +193,7 @@ export default function BalanceTable({
           <Input />
         </Form.Item>
       ) : (
-        <span className="text-green-500">{list?.comment || ""}</span>
+        <span className="text-black">{list?.comment || ""}</span>
       ),
     edit:
       editable === list?.id ? (

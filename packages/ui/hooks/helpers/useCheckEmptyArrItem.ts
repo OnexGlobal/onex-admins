@@ -1,4 +1,4 @@
-export const useCheckEmptyArrItem = (arr: any[]) => {
+export const useCheckEmptyArrItem = (arr: string[]) => {
   return (
     arr?.map((item) =>
       Object.values(item).every((value) => {

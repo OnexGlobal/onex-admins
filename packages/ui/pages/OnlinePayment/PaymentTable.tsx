@@ -24,8 +24,8 @@ export const PaymentTable = ({
     meta,
     isLoading,
   } = useOnlinePaymentList(filterData);
-  //TODO fix any type
-  const dataSource = paymentList?.map((pay: any, i: number) => ({
+
+  const dataSource = paymentList?.map((pay, i) => ({
     key: i,
     order_id: (
       <span className="text-green-500 text-[14px]">{pay?.order_id}</span>

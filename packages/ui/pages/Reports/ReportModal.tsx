@@ -14,7 +14,6 @@ const BonusIn = ({ data = [], type }: ModalComponentProps["bonus_in"]) => {
   });
   return (
     <>
-      {" "}
       <div className="flex justify-between">
         <span className="text-[18px] font-[500] text-oxford-blue-300 py-[16px]">
           {type === "bonus_in"

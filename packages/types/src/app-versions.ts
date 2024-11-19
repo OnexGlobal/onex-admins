@@ -21,6 +21,6 @@ export interface ApiVersionsMl {
   language_id: number;
   title: string;
   description: string;
-  created_at: any;
-  updated_at: any;
+  created_at: string;
+  updated_at: string;
 }

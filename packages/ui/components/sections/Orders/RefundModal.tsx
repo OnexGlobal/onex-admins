@@ -26,7 +26,7 @@ export const RefundModal = ({ status, setStatus, order }: Props) => {
   );
 
   const handleRefund = () => {
-    mutate({ id: order?.id } as any);
+    mutate({ id: order?.id });
   };
 
   return (
