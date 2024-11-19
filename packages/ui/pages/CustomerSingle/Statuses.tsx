@@ -28,7 +28,7 @@ export default function CustomerSingleStatuses() {
 
   return (
     <div className="flex w-full flex-nowrap">
-      <div className="_paper flex justify-between items-center w-full flex-1">
+      <div className="rounded-[12px] bg-white p-[16px] flex justify-between items-center w-full flex-1">
         <div
           onClick={() => handleToExpected()}
           className="order-details-statuses__status flex items-center"
@@ -105,7 +105,7 @@ export default function CustomerSingleStatuses() {
         </div>
       </div>
 
-      <div className="flex flex-col max-w-[200px] flex-1 ml-[16px] _paper">
+      <div className="flex flex-col max-w-[200px] flex-1 ml-[16px] rounded-[12px] bg-white p-[16px]">
         <span className="text-oxford-blue-400 text-[14px] font-[500] mx-[8px]">
           Main Pickup Point
         </span>

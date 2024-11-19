@@ -60,6 +60,10 @@ const AuthRoutes = () => {
     shop_delete,
   } = usePermission();
 
+  const permissions = localStorage.getItem("permissions")
+    ? JSON.parse(localStorage.getItem("permissions") as string)
+    : null;
+
   const routes = [
     {
       path: "/",
@@ -196,7 +200,12 @@ const AuthRoutes = () => {
     },
     {
       path: "/customer/:id",
-      component: <CustomerSingle recipient_edit={recipient_edit} />,
+      component: (
+        <CustomerSingle
+          clientLogin={!!permissions["client-login"]}
+          recipient_edit={recipient_edit}
+        />
+      ),
       permission: true,
     },
   ];

@@ -1,5 +1,13 @@
 import { Refetch } from "@repo/types";
-import { AutoComplete, Button, DatePicker, Form, Input, Select } from "antd";
+import {
+  AutoComplete,
+  Button,
+  DatePicker,
+  Drawer,
+  Form,
+  Input,
+  Select,
+} from "antd";
 import { Dispatch, SetStateAction, useState } from "react";
 import useGetRecipients from "../../hooks/recipients/useGetRecipients.hook";
 import { useGetBonusTypeLis } from "../../hooks/bonus/useGetBonusTypeList.hook";
@@ -9,7 +17,6 @@ import {
   notificationSuccess,
 } from "../../helpers/notification";
 import dayjs from "dayjs";
-import { Drawer } from "antd";
 import BackArrowIcon from "../../assets/icons/BackArrowIcon";
 
 interface Props {
@@ -69,6 +76,8 @@ export default function CreateBonusModal({
         header: {
           display: "none",
         },
+        body: { background: "#f9fafb" },
+        footer: { borderTop: "none" },
       }}
     >
       <Form
@@ -83,8 +92,7 @@ export default function CreateBonusModal({
           </div>
           <div className="flex items-center gap-[16px]">
             <Button
-              type="primary"
-              danger
+              className="bg-red-50 text-red-500 border-red-50 hover:!bg-red-50 hover:!text-red-500 hover:!border-red-50"
               htmlType="reset"
               onClick={() => setStatus(false)}
             >
@@ -96,10 +104,15 @@ export default function CreateBonusModal({
             </Button>
           </div>
         </div>
-        <div className={"_paper grid grid-cols-2 gap-[16px]"}>
+        <div
+          className={
+            "rounded-[12px] bg-white p-[16px] grid grid-cols-2 gap-x-[16px]"
+          }
+        >
           <Form.Item
             name="user_id"
             rules={[{ required: true }]}
+            className="font-[500]"
             label={"Full name or User code"}
           >
             <AutoComplete
@@ -112,6 +125,7 @@ export default function CreateBonusModal({
             />
           </Form.Item>
           <Form.Item
+            className="font-[500]"
             name="bonus_type_id"
             rules={[{ required: true }]}
             label={"Bonus type"}
@@ -119,6 +133,7 @@ export default function CreateBonusModal({
             <Select options={bonusTypeList} placeholder={"Bonus type"} />
           </Form.Item>
           <Form.Item
+            className="font-[500]"
             name="sum"
             rules={[{ required: true }]}
             label={"Bonus amount"}
@@ -126,6 +141,7 @@ export default function CreateBonusModal({
             <Input type={"number"} placeholder={"Bonus amount"} />
           </Form.Item>
           <Form.Item
+            className="font-[500]"
             name="date"
             rules={[{ required: true }]}
             label={"Expire date"}

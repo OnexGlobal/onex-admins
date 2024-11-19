@@ -116,15 +116,15 @@ export default function ExelFileActions({
       <div className="flex items-center justify-end w-full gap-[16px] my-[16px]">
         {!!showAlert && (
           <span className="text-oxford-blue-300 flex items-center">
-            <InfoIcon margin={"0 5px -5px 0"} size={"24"} />
+            <InfoIcon className="mr-[5px]" size={"24"} />
             Your uploads will be added around {showAlert || "0"} seconds
           </span>
         )}
         <Button
-          type="default"
-          className="text-oxford-blue-300"
+          type="link"
+          className="text-blue-500 hover:!text-blue-500"
           onClick={downloadExampleExel}
-          icon={<DownloadIcon color={"#4F96D9"} />}
+          icon={<DownloadIcon />}
         >
           Download example
         </Button>
@@ -135,11 +135,7 @@ export default function ExelFileActions({
           onChange={(file) => handleUploadExcel(file)}
         />
         {bonus_create ? (
-          <Button
-            type="primary"
-            onClick={() => setStatus(true)}
-            icon={<DownloadIcon color={"#4F96D9"} />}
-          >
+          <Button type="primary" onClick={() => setStatus(true)}>
             Create bonus
           </Button>
         ) : null}

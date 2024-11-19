@@ -35,6 +35,7 @@ export default function UserInfo({ clientLogin }: { clientLogin?: boolean }) {
   const handleRedirect = (id: string | number) => {
     mutate({ user_id: id });
   };
+
   return (
     <div
       className={"_paper flex items-center justify-between w-full my-[16px]"}
@@ -56,7 +57,7 @@ export default function UserInfo({ clientLogin }: { clientLogin?: boolean }) {
         </div>
         <div>
           <span className="text-oxford-blue-100 text-[14px]">ID {id}</span>
-          <div className="flex ">
+          <div className="flex">
             <span className="text-[20px] text-black font-[500] pr-[5px] pb-[10px]">
               {accountDetails
                 ? accountDetails?.is_person !== 1
@@ -75,9 +76,8 @@ export default function UserInfo({ clientLogin }: { clientLogin?: boolean }) {
             {clientLogin ? (
               <OutArrowIcon
                 onClick={() => handleRedirect(accountDetails?.id)}
-                margin={"0 0 0 8px"}
+                margin={"4px 0 0 8px"}
                 cursor={"pointer"}
-                className={"_hover"}
               />
             ) : (
               ""
