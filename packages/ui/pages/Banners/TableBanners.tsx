@@ -11,7 +11,7 @@ interface Props {
   setBanner: Dispatch<SetStateAction<boolean | BannersType>>;
   setFilters: Dispatch<SetStateAction<object>>;
   meta: Meta;
-  languages: LanguagesType[];
+  languages?: LanguagesType[];
   header_message_edit?: boolean;
 }
 
@@ -71,7 +71,7 @@ const TableBanners: FC<Props> = ({
     ),
     language: (
       <div className="flex gap-[10px]">
-        {languages?.length > 0
+        {languages?.length
           ? languages?.map((ml, index) => (
               <img
                 alt={ml.code}

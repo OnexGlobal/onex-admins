@@ -59,7 +59,7 @@ interface Props {
   setDataSource: Dispatch<SetStateAction<SlidesType[]>>;
   setSlider: Dispatch<SetStateAction<SlidesType | boolean>>;
   setFilters: Dispatch<SetStateAction<object>>;
-  languages: LanguagesType[];
+  languages?: LanguagesType[];
   slider_delete?: boolean;
   meta: Meta;
   slider_edit?: boolean;
@@ -149,7 +149,7 @@ const TableSlides = ({
     ),
     language: (
       <div className="flex gap-[10px]">
-        {languages?.length > 0
+        {languages?.length
           ? languages?.map((ml, index) => (
               <img
                 alt={ml.code}

@@ -16,19 +16,10 @@ export default function ReceiveTopActions({
 }: Props) {
   const [searchKey, setSearchKey] = useState("user_info");
   const [userInfo, setUserInfo] = useState<null | Record<string, string>>(null);
-  const [selected, setSelected] = useState<Recipient | null>(null);
   const { recipients: usersList = [] } = useGetRecipients(userInfo) as {
     recipients: Recipient[];
   };
 
-  // const handleSearch = () => {
-  //   setUser(selected);
-  //   setFilters({
-  //     recipient_id: selected?.id,
-  //     ready_for_pickup: 1,
-  //     order_status: "in_georgia",
-  //   });
-  // };
   return (
     <div className="flex gap-[16px] items-end">
       <div>
@@ -56,28 +47,20 @@ export default function ReceiveTopActions({
             placeholder="Search"
             onSearch={(val) => setUserInfo(val ? { [searchKey]: val } : null)}
             onSelect={(_, val: Recipient) => {
-              setSelected(val);
-              setUser(val);
-              setFilters({
-                recipient_id: val?.id,
-                ready_for_pickup: 1,
-                order_status: "in_georgia",
-                per_page: 1000,
-              });
+              if (!loading) {
+                setUser(val);
+                setFilters({
+                  recipient_id: val?.id,
+                  ready_for_pickup: 1,
+                  order_status: "in_georgia",
+                  per_page: 1000,
+                });
+              }
             }}
             options={usersList}
           />
         </Space.Compact>
       </div>
-      {/*<Button*/}
-      {/*  loading={loading}*/}
-      {/*  disabled={loading || !searchKey}*/}
-      {/*  type="primary"*/}
-      {/*  icon={<SearchIcon />}*/}
-      {/*  onClick={handleSearch}*/}
-      {/*>*/}
-      {/*  Search*/}
-      {/*</Button>*/}
     </div>
   );
 }

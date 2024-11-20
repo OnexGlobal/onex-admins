@@ -6,7 +6,7 @@ import { AroundCheckedIcon } from "../../assets/icons/AroundCheckedIcon";
 interface TabProps {
   data?: (Record<string, string> | LanguagesType)[];
   value?: string | number;
-  isTrueAllItems?: (string | number)[];
+  isTrueAllItems?: (string | number | boolean)[];
   onChange?: (val: string) => void;
 }
 
