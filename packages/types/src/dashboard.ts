@@ -25,8 +25,26 @@ export interface DashboardData {
   registration_by_user_type_info: RegistrationByUserTypeInfo;
   registration_by_nationality_info: RegistrationByNationalityInfo;
   registration_by_gender_info: RegistrationByGenderInfo;
-  registration_by_time_info: any[];
-  registration_by_region_info: any[];
+  registration_by_time_info: {
+    [key: string]: {
+      verified_total: number;
+      verified_sum_expression: number;
+      verified_percentage_expression: number;
+      verified_percentage_in_period: number;
+      unverified_total: number;
+      unverified_sum_expression: number;
+      unverified_percentage_expression: number;
+      unverified_percentage_in_period: number;
+    };
+  };
+  registration_by_region_info: {
+    [key: string]: {
+      total: number;
+      sum_expression: number;
+      percentage_expression: number;
+      percentage_in_completed: number;
+    };
+  };
   order_info: {
     round_flag: string;
     total: number;

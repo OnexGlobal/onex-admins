@@ -5,7 +5,7 @@ import ReceivedIcon from "@repo/ui/assets/icons/ReceivedIcon";
 import ScannedIcon from "@repo/ui/assets/icons/ScannedIcon";
 import WerHouseIcon from "@repo/ui/assets/icons/werhouse";
 
-export default function OrderStatusIcon({ status }: { status: any }) {
+export default function OrderStatusIcon({ status }: { status: string }) {
   if (status === "scan") {
     return <ScannedIcon />;
   }

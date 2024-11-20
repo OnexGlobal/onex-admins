@@ -1,5 +1,5 @@
 import { Dispatch, FC, SetStateAction, useEffect } from "react";
-import { Button, Form, Input, Select, Tabs } from "antd";
+import { Button, Form, FormInstance, Input, Select, Tabs } from "antd";
 import apple from "../../assets/images/apple.svg";
 import android from "../../assets/images/android.svg";
 import { useFetchLanguages } from "../../hooks/banners/useFetchLanguages.hook";
@@ -9,13 +9,20 @@ import { appVersionsApi } from "../../services/app-versions";
 import DangerousIcon from "../../assets/icons/DangerousIcon";
 import check from "../../assets/images/check-circle.svg";
 
+interface FormValues {
+  details: { title: string; description: string }[];
+  update_type: string | string[];
+  version: number | string;
+  os: string;
+}
+
 interface Props {
   data?: ApiVersions;
   setOpenDrawer: Dispatch<SetStateAction<undefined | ApiVersions>>;
   setOpenDeleteModal: Dispatch<SetStateAction<number | undefined>>;
   refetch: Refetch;
   closeModal: () => void;
-  form: any;
+  form: FormInstance<FormValues>;
 }
 
 const CreateEdit: FC<Props> = ({
@@ -29,10 +36,7 @@ const CreateEdit: FC<Props> = ({
   const isEdit = Boolean(data?.id);
 
   const { languages } = useFetchLanguages();
-  const handleSubmit = (values: {
-    details: { title: string; description: string }[];
-    update_type: string;
-  }) => {
+  const handleSubmit = (values: FormValues) => {
     const afterSave = () => {
       closeModal();
       setOpenDrawer(undefined);
@@ -62,7 +66,7 @@ const CreateEdit: FC<Props> = ({
       appVersionsApi.createVersion(form).then(afterSave);
     }
   };
-  const update_type: any[] = [];
+  const update_type: string[] = [];
   if (data?.id) {
     if (data?.force_update) update_type.push("force_update");
     if (data?.dev_mode) update_type.push("dev_mode");
@@ -186,9 +190,9 @@ const CreateEdit: FC<Props> = ({
         </div>
         <Tabs
           style={{ marginBottom: 25 }}
-          items={languages?.map((language: any, index: number) => {
+          items={languages?.map((language, index) => {
             return {
-              key: language?.id,
+              key: String(language?.id),
               label: (
                 <div className="flex items-center">
                   <div

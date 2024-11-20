@@ -1,3 +1,4 @@
+import { notificationError } from "@repo/ui/helpers/notification";
 import axios from "axios";
 
 const token = localStorage.getItem("token");
@@ -12,8 +13,14 @@ axios.defaults.headers.common = {
 axios.interceptors.response.use(
   (response) => response,
   (error) => {
-    const { status } = error.response;
-    if (status === 401) {
+    const { status, data } = error.response;
+
+    if (status === 422) {
+      Object.keys(data?.data).forEach((key) =>
+        notificationError(data?.message, data?.data?.[key] || "")
+      );
+    }
+    if (status === 401 || status === 500) {
       localStorage.clear();
       window.location.reload();
     }
