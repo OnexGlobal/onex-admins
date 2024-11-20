@@ -66,7 +66,7 @@ export const EditRecipient = ({
   if (!recipient) return <></>;
   return (
     <Drawer
-      styles={{ header: { display: "none" } }}
+      styles={{ header: { display: "none" }, body: { background: "#f9fafb" } }}
       placement="right"
       onClose={handelClosed}
       open={!!recipient}
@@ -74,10 +74,13 @@ export const EditRecipient = ({
     >
       <Form onFinish={onFinish} form={form} layout={"vertical"}>
         <div className={"flex justify-between items-center mb-[24px]"}>
-          <p className="text-[22px]">Edit recipient</p>
+          <p className="text-description">Edit recipient</p>
 
           <div className="flex gap-[16px]">
-            <Button danger onClick={() => setRecipient(null)}>
+            <Button
+              className="bg-red-50 text-red-500 border-red-50 hover:!bg-red-50 hover:!text-red-500 hover:!border-red-50"
+              onClick={() => setRecipient(null)}
+            >
               Cancel
             </Button>
             <Button htmlType="submit" type="primary">
@@ -85,7 +88,7 @@ export const EditRecipient = ({
             </Button>
           </div>
         </div>
-        <div className={"_paper mb-[24px]"}>
+        <div className="rounded-[12px] bg-white pt-[16px] pl-[16px] pr-[16px] mb-[24px]">
           <span className="font-[500] text-[14px] mb-[8px] text-oxford-blue-300">
             Personal data (Latin)
           </span>
@@ -103,7 +106,11 @@ export const EditRecipient = ({
             </Col>
           </Row>
         </div>
-        <div className={"_paper mb-[24px]"}>
+        <div
+          className={
+            "rounded-[12px] bg-white pt-[16px] pl-[16px] pr-[16px]  mb-[24px]"
+          }
+        >
           <span className="font-[500] text-[14px] mb-[8px] text-oxford-blue-300">
             Personal data (Russian)
           </span>
@@ -165,7 +172,7 @@ export const EditRecipient = ({
             </Col>
           </Row>
         </div>
-        <div className={"_paper mb-[24px]"}>
+        <div className="rounded-[12px] bg-white pt-[16px] pl-[16px] pr-[16px]  mb-[24px]">
           <span className="font-[500] text-oxford-blue-300">
             Shipping address
           </span>

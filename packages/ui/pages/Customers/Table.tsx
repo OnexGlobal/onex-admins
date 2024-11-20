@@ -64,7 +64,7 @@ export default function CustomersTable({
     key: index,
     name: (
       <div className="flex items-center gap-[8px]">
-        <div>
+        <div className="cursor-pointer">
           {recipient.is_person === 1 && recipient.is_parent === 0 ? (
             <RecipientIcon />
           ) : recipient.is_person === 1 &&
@@ -78,7 +78,7 @@ export default function CustomersTable({
           )}
         </div>
         <div className="flex flex-col">
-          <div className="flex">
+          <div className="flex cursor-pointer">
             <span className="text-black text-[14px] font-[500] ">
               {" "}
               {recipient?.company_name && recipient?.company_name !== "null"

@@ -71,24 +71,30 @@ const ModalRefillBalance: FC<Props> = ({
           />
         </div>
       </div>
-      <Radio.Group className="mt-[16px]" value={2}>
+      <Radio.Group
+        value={2}
+        className="flex w-full justify-between mt-[32px] items-center"
+      >
         <Space direction={"vertical"}>
-          <Radio value={2} className={"mt-16"}>
-            <div className="flex justify-between w-[410px] items-center">
+          <Radio value={2}>
+            <div className="flex justify-between items-center">
               <h1 className="text-info">Apply bonus</h1>
-              <h1 className="text-info text-oxford-blue-200">
-                {(user?.bonus || "") + import.meta.env.VITE_APP_CURRENCY}
-              </h1>
             </div>
           </Radio>
         </Space>
+        <h1 className="text-info text-oxford-blue-200">
+          {(user?.bonus || "") + import.meta.env.VITE_APP_CURRENCY}
+        </h1>
       </Radio.Group>
-      <div className="flex justify-between mt-[16px]">
-        <Button className="w-[48%]" onClick={() => setFillBalanceStatus(false)}>
+      <div className="flex justify-between mt-[16px] gap-x-[16px]">
+        <Button
+          className="w-full bg-red-50 text-red-500 border-red-50 hover:!bg-red-50 hover:!text-red-500 hover:!border-red-50"
+          onClick={() => setFillBalanceStatus(false)}
+        >
           Cancel
         </Button>
         <Button
-          className={`w-[48%] ${
+          className={`w-full ${
             refillAmount ? "bg-oxford-blue-300" : "bg-oxford-blue-100"
           }`}
           disabled={!refillAmount}

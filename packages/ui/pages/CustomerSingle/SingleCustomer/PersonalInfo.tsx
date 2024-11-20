@@ -12,7 +12,7 @@ interface Props {
 
 export default function PersonalInfoTab({ accountDetails }: Props) {
   return (
-    <div className={"info_tab"}>
+    <div className="mt-[36px]">
       {accountDetails ? (
         <Row gutter={50}>
           <Col lg={6}>
@@ -41,8 +41,12 @@ export default function PersonalInfoTab({ accountDetails }: Props) {
             <div className="mb-[24px]">
               <p className="text-oxford-blue-400 text-[14px] font-[500] mb-[4px]">
                 {accountDetails?.recipient?.georgian_first_name
-                  ? `Full name in ${import.meta.env.VITE_APP_CAUNTRY_LANGUAGE || ""}`
-                  : `Company name (${import.meta.env.VITE_APP_CAUNTRY_LANGUAGE || ""})`}
+                  ? `Full name in ${
+                      import.meta.env.VITE_APP_CAUNTRY_LANGUAGE || ""
+                    }`
+                  : `Company name (${
+                      import.meta.env.VITE_APP_CAUNTRY_LANGUAGE || ""
+                    })`}
               </p>
               <p className="text-black text-[14px] font-[400] pb-[4px]">
                 {accountDetails?.recipient?.georgian_first_name

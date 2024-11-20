@@ -4,9 +4,11 @@ export default function RightArrowIcon({
   size = "14",
   margin,
   color = "#3B5166",
+  ...props
 }: SVGProps) {
   return (
     <svg
+      {...props}
       width={size}
       height={size}
       style={{ margin }}

@@ -1,6 +1,7 @@
-export default function WarehouseIcon() {
+export default function WarehouseIcon({ ...props }) {
   return (
     <svg
+      {...props}
       width="20"
       height="20"
       viewBox="0 0 20 20"

@@ -27,12 +27,13 @@ export default function CustomerSingleTabs({ recipient_edit = false }) {
           setEditPersonalInfoStatus={setEditPersonalInfoStatus}
         />
       ) : (
-        <div className="relative">
-          <div className="actions">
+        <>
+          <div>
             {recipient_edit ? (
               <Button
                 type="default"
                 icon={<EditIcon />}
+                className="absolute top-[-100px] right-[20px]"
                 onClick={() => setEditPersonalInfoStatus(true)}
               >
                 Edit
@@ -40,7 +41,7 @@ export default function CustomerSingleTabs({ recipient_edit = false }) {
             ) : null}
           </div>
           <PersonalInfoTab accountDetails={accountDetails} />
-        </div>
+        </>
       ),
     },
     {
@@ -48,7 +49,12 @@ export default function CustomerSingleTabs({ recipient_edit = false }) {
       label: (
         <div className="flex gap-[5px]">
           <span>Recipients</span>
-          <Tag color="green">{recipients?.length || 0}</Tag>
+          <Tag
+            className="rounded-[50%] py-[2px] font-[500] text-[16px] px-[8px] mr-0"
+            color="green"
+          >
+            {recipients?.length || 0}
+          </Tag>
         </div>
       ),
       children: <RecipientsTab recipient_edit={recipient_edit} />,

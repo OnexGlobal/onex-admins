@@ -1,4 +1,4 @@
-import { Button, Col, DatePicker, Form, Input, Row, Select } from "antd";
+import { Button, Col, DatePicker, Form, Input, Row, Select, Space } from "antd";
 import { useParams } from "react-router-dom";
 import { useEffect } from "react";
 import useGetAccountDetails from "../../../hooks/customers/useGetAccountDetails.hook";
@@ -75,12 +75,14 @@ export default function EditPersonalInfo({
         onFinishFailed={(e) => console.log(e)}
         layout="vertical"
         form={form}
+        className="mt-[36px]"
       >
-        <div className="actions">
-          <div className="flex mt-[16px]">
+        <div className="absolute top-[-100px] right-[20px]">
+          <div className="flex gap-x-[16px]">
             <Button
               onClick={() => setEditPersonalInfoStatus(false)}
               type="default"
+              className="bg-red-50 text-red-500 border-red-50 hover:!bg-red-50 hover:!text-red-500 hover:!border-red-50"
             >
               Cancel
             </Button>
@@ -141,27 +143,23 @@ export default function EditPersonalInfo({
             </Form.Item>
           </Col>
           <Col lg={8}>
-            <Input.Group compact>
-              <div className="flex items-start">
-                <Form.Item name="document_type" label={"Passport details"}>
-                  <Select
-                    defaultValue={
-                      accountDetails?.recipient?.document_type || ""
-                    }
-                    style={{ width: 220 }}
-                  >
-                    <Select.Option value="passport">Passport</Select.Option>
-                    <Select.Option value="id">ID</Select.Option>
-                    <Select.Option value="foreign_citizen">
-                      Foreigh Citizen
-                    </Select.Option>
-                  </Select>
-                </Form.Item>
-                <Form.Item name="document_number">
-                  <Input />
-                </Form.Item>
-              </div>
-            </Input.Group>
+            <Space.Compact className="flex items-end">
+              <Form.Item name="document_type" label={"Passport details"}>
+                <Select
+                  defaultValue={accountDetails?.recipient?.document_type || ""}
+                  style={{ width: 220 }}
+                >
+                  <Select.Option value="passport">Passport</Select.Option>
+                  <Select.Option value="id">ID</Select.Option>
+                  <Select.Option value="foreign_citizen">
+                    Foreigh Citizen
+                  </Select.Option>
+                </Select>
+              </Form.Item>
+              <Form.Item name="document_number">
+                <Input />
+              </Form.Item>
+            </Space.Compact>
             <Form.Item name="gender" label={"Gender"}>
               <Select defaultValue={accountDetails?.recipient?.gender || ""}>
                 <Select.Option value="male">Male</Select.Option>

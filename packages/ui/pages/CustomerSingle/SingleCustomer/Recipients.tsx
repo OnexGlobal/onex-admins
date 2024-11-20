@@ -83,12 +83,7 @@ export default function RecipientsTab({ recipient_edit }: Props) {
   return (
     <div className={"table_wrapper"}>
       {recipients ? (
-        <Table
-          columns={columns}
-          dataSource={dataSource}
-          pagination={false}
-          scroll={{ x: 1200, y: 350 }}
-        />
+        <Table columns={columns} dataSource={dataSource} pagination={false} />
       ) : (
         <Loader />
       )}

@@ -4,12 +4,8 @@ import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { customersApi } from "../../../services/customers";
 import FilledInfoIcon from "../../../assets/icons/FilledInfoIcon";
-import CloseIcon from "../../../assets/icons/CloseIcon";
 
-export default function ChangePassword({
-  status,
-  setStatus,
-}: CustomersBlockType) {
+export default function ChangePassword({ setStatus }: CustomersBlockType) {
   const [loading, setLoading] = useState(false);
   const { id } = useParams();
 
@@ -28,39 +24,39 @@ export default function ChangePassword({
   };
 
   return (
-    status && (
-      <>
-        <div>
-          <div className="header">
-            <div className="flex items-center justify-between">
-              <FilledInfoIcon />
-              <CloseIcon />
-            </div>
-          </div>
-          <div className="body">
-            <h4 className="text-[18px] font-[500] text-black pb-[8px]">
-              Change password
-            </h4>
-            <h4 className="text-oxford-blue-300 text-[14px] pb-[8px]">
-              Change password to 123456789
-            </h4>
-          </div>
-          <div className="footer">
-            <div className="flex justify-between items-center">
-              <Button onClick={() => setStatus(false)} type="default">
-                Cancel
-              </Button>
-              <Button
-                onClick={() => handleConfirm()}
-                loading={loading}
-                type="primary"
-              >
-                Confirm
-              </Button>
-            </div>
-          </div>
+    <div>
+      <div className="header mb-[20px]">
+        <div className="flex items-center justify-between">
+          <FilledInfoIcon />
         </div>
-      </>
-    )
+      </div>
+      <div className="body">
+        <h4 className="text-[18px] font-[500] text-black pb-[8px]">
+          Change password
+        </h4>
+        <h4 className="text-oxford-blue-300 text-[14px] pb-[8px]">
+          Change password to 123456789
+        </h4>
+      </div>
+      <div className="footer mt-[24px]">
+        <div className="flex justify-between items-center gap-[16px]">
+          <Button
+            className="w-full bg-red-50 text-red-500 border-red-50 hover:!bg-red-50 hover:!text-red-500 hover:!border-red-50"
+            onClick={() => setStatus(false)}
+            type="default"
+          >
+            Cancel
+          </Button>
+          <Button
+            className="w-full"
+            onClick={() => handleConfirm()}
+            loading={loading}
+            type="primary"
+          >
+            Confirm
+          </Button>
+        </div>
+      </div>
+    </div>
   );
 }

@@ -109,19 +109,19 @@ export default function UserInfo({ clientLogin }: { clientLogin?: boolean }) {
         </div>
       </div>
       <div className="flex h-[50px]">
-        <div className="left-border-item flex flex-col ml-[50px] justify-between">
+        <div className="border-l-[1px] border-oxford-blue-50 pl-[10px] flex flex-col ml-[50px] justify-between">
           <span className="text-oxford-blue-400 font-[500] text-[14px] pb-[5px]">
             Balance
           </span>
-          <span className="text-green-500 text-[20px] font-[500] pb-[4px]">
+          <span className="text-[20px] font-[500] pb-[4px]">
             {accountDetails?.balance} {import.meta.env.VITE_APP_CURRENCY || ""}
           </span>
         </div>
-        <div className="left-border-item flex flex-col ml-[50px] justify-between">
+        <div className="border-l-[1px] border-oxford-blue-50 pl-[10px] flex flex-col ml-[50px] justify-between">
           <span className="text-oxford-blue-400 font-[500] text-[14px] pb-[5px]">
             Bonus
           </span>
-          <span className="text-green-500 text-[20px] font-[500] pb-[4px]">
+          <span className="text-[20px] font-[500] pb-[4px]">
             {accountDetails?.bonus} {import.meta.env.VITE_APP_CURRENCY || ""}
           </span>
         </div>

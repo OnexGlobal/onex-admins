@@ -31,82 +31,79 @@ export default function CustomerSingleStatuses() {
       <div className="rounded-[12px] bg-white p-[16px] flex justify-between items-center w-full flex-1">
         <div
           onClick={() => handleToExpected()}
-          className="order-details-statuses__status flex items-center"
+          className="flex items-center cursor-pointer [&>h1]:hover:!text-green-500"
         >
           <ExpectedIcon />
-          <span className="text-oxford-blue-400 text-[14px] font-[500] mx-[8px]">
+          <h1 className="text-info text-oxford-blue-400 font-[500] px-[8px]">
             Expected
-          </span>
-
-          <Tag color={"blue"}>
+          </h1>
+          <Tag className="text-[16px] rounded-[50%] font-[500] py-[2px] px-[8px] mr-0">
             {accountDetails?.orders_history.expected || 0}
           </Tag>
         </div>
-
         <div
           onClick={() => handleToOrders("scan")}
-          className="order-details-statuses__status flex items-center"
+          className="flex items-center cursor-pointer [&>h1]:hover:!text-green-500"
         >
           <ScannedIcon />
-          <span className="text-oxford-blue-400 text-[14px] font-[500] mx-[8px]">
+          <h1 className="text-info text-oxford-blue-400 font-[500] px-[8px]">
             Scanned
-          </span>
-          <Tag color="blue">{accountDetails?.orders_history.scan || 0}</Tag>
+          </h1>
+          <Tag className="text-[16px] font-[500] rounded-[50%] py-[2px] px-[8px] mr-0">
+            {accountDetails?.orders_history.scan || 0}
+          </Tag>
         </div>
-
         <div
           onClick={() => handleToOrders("at_warehouse")}
-          className="flex items-center order-details-statuses__status"
+          className="flex items-center cursor-pointer [&>h1]:hover:!text-green-500"
         >
-          <WarehouseIcon />{" "}
-          <span className="text-oxford-blue-400 text-[14px] font-[500] mx-[8px]">
+          <WarehouseIcon />
+          <h1 className="text-info text-oxford-blue-400 font-[500] px-[8px]">
             At warehouse
-          </span>
-          <Tag color="blue">
+          </h1>
+          <Tag className="text-[16px] font-[500] rounded-[50%] py-[2px] px-[8px] mr-0">
             {accountDetails?.orders_history.at_warehouse || 0}
           </Tag>
         </div>
-
         <div
-          className="flex items-center order-details-statuses__status"
+          className="flex items-center cursor-pointer [&>h1]:hover:!text-green-500"
           onClick={() => handleToOrders("on_the_way")}
         >
           <OnTheWayIcon />
-          <span className="text-oxford-blue-400 text-[14px] font-[500] mx-[8px]">
+          <h1 className="text-info text-oxford-blue-400 font-[500] px-[8px]">
             On the Way
-          </span>
-          <Tag color="blue">
+          </h1>
+          <Tag className="text-[16px] font-[500] rounded-[50%] py-[2px] px-[8px] mr-0">
             {accountDetails?.orders_history.on_the_way || 0}
           </Tag>
         </div>
-
         <div
-          className="flex items-center order-details-statuses__status"
+          className="flex items-center cursor-pointer [&>h1]:hover:!text-green-500"
           onClick={() => handleToOrders("in_georgia")}
         >
           <InLocalCountryIcon />
-          <span className="text-oxford-blue-400 text-[14px] font-[500] mx-[8px]">
+          <h1 className="text-info text-oxford-blue-400 font-[500] px-[8px]">
             In Local Country
-          </span>
-          <Tag color="blue">
+          </h1>
+          <Tag className="text-[16px] font-[500] rounded-[50%] py-[2px] px-[8px] mr-0">
             {accountDetails?.orders_history.in_georgia || 0}
           </Tag>
         </div>
-
         <div
-          className="flex items-center order-details-statuses__status"
+          className="flex items-center cursor-pointer [&>h1]:hover:!text-green-500"
           onClick={() => handleToOrders("received")}
         >
           <ReceivedIcon />
-          <span className="text-oxford-blue-400 text-[14px] font-[500] mx-[8px]">
+          <h1 className="text-info text-oxford-blue-400 font-[500] px-[8px]">
             Received
-          </span>
-          <Tag color="blue">{accountDetails?.orders_history.received || 0}</Tag>
+          </h1>
+          <Tag className="text-[16px] font-[500] rounded-[50%] py-[2px] px-[8px] mr-0">
+            {accountDetails?.orders_history.received || 0}
+          </Tag>
         </div>
       </div>
-
       <div className="flex flex-col max-w-[200px] flex-1 ml-[16px] rounded-[12px] bg-white p-[16px]">
-        <span className="text-oxford-blue-400 text-[14px] font-[500] mx-[8px]">
+        <span className="text-oxford-blue-400 text-[14px] font-[500]">
           Main Pickup Point
         </span>
         <span className="text-[14px] text-green-500">

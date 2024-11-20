@@ -18,31 +18,31 @@ export default function ReceivedUserInfo({
 }: Props) {
   return (
     <>
-      <div className="flex rounded-[12px] bg-white gap-[16px] p-[16px] my-[16px]">
+      <div className="flex rounded-[12px] w-full justify-between bg-white gap-[16px] p-[16px] my-[16px]">
         <UserIcon />
         <div>
           <h1 className="text-info text-oxford-blue-100">{`ID ${
             user?.id || ""
           }`}</h1>
-          <h1 className="text-description text-oxford-blue-100">
+          <h1 className="text-description">
             {
-              <>
-                {user?.label || ""}{" "}
+              <div className="flex items-center">
+                {user?.label || ""}
                 {!user?.user?.is_prime ? (
-                  <PrimeIcon margin={"0 0 -3px 0"} />
+                  <PrimeIcon className="ml-[4px]" />
                 ) : (
                   ""
                 )}
-              </>
+              </div>
             }
           </h1>
 
-          <div className="flex gap-[16px] mt-[6px]">
-            <Link to={`/customer/${user.user.id}`} className="user-action_link">
-              <Tag className="bg-green-50 text-green-500" color={"#5DBA2F"}>
+          <div className="flex gap-[16px] mt-[10px]">
+            <Link to={`/customer/${user.user.id}`}>
+              <Tag className="bg-green-50 text-green-500">
                 {
                   <div className="flex items-center">
-                    View customer
+                    <h1 className="text-info font-[500]"> View customer</h1>
                     <RightArrowIcon color="#5DBA2F" className="ml-[5px]" />
                   </div>
                 }
@@ -53,15 +53,11 @@ export default function ReceivedUserInfo({
                 2,
                 user?.user_code?.length - 1
               )}`}
-              className="user-action_link"
             >
-              <Tag
-                className="text-oxford-blue-400 bg-oxford-blue-30"
-                color={"#5DBA2F"}
-              >
+              <Tag className="text-oxford-blue-400 bg-oxford-blue-30">
                 {
                   <div className="flex items-center">
-                    View customer
+                    <h1 className="text-info font-[500]">View orders</h1>
                     <RightArrowIcon color="#3B5166" className="ml-[5px]" />
                   </div>
                 }
@@ -72,15 +68,13 @@ export default function ReceivedUserInfo({
                 2,
                 user?.user_code?.length - 1
               )}`}
-              className="user-action_link"
             >
-              <Tag
-                className="text-oxford-blue-400 bg-oxford-blue-30"
-                color={"#5DBA2F"}
-              >
+              <Tag className="text-oxford-blue-400 bg-oxford-blue-30">
                 {
                   <div className="flex items-center">
-                    View received orders
+                    <h1 className="text-info font-[500]">
+                      View received orders
+                    </h1>
                     <RightArrowIcon color="#3B5166" className="ml-[5px]" />
                   </div>
                 }
@@ -90,7 +84,7 @@ export default function ReceivedUserInfo({
         </div>
 
         <div className="flex items-center gap-[32px] ml-auto">
-          <div className="border-[1px] border-oxford-blue-50 pl-[10px]">
+          <div className="border-l-[1px] border-oxford-blue-50 pl-[10px]">
             <h1 className="text-info font-[500] text-oxford-blue-400 pr-[6px] pb-[5px]">
               Bonus
             </h1>
@@ -98,11 +92,11 @@ export default function ReceivedUserInfo({
               user?.user?.bonus || "0"
             } ${import.meta.env.VITE_APP_CURRENCY}`}</h1>
           </div>
-          <div className="left-border-item">
+          <div className="border-l-[1px] border-oxford-blue-50 pl-[10px]">
             <h1 className="text-info font-[500] text-oxford-blue-400 pr-[6px] pb-[5px]">
               Balance
             </h1>
-            <h1 className="text-description  pb-[4px]">{`${
+            <h1 className="text-description pb-[4px]">{`${
               user?.user?.balance || "0"
             } ${import.meta.env.VITE_APP_CURRENCY}`}</h1>
           </div>

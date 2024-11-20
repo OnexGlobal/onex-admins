@@ -17,7 +17,9 @@ export const NotFound: FC<Props> = ({ icon, text, title, reset }) => {
         </span>
       )}
       <span
-        className={`${title ? "text-[16px]" : "text-[20px]"} ${title ? "font-[400]" : "font-[500]"} max-w-[360px] text-center`}
+        className={`${title ? "text-[16px] " : "text-[20px]"} ${
+          title ? "font-[400]" : "font-[500]"
+        } max-w-[360px] text-center text-oxford-blue-300`}
       >
         {text}
       </span>

@@ -1,6 +1,7 @@
-export default function OnTheWayIcon() {
+export default function OnTheWayIcon({ ...props }) {
   return (
     <svg
+      {...props}
       width="21"
       height="23"
       viewBox="0 0 21 23"
