@@ -1,7 +1,7 @@
 import { Dispatch, FC, SetStateAction } from "react";
 import { Button, Modal } from "antd";
 import { WarningCircleIcon } from "../../assets/icons/WarningCircleIcon";
-import { Status } from "../../../types/src/expected";
+import { Status } from "@repo/types/src/expected";
 
 interface DeletedProps {
   deleted: Status;

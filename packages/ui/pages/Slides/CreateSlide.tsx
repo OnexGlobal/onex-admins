@@ -21,7 +21,7 @@ interface Props {
   slider: SlidesType | boolean;
   setSlider: Dispatch<SetStateAction<SlidesType | boolean>>;
   reFetchSlider: Refetch;
-  languages: LanguagesType[];
+  languages?: LanguagesType[];
   slider_delete?: boolean;
 }
 

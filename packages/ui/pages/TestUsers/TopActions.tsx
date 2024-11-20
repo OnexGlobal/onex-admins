@@ -8,9 +8,7 @@ import { Loading } from "../../components/loader/Loading";
 const { RangePicker } = DatePicker;
 
 interface Props {
-  setFilters: Dispatch<
-    SetStateAction<Record<string, string | number | undefined | null>>
-  >;
+  setFilters: Dispatch<SetStateAction<Record<string, string | number>>>;
   userInfo: Record<string, string | number> | null;
   setUserInfo: Dispatch<SetStateAction<Record<string, string | number> | null>>;
 }

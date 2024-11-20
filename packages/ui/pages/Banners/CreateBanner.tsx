@@ -26,7 +26,7 @@ interface Props {
   setBanner: Dispatch<SetStateAction<boolean | BannersType>>;
   refetch: Refetch;
   banner: BannersType | boolean;
-  languages: LanguagesType[];
+  languages?: LanguagesType[];
 }
 
 export default function CreateBannerDrawer({
@@ -41,7 +41,7 @@ export default function CreateBannerDrawer({
   const [status, setStatus] = useState(false);
   const [open, setOpen] = useState(false);
   const [form] = Form.useForm();
-  const [selectedWord, setSelectedWord] = useState(""); // To store selected word
+  const [selectedWord, setSelectedWord] = useState("");
   const [addLink, setAddLink] = useState(false);
   const [manualLink, setManualLink] = useState("");
   const inputRef: RefObject<InputRef> = useRef(null);

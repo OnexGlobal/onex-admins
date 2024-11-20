@@ -1,6 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
 import { reportsApi } from "../../services/reports";
-import { Refetch } from "@repo/types";
 
 export const useGetReportsTypeList = (
   type: string,
