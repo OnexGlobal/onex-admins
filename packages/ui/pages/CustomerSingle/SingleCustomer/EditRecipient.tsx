@@ -7,7 +7,7 @@ import { InfoCircleIcon } from "../../../assets/icons/InfoCircleIcon";
 import useRegions from "../../../hooks/useRegions.hook";
 import { FileUpload } from "../../../components/buttons/Uploads";
 import { UploadOutlined } from "@ant-design/icons";
-import InputPhone from "../../../components/inputs/InputPhone";
+import InputPhone from "@repo/ui/components/inputs/InputPhone";
 
 export const EditRecipient = ({
   recipient,
@@ -210,7 +210,7 @@ export const EditRecipient = ({
             </Col>
             <Col lg={12}>
               <Form.Item name={"phone"} label={"Phone number"}>
-                <InputPhone placeholder={"Phone number"} />
+                <InputPhone placeholder="Phone number" />
               </Form.Item>
             </Col>
             <Col lg={12}>

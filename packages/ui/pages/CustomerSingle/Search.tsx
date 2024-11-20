@@ -53,6 +53,7 @@ export default function CustomersSingleSearch() {
         <Button
           onClick={() => handleSearch()}
           icon={<SearchIcon />}
+          type="primary"
           className="ml-[16px]"
         >
           Search
