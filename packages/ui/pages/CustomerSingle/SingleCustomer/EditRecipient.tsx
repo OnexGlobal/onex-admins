@@ -7,7 +7,7 @@ import { InfoCircleIcon } from "../../../assets/icons/InfoCircleIcon";
 import useRegions from "../../../hooks/useRegions.hook";
 import { FileUpload } from "../../../components/buttons/Uploads";
 import { UploadOutlined } from "@ant-design/icons";
-import InputPhone from "../../../components/inputs/InputPhone";
+// import InputPhone from "../../../components/inputs/InputPhone";
 
 export const EditRecipient = ({
   recipient,
@@ -112,7 +112,7 @@ export const EditRecipient = ({
           }
         >
           <span className="font-[500] text-[14px] mb-[8px] text-oxford-blue-300">
-            Personal data (Russian)
+            Personal data ({import.meta.env.VITE_APP_CAUNTRY_LANGUAGE})
           </span>
           <Row gutter={16}>
             <Col lg={8}>
@@ -208,11 +208,11 @@ export const EditRecipient = ({
                 <Input placeholder={"Apartment"} />
               </Form.Item>
             </Col>
-            <Col lg={12}>
+            {/* <Col lg={12}>
               <Form.Item name={"phone"} label={"Phone number"}>
                 <InputPhone placeholder={"Phone number"} />
               </Form.Item>
-            </Col>
+            </Col> */}
             <Col lg={12}>
               <Form.Item name={"index"} label={"Index"}>
                 <Input
