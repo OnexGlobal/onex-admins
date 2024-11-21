@@ -54,6 +54,7 @@ export default function CustomersSingleSearch() {
           onClick={() => handleSearch()}
           icon={<SearchIcon />}
           className="ml-[16px]"
+          type="primary"
         >
           Search
         </Button>

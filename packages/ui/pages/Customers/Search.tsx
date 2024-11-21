@@ -2,6 +2,7 @@ import { Users } from "@repo/types";
 import { Button, Form, Input, Select, Space } from "antd";
 import { useEffect } from "react";
 import { RefreshIcon } from "../../assets/icons/RefreshIcon";
+import { SearchIcon } from "../../assets/icons/SearchIcon";
 
 export default function CustomersSearch({
   setFilter,
@@ -70,7 +71,12 @@ export default function CustomersSearch({
             </Form.Item>
           </Space.Compact>
 
-          <Button htmlType="submit" type="primary" className="mb-[16px]">
+          <Button
+            htmlType="submit"
+            type="primary"
+            className="mb-[16px]"
+            icon={<SearchIcon />}
+          >
             Search
           </Button>
           <Button
