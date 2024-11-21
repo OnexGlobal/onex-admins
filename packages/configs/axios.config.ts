@@ -20,7 +20,7 @@ axios.interceptors.response.use(
         notificationError(data?.message, data?.data?.[key] || "")
       );
     }
-    if (status === 401 || status === 500) {
+    if (status === 401) {
       localStorage.clear();
       window.location.reload();
     }

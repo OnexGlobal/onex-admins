@@ -55,6 +55,7 @@ export default function CustomersSingleSearch() {
           icon={<SearchIcon />}
           type="primary"
           className="ml-[16px]"
+          type="primary"
         >
           Search
         </Button>

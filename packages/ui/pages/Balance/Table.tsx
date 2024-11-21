@@ -208,7 +208,7 @@ export default function BalanceTable({
               type="default"
               onClick={() => edit(list)}
               icon={<EditIcon />}
-            ></Button>
+            />
           )}
         </div>
       ),

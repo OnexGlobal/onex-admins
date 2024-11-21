@@ -14,7 +14,9 @@ import apple from "../../assets/images/apple.svg";
 import android from "../../assets/images/android.svg";
 export default function ActionsHistory() {
   const [filter, setFilters] = useState<AppVersionsFilter | undefined>();
-  const [openDrawer, setOpenDrawer] = useState<undefined | ApiVersions>();
+  const [openDrawer, setOpenDrawer] = useState<
+    undefined | ApiVersions | true
+  >();
   const [openDeleteModal, setOpenDeleteModal] = useState<undefined | number>(
     undefined
   );
@@ -34,7 +36,7 @@ export default function ActionsHistory() {
         </div>
         <ActionSearch setFilter={setFilters} />
         <Button
-          onClick={() => setOpenDrawer(undefined)}
+          onClick={() => setOpenDrawer(true)}
           type="default"
           className="bg-oxford-blue-400 text-white my-[24px]"
         >
@@ -104,10 +106,17 @@ export default function ActionsHistory() {
           loading={isLoading}
         />
       </>
-      <Drawer open={!!openDrawer} width="694px" onClose={() => closeModal()}>
+      <Drawer
+        styles={{ header: { display: "none" } }}
+        open={!!openDrawer}
+        width="694px"
+        onClose={() => closeModal()}
+      >
         <CreateEdit
           form={form}
-          data={openDrawer}
+          data={
+            typeof data === "boolean" ? undefined : (openDrawer as ApiVersions)
+          }
           setOpenDrawer={setOpenDrawer}
           setOpenDeleteModal={setOpenDeleteModal}
           refetch={refetch}

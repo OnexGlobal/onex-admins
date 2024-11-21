@@ -57,7 +57,7 @@ export default function CustomerSingleTabs({ recipient_edit = false }) {
           </Tag>
         </div>
       ),
-      children: <RecipientsTab recipient_edit={recipient_edit} />,
+      children: <RecipientsTab />,
     },
     {
       key: "3",

@@ -18,7 +18,7 @@ interface FormValues {
 
 interface Props {
   data?: ApiVersions;
-  setOpenDrawer: Dispatch<SetStateAction<undefined | ApiVersions>>;
+  setOpenDrawer: Dispatch<SetStateAction<undefined | ApiVersions | true>>;
   setOpenDeleteModal: Dispatch<SetStateAction<number | undefined>>;
   refetch: Refetch;
   closeModal: () => void;
@@ -93,9 +93,9 @@ const CreateEdit: FC<Props> = ({
     }
   }, [isEdit]);
   return (
-    <Form onFinish={handleSubmit} form={form}>
+    <Form layout="vertical" onFinish={handleSubmit} form={form}>
       <>
-        <div className="items-center justify-between">
+        <div className="flex items-center justify-between mb-[24px]">
           <div className="page-title">
             <span className="text-[24px] block text-black font-[500]">
               {isEdit ? "Edit Version" : "Create Version"}
@@ -130,10 +130,11 @@ const CreateEdit: FC<Props> = ({
             </Button>
           </div>
         </div>
-        <div className="_paper flex gap-[16px] ">
+        <div className="_paper flex gap-[16px] mb-[24px]">
           <Form.Item
             label="Version"
             name="version"
+            className="flex-1"
             rules={[{ required: true, message: "Please add version" }]}
           >
             <Input placeholder="Version" />
@@ -141,6 +142,7 @@ const CreateEdit: FC<Props> = ({
           <Form.Item
             label="Select system"
             name="os"
+            className="flex-1"
             rules={[{ required: true, message: "Please select os" }]}
           >
             <Select
@@ -171,6 +173,7 @@ const CreateEdit: FC<Props> = ({
           <Form.Item
             label="All update types"
             name="update_type"
+            className="flex-1"
             rules={[{ required: true, message: "Please select update types" }]}
           >
             <Select
