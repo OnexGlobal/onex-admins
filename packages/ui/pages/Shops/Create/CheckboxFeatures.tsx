@@ -27,12 +27,12 @@ export const CheckboxFeatures: FC<Props> = ({
   ];
   return (
     <div className="flex flex-col">
-      <div className="flex flex-wirap gap-[16px] mt-[16px]">
+      <div className="flex flex-wrap gap-[16px] mt-[16px]">
         {checkedData?.map((item, i) => (
           <Form.Item
             name={item?.name}
             key={i}
-            className={"_paper"}
+            className="rounded-[12px] bg-white p-[16px]"
             style={{ padding: "8px 16px" }}
             valuePropName="checked"
           >
@@ -49,7 +49,7 @@ export const CheckboxFeatures: FC<Props> = ({
           </Form.Item>
         ))}
       </div>
-      <div className="flex _paper w-max items-center p-[16px] h-[64px]">
+      <div className="flex rounded-[12px] bg-white w-max items-center p-[16px] mb-[18px]">
         <Checkbox
           onChange={(e) => setSelectBlog(e.target.checked)}
           checked={selectBlog}

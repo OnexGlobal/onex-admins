@@ -4,14 +4,17 @@ import android from "../../assets/images/android.svg";
 import { Dispatch, SetStateAction, useState } from "react";
 import { SearchIcon } from "../../assets/icons/SearchIcon";
 import { AppVersionsFilter } from "@repo/types/src/app-versions";
+
 const initialFilter = {
   dev_mode: undefined,
   force_update: undefined,
   os: undefined,
 };
+
 interface Props {
   setFilter: Dispatch<SetStateAction<AppVersionsFilter | undefined>>;
 }
+
 export default function ActionSearch({ setFilter = () => {} }: Props) {
   const [myFilter, setMyFilter] = useState<AppVersionsFilter>(initialFilter);
   const [selectedOS, setSelectedOS] = useState(null);
@@ -87,7 +90,7 @@ export default function ActionSearch({ setFilter = () => {} }: Props) {
         <Button
           onClick={handleReset}
           type="default"
-          className="ml-[16px] h-[35px]"
+          className="ml-[32px] h-[35px]"
           htmlType="reset"
         >
           Reset

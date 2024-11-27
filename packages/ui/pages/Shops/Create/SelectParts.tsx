@@ -6,7 +6,7 @@ export const SelectParts = () => {
   const { categories = [] } = useCategories("shop");
   const { data: warehouses = [] } = useGetWarehouses();
   return (
-    <div className="_paper _action-form-item grid grid-cols-3 mt-[16px] gap-[16px] w-full">
+    <div className="rounded-[12px] bg-white p-[16px] grid grid-cols-3 mt-[16px] gap-[16px] w-full">
       <Form.Item
         name={"warehouse_id"}
         label={"Country"}

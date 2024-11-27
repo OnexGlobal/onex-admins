@@ -41,7 +41,9 @@ export default function CreateSlideDrawer({
   const [form] = Form.useForm();
   const sliderWatch = Form.useWatch("details", form);
   const isTrueAllItems = useCheckEmptyArrItem(sliderWatch);
+  console.log(slider);
   useEffect(() => {
+    console.log(slider);
     if (typeof slider === "object") {
       slider?.slidersMl?.forEach((ml) => {
         Object.entries(ml).forEach(([key, val]) => {

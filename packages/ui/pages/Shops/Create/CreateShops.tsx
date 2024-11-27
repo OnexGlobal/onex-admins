@@ -164,11 +164,10 @@ export default function CreateShopsDrawer({
 
   return (
     <Drawer
-      styles={{ header: { display: "none" } }}
+      styles={{ header: { display: "none" }, body: { background: "#f9fafb" } }}
       onClose={() => closeEditModal()}
       open={!!shop}
       width="1112px"
-      className="p-[16px]"
     >
       <Form
         initialValues={shopsInitialValue}
@@ -177,41 +176,46 @@ export default function CreateShopsDrawer({
         layout="vertical"
         onFinish={createBlogs}
       >
-        <div className="flex items-center gap-[16px] mb-[16px]">
-          <span className="info-title ">
+        <div className="flex items-center justify-between gap-[16px] mb-[16px]">
+          <h1 className="text-title">
             {typeof shop === "object" ? "Edit shop" : "Create shop"}
-          </span>
+          </h1>
+          <div className="flex gap-[16px] items-center">
+            {typeof shop === "object" ? (
+              <>
+                {shop_delete ? (
+                  <Button
+                    icon={<AlertCircleIcon />}
+                    onClick={() => {
+                      setOpen(true);
+                    }}
+                    type="default"
+                    className="hover:!border-oxford-blue-50 hover:!text-black"
+                  >
+                    Delete Shop
+                  </Button>
+                ) : null}
 
-          {typeof shop === "object" ? (
-            <>
-              {shop_delete ? (
-                <Button
-                  icon={<AlertCircleIcon />}
-                  onClick={() => {
-                    setOpen(true);
-                  }}
-                  type="default"
-                >
-                  Delete Shop
-                </Button>
-              ) : null}
-
-              <span>{status ? "Active" : "Inactive"}</span>
-              <Switch
-                loading={isPending}
-                checked={Boolean(status)}
-                onChange={(val) =>
-                  mutateIsActive({ id: shop?.id, is_active: val })
-                }
-              />
-            </>
-          ) : null}
-          <Button danger onClick={closeEditModal} type="primary">
-            Cancel
-          </Button>
-          <Button type="primary" htmlType="submit">
-            {shop ? "Save" : "Create"}
-          </Button>
+                <span>{status ? "Active" : "Inactive"}</span>
+                <Switch
+                  loading={isPending}
+                  checked={Boolean(status)}
+                  onChange={(val) =>
+                    mutateIsActive({ id: shop?.id, is_active: val })
+                  }
+                />
+              </>
+            ) : null}
+            <Button
+              className="bg-red-50 text-red-500 border-red-50 hover:!bg-red-50 hover:!text-red-500 hover:!border-red-50"
+              onClick={closeEditModal}
+            >
+              Cancel
+            </Button>
+            <Button type="primary" htmlType="submit">
+              {typeof shop === "object" ? "Save" : "Create"}
+            </Button>
+          </div>
         </div>
 
         <MainParts setImageUrl={setImageUrl} imageUrl={imageUrl} />

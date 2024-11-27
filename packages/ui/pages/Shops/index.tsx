@@ -27,7 +27,7 @@ export default function Shops({ shop_create, shop_edit, shop_delete }: Props) {
 
       {shop_create ? (
         <Button
-          className="bg-oxford-blue-300 text-white"
+          className="bg-oxford-blue-300 text-white hover:!bg-oxford-blue-300 hover:!text-white hover:!border-oxford-blue-300"
           onClick={() => setShop(true)}
         >
           Create shop

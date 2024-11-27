@@ -34,35 +34,35 @@ export const DetailsParts: FC<Props> = ({
                 form.setFieldValue(["details", +key - 1, "language_id"], key);
               }}
             />
+            <div className="rounded-[12px] bg-white p-[16px]">
+              <Form.Item
+                name={[languageId - 1, "description"]}
+                label="Description"
+                rules={[
+                  {
+                    required: true,
+                    message: "Missing Blog Title.",
+                  },
+                ]}
+              >
+                <Input
+                  style={{ minHeight: "52px" }}
+                  placeholder={"Description"}
+                  maxLength={255}
+                  showCount={true}
+                />
+              </Form.Item>
+              <div className="rounded-[12px] bg-white flex items-center">
+                <Checkbox onChange={(e) => setShowVlog(e.target.checked)}>
+                  Video
+                </Checkbox>
 
-            <Form.Item
-              className={"_paper"}
-              name={[languageId - 1, "description"]}
-              label="Description"
-              rules={[
-                {
-                  required: true,
-                  message: "Missing Blog Title.",
-                },
-              ]}
-            >
-              <Input
-                style={{ minHeight: "52px" }}
-                placeholder={"Description"}
-                maxLength={255}
-                showCount={true}
-              />
-            </Form.Item>
-            <div className="_paper _action-form-item flex items-center p-[16px] h-[64px]">
-              <Checkbox onChange={(e) => setShowVlog(e.target.checked)}>
-                Video
-              </Checkbox>
-
-              {showVlog && (
-                <Form.Item name={[languageId - 1, "vlog"]}>
-                  <Input placeholder={"Video URL "} />
-                </Form.Item>
-              )}
+                {showVlog && (
+                  <Form.Item name={[languageId - 1, "vlog"]}>
+                    <Input placeholder={"Video URL "} />
+                  </Form.Item>
+                )}
+              </div>
             </div>
           </div>
         );

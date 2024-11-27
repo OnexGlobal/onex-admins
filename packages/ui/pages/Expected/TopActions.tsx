@@ -184,7 +184,7 @@ export default function ExpectedTopActions({
             </Form.Item>
           </div>
         </div>
-        <div className="flex w-[100%] justify-end gap-[16px] mb-[16px]">
+        <div className="flex w-[100%] justify-end items-center gap-[16px] mb-[16px]">
           <Button
             onClick={() => setMore(!more)}
             type="link"

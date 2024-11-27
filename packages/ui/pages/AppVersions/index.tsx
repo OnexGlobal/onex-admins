@@ -12,6 +12,7 @@ import { Status } from "@repo/types";
 import { ApiVersions, AppVersionsFilter } from "@repo/types/src/app-versions";
 import apple from "../../assets/images/apple.svg";
 import android from "../../assets/images/android.svg";
+
 export default function ActionsHistory() {
   const [filter, setFilters] = useState<AppVersionsFilter | undefined>();
   const [openDrawer, setOpenDrawer] = useState<
@@ -38,7 +39,7 @@ export default function ActionsHistory() {
         <Button
           onClick={() => setOpenDrawer(true)}
           type="default"
-          className="bg-oxford-blue-400 text-white my-[24px]"
+          className="bg-oxford-blue-300 text-white hover:!bg-oxford-blue-300 hover:!text-white hover:!border-oxford-blue-300 my-[24px]"
         >
           Create version
         </Button>
@@ -78,8 +79,8 @@ export default function ActionsHistory() {
                     item.os === "android"
                       ? android
                       : item.os === "ios"
-                        ? apple
-                        : ""
+                      ? apple
+                      : ""
                   }
                 />
                 {item.os}
@@ -89,8 +90,8 @@ export default function ActionsHistory() {
               item.force_update && item.dev_mode
                 ? "Force Update" + ", " + "Dev Mode"
                 : item.dev_mode
-                  ? "Dev Mode"
-                  : "Force Update",
+                ? "Dev Mode"
+                : "Force Update",
             actions: (
               <div className="flex items-center justify-end gap-[16px] ">
                 <EditIcon onClick={() => setOpenDrawer(item)} />

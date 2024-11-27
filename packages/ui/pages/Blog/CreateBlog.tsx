@@ -132,7 +132,12 @@ export default function CreateBlogDrawer({
   );
 
   return (
-    <Drawer onClose={closeEditModal} open={!!blog} width="1112px">
+    <Drawer
+      styles={{ header: { display: "none" }, body: { background: "#f9fafb" } }}
+      onClose={closeEditModal}
+      open={!!blog}
+      width="1112px"
+    >
       <Form
         initialValues={blogInitialValue}
         form={form}
@@ -140,41 +145,46 @@ export default function CreateBlogDrawer({
         layout="vertical"
         onFinish={createBlogs}
       >
-        <div className="flex items-center gap-[16px] mb-[16px]">
+        <div className="flex justify-between items-center gap-[16px] mb-[16px]">
           <span className="text-[22px] font-[500] ">
             {typeof blog === "object" ? "Edit blog" : "Create blog"}
           </span>
-
-          {typeof blog === "object" ? (
-            <>
-              {blog_delete ? (
-                <Button
-                  type="default"
-                  icon={<AlertCircleIcon />}
-                  onClick={() => {
-                    setOpen(true);
+          <div className="flex items-center gap-[16px]">
+            {typeof blog === "object" ? (
+              <>
+                {blog_delete ? (
+                  <Button
+                    type="default"
+                    className="hover:!border-oxford-blue-50 hover:!text-black"
+                    icon={<AlertCircleIcon />}
+                    onClick={() => {
+                      setOpen(true);
+                    }}
+                  >
+                    Delete Blog
+                  </Button>
+                ) : null}
+                <span>{status ? "Active" : "Inactive"}</span>
+                <Switch
+                  loading={isPending}
+                  checked={Boolean(status)}
+                  style={{ margin: "0 16px 0 0" }}
+                  onChange={(val) => {
+                    mutateIsActive({ id: blog?.id, is_active: +val });
                   }}
-                >
-                  Delete Blog
-                </Button>
-              ) : null}
-              <span>{status ? "Active" : "Inactive"}</span>
-              <Switch
-                loading={isPending}
-                checked={Boolean(status)}
-                style={{ margin: "0 16px 0 0" }}
-                onChange={(val) => {
-                  mutateIsActive({ id: blog?.id, is_active: +val });
-                }}
-              />
-            </>
-          ) : null}
-          <Button danger onClick={closeEditModal}>
-            Cancel
-          </Button>
-          <Button htmlType="submit" type="primary">
-            {blog ? "Save" : "Create"}
-          </Button>
+                />
+              </>
+            ) : null}
+            <Button
+              className="bg-red-50 text-red-500 border-red-50 hover:!bg-red-50 hover:!text-red-500 hover:!border-red-50"
+              onClick={closeEditModal}
+            >
+              Cancel
+            </Button>
+            <Button htmlType="submit" type="primary">
+              {typeof blog === "object" ? "Save" : "Create"}
+            </Button>
+          </div>
         </div>
         <Form.List name={"details"}>
           {() => {
@@ -193,7 +203,7 @@ export default function CreateBlogDrawer({
                   value={languageId}
                 />
 
-                <div className={"_paper"}>
+                <div className={"rounded-[12px] bg-white p-[16px]"}>
                   <Form.Item
                     name={[languageId - 1, "image"]}
                     rules={[

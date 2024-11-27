@@ -34,7 +34,7 @@ export default function Blog({ blog_create, blog_edit, blog_delete }: Props) {
 
       {dataSource?.length > 0 && blog_create ? (
         <Button
-          className="bg-oxford-blue-300 text-white mb-[16px]"
+          className="bg-oxford-blue-300 mb-[16px] text-white hover:!bg-oxford-blue-300 hover:!text-white hover:!border-oxford-blue-300"
           type="default"
           onClick={() => setBlog(true)}
         >

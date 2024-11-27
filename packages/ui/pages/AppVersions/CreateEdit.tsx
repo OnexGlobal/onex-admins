@@ -4,6 +4,7 @@ import apple from "../../assets/images/apple.svg";
 import android from "../../assets/images/android.svg";
 import { useFetchLanguages } from "../../hooks/banners/useFetchLanguages.hook";
 import { ApiVersions } from "@repo/types/src/app-versions";
+import { LanguagesType } from "@repo/types/src/marketing-content";
 import { Refetch } from "@repo/types";
 import { appVersionsApi } from "../../services/app-versions";
 import DangerousIcon from "../../assets/icons/DangerousIcon";
@@ -23,6 +24,7 @@ interface Props {
   refetch: Refetch;
   closeModal: () => void;
   form: FormInstance<FormValues>;
+  languages?: LanguagesType[];
 }
 
 const CreateEdit: FC<Props> = ({
@@ -34,8 +36,8 @@ const CreateEdit: FC<Props> = ({
   closeModal = () => {},
 }) => {
   const isEdit = Boolean(data?.id);
-
   const { languages } = useFetchLanguages();
+
   const handleSubmit = (values: FormValues) => {
     const afterSave = () => {
       closeModal();
@@ -47,6 +49,7 @@ const CreateEdit: FC<Props> = ({
       dev_mode: false,
       force_update: false,
     };
+
     const details = values.details.filter(
       (item) => item.title && item.description
     );
