@@ -1,85 +1,125 @@
-import { Meta } from "@repo/types";
-import { LanguagesType, SlidesType } from "@repo/types/src/marketing-content";
-import { Tag } from "antd";
-import { Dispatch, SetStateAction, useEffect, useState } from "react";
-import { useSortSlide } from "../../hooks/slides/useSortSlide.hook";
-import { notificationSuccess } from "../../helpers/notification";
-import { DndContext, type DragEndEvent } from "@dnd-kit/core";
+import React, {
+  Dispatch,
+  SetStateAction,
+  useContext,
+  useEffect,
+  useMemo,
+  useState,
+} from "react";
+import type { DragEndEvent } from "@dnd-kit/core";
+import { DndContext } from "@dnd-kit/core";
+import type { SyntheticListenerMap } from "@dnd-kit/core/dist/hooks/utilities";
+import { restrictToVerticalAxis } from "@dnd-kit/modifiers";
 import {
   arrayMove,
   SortableContext,
+  useSortable,
   verticalListSortingStrategy,
 } from "@dnd-kit/sortable";
-import dayjs from "dayjs";
+import { CSS } from "@dnd-kit/utilities";
+import { Button, notification, Table, Tag } from "antd";
+import { LanguagesType, SlidesType } from "@repo/types/src/marketing-content";
 import { EditIcon } from "../../assets/icons/EditIcon";
-import { restrictToVerticalAxis } from "@dnd-kit/modifiers";
-import { Row } from "../../components/elements/Row";
-import Table from "../../components/table/Table";
+import dayjs from "dayjs";
+import { useMutation } from "@tanstack/react-query";
+import { slidesApi } from "../../services/slides-sort";
+import { TableDots } from "../../assets/icons/TableDots";
 
-const columns = [
-  {
-    key: "sort",
-    width: 50,
-  },
-  {
-    title: "Title",
-    dataIndex: "title",
-    key: "title",
-  },
-  {
-    title: "Language",
-    dataIndex: "language",
-    key: "language",
-  },
-  {
-    title: "Created date",
-    dataIndex: "created_date",
-    key: "created_date",
-  },
-  {
-    title: "Updated date",
-    dataIndex: "updated_date",
-    key: "updated_date",
-  },
-  {
-    title: "Status",
-    dataIndex: "status",
-    key: "status",
-  },
-  {
-    title: " ",
-    dataIndex: "edit",
-    key: "edit",
-    width: 70,
-  },
-];
+interface RowContextProps {
+  setActivatorNodeRef?: (element: HTMLElement | null) => void;
+  listeners?: SyntheticListenerMap;
+}
+
+const RowContext = React.createContext<RowContextProps>({});
+
+const DragHandle: React.FC = () => {
+  const { setActivatorNodeRef, listeners } = useContext(RowContext);
+  return (
+    <Button
+      type="text"
+      size="small"
+      icon={<TableDots />}
+      style={{ cursor: "move" }}
+      ref={setActivatorNodeRef}
+      {...listeners}
+    />
+  );
+};
+
+interface RowProps extends React.HTMLAttributes<HTMLTableRowElement> {
+  "data-row-key": string;
+}
+
+const Row: React.FC<RowProps> = (props) => {
+  const {
+    attributes,
+    listeners,
+    setNodeRef,
+    setActivatorNodeRef,
+    transform,
+    transition,
+    isDragging,
+  } = useSortable({ id: props["data-row-key"] });
+
+  const style: React.CSSProperties = {
+    ...props.style,
+    transform: CSS.Translate.toString(transform),
+    transition,
+    ...(isDragging
+      ? {
+          position: "relative",
+          zIndex: 9999,
+          pointerEvents: "none",
+          boxShadow: "0px 4px 14px 0px rgba(0, 31, 77, 0.25)",
+          borderRadius: "12px",
+        }
+      : {}),
+  };
+
+  const contextValue = useMemo<RowContextProps>(
+    () => ({ setActivatorNodeRef, listeners }),
+    [setActivatorNodeRef, listeners]
+  );
+
+  return (
+    <RowContext.Provider value={contextValue}>
+      <tr {...props} ref={setNodeRef} style={style} {...attributes} />
+    </RowContext.Provider>
+  );
+};
 
 interface Props {
   dataSource: SlidesType[];
+  isActiveData: SlidesType[];
   setDataSource: Dispatch<SetStateAction<SlidesType[]>>;
   setSlider: Dispatch<SetStateAction<SlidesType | boolean>>;
-  setFilters: Dispatch<SetStateAction<object>>;
   languages?: LanguagesType[];
-  slider_delete?: boolean;
-  meta: Meta;
-  slider_edit?: boolean;
 }
 
 const TableSlides = ({
   dataSource,
   setDataSource = () => {},
-  setFilters = () => {},
   setSlider = () => {},
-  languages,
-  slider_edit,
-  meta,
+  languages = [],
+  isActiveData,
 }: Props) => {
+  const [api, contextHolder] = notification.useNotification();
   const [isDrag, setIsDrag] = useState(false);
   const [activeStatus, setActiveStatus] = useState(0);
-  const [overStatus, setOverSatus] = useState(0);
-  const { mutate } = useSortSlide((data) => {
-    notificationSuccess("Success", data?.data?.message);
-    setIsDrag(false);
+  const [overStatus, setOverStatus] = useState(0);
+  const { mutate } = useMutation({
+    mutationFn: slidesApi.sortSlides,
+    onSuccess: (data) => {
+      api.success({
+        message: `Success`,
+        description: data?.data?.message,
+        placement: "topRight",
+      });
+      setIsDrag(false);
+    },
+    onError: (e) => {
+      console.log(e, "error");
+    },
   });
 
   const onDragEnd = ({ active, over }: DragEndEvent) => {
@@ -89,13 +129,13 @@ const TableSlides = ({
     if (active.id !== over?.id) {
       setDataSource((previous) => {
         const activeIndex = previous.findIndex((i) => {
-          setActiveStatus(i.is_active);
+          setActiveStatus(i?.is_active);
           localActiveStatus = i?.is_active;
           return i?.is_active && i.id === active.id;
         });
 
         const overIndex = previous.findIndex((i) => {
-          setOverSatus(i.is_active);
+          setOverStatus(i.is_active);
           localOverStatus = i?.is_active;
           return i?.is_active && i.id === over?.id;
         });
@@ -109,12 +149,9 @@ const TableSlides = ({
   };
 
   useEffect(() => {
-    const newData: object[] = [];
+    const newData: { id: string | number; priority: number }[] = []; // Explicitly typed array
     if (isDrag && activeStatus && overStatus) {
-      const isActiveData = dataSource?.filter(
-        (el: SlidesType) => el?.is_active
-      );
-      dataSource.forEach((el: SlidesType, i) => {
+      dataSource.forEach((el, i) => {
         if (el.is_active) {
           newData.push({
             id: el.id,
@@ -127,109 +164,146 @@ const TableSlides = ({
   }, [isDrag, activeStatus, overStatus]);
 
   const openModal = (item: SlidesType, index?: number) => {
-    const newData = { ...item, language_id: index ? index + 1 : index };
+    const newData = { ...item, language_id: index };
     setSlider(newData);
   };
 
-  const newData = dataSource?.map((el: SlidesType, i) => ({
-    key: el?.id,
-    title: (
-      <div className="flex">
-        {el?.is_active ? (
-          <span className="text-oxford-blue-200">
-            {i < 9 ? "0" + (i + 1) : i + 1}
-          </span>
-        ) : (
-          ""
-        )}
-        <span className={`${el?.is_active ? "ml-[12px]" : "ml-[28px]"}`}>
-          {el?.title}
-        </span>
-      </div>
-    ),
-    language: (
-      <div className="flex gap-[10px]">
-        {languages?.length
-          ? languages?.map((ml, index) => (
-              <img
-                alt={ml.code}
-                key={ml.id}
-                src={ml.flag}
-                onClick={() => openModal(el, index)}
-                style={{
-                  opacity: el?.slidersMl?.find((d) => d.language_id === ml.id)
-                    ? "1"
-                    : "0.5",
-                  cursor: "pointer",
-                }}
-                width="24"
-              />
-            ))
-          : ""}
-      </div>
-    ),
-
-    created_date: (
-      <div className="flex gap-[4px]">
-        <span>
-          {el?.created_at
-            ? dayjs(el?.created_at).format("DD.MM.YYYY") + ","
-            : ""}
-        </span>
-        <span className="text-oxford-blue-200">
-          {el?.created_at ? dayjs(el?.created_at).format("HH:mm") : ""}
-        </span>
-      </div>
-    ),
-    updated_date: (
-      <div className="flex gap-[4px]">
-        <span>
-          {el?.updated_at
-            ? dayjs(el?.updated_at).format("DD.MM.YYYY") + ","
-            : ""}
-        </span>
-        <span className="text-oxford-blue-200">
-          {el?.updated_at ? dayjs(el?.updated_at).format("HH:mm") : "-"}
-        </span>
-      </div>
-    ),
-    status: (
-      <Tag color={el?.is_active ? "green" : "red"}>
-        {el?.is_active ? "Active" : "Inactive"}
-      </Tag>
-    ),
-    edit: slider_edit ? <EditIcon onClick={() => openModal(el)} /> : null,
-  }));
-
   return (
-    <div className={"table_wrapper"}>
-      <DndContext modifiers={[restrictToVerticalAxis]} onDragEnd={onDragEnd}>
-        <SortableContext
-          // rowKey array
-          items={dataSource.map((d: SlidesType) => d.id)}
-          strategy={verticalListSortingStrategy}
-        >
-          <Table
-            bordered
-            components={{
-              body: {
-                row: Row,
-              },
-            }}
-            meta={meta}
-            rowKey="key"
-            columns={columns || []}
-            dataSource={newData}
-            scroll={{ y: "54vh" }}
-            pagination={false}
-            onChangePage={(page) => setFilters((p) => ({ ...p, page }))}
-            onChangePerPage={(per_page) =>
-              setFilters((p) => ({ ...p, per_page }))
-            }
-          />
-        </SortableContext>
-      </DndContext>
-    </div>
+    <DndContext modifiers={[restrictToVerticalAxis]} onDragEnd={onDragEnd}>
+      {contextHolder}
+      <SortableContext
+        items={dataSource.map((i) => i.id)}
+        strategy={verticalListSortingStrategy}
+      >
+        <Table<SlidesType>
+          bordered
+          rowKey="id"
+          components={{ body: { row: Row } }}
+          columns={[
+            {
+              key: "sort",
+              width: 50,
+              render: (_, record) => (
+                <div>{record?.is_active ? <DragHandle /> : null}</div>
+              ),
+            },
+            {
+              title: "Title",
+              dataIndex: "title",
+              key: "title",
+              render: (_, record, index) => (
+                <div className="flex">
+                  {record?.is_active ? (
+                    <h1 className="text-info text-oxford-blue-200">
+                      {index < 9 ? "0" + (index + 1) : index + 1}
+                    </h1>
+                  ) : null}
+                  <h1
+                    className={`text-info ${
+                      record?.is_active ? "ml-[12px]" : "ml-[28px]"
+                    }`}
+                  >
+                    {record?.title || ""}
+                  </h1>
+                </div>
+              ),
+            },
+            {
+              title: "Language",
+              dataIndex: "language",
+              key: "language",
+              render: (_, record) => (
+                <div className="flex">
+                  {languages.map((ml) => (
+                    <img
+                      key={ml.id}
+                      alt={ml.code}
+                      src={ml.flag}
+                      onClick={() => openModal(record, ml.id)}
+                      style={{
+                        marginRight: "10px",
+                        opacity: record.slidersMl?.some(
+                          (d) => d.language_id === ml.id
+                        )
+                          ? 1
+                          : 0.2,
+                        cursor: "pointer",
+                      }}
+                      width="24"
+                    />
+                  ))}
+                </div>
+              ),
+            },
+            {
+              title: "Created Date",
+              dataIndex: "created_date",
+              key: "created_date",
+              render: (_, record) => (
+                <div className="flex">
+                  <h1 className="text-info">
+                    {record?.created_at
+                      ? dayjs(record?.created_at).format("DD.MM.YYYY") + ","
+                      : ""}
+                  </h1>
+                  <h1 className="text-info ml-[4px]">
+                    {record?.created_at
+                      ? dayjs(record?.created_at).format("HH:mm")
+                      : ""}
+                  </h1>
+                </div>
+              ),
+            },
+            {
+              title: "Updated Date",
+              dataIndex: "updated_date",
+              key: "updated_date",
+              render: (_, record) => (
+                <div className="flex">
+                  <h1 className="text-info">
+                    {record?.updated_at
+                      ? dayjs(record?.updated_at).format("DD.MM.YYYY") + ","
+                      : ""}
+                  </h1>
+                  <h1 className="text-info ml-[4px]">
+                    {record?.updated_at
+                      ? dayjs(record?.updated_at).format("HH:mm")
+                      : "-"}
+                  </h1>
+                </div>
+              ),
+            },
+            {
+              title: "Status",
+              dataIndex: "status",
+              key: "status",
+              render: (_, record) => (
+                <Tag
+                  className="ml-[4px]"
+                  color={record?.is_active ? "green" : "red"}
+                >
+                  {record?.is_active ? "Active" : "Inactive"}
+                </Tag>
+              ),
+            },
+            {
+              title: " ",
+              dataIndex: "edit",
+              key: "edit",
+              width: 70,
+              render: (_, record) => (
+                <EditIcon
+                  style={{ cursor: "pointer" }}
+                  onClick={() => openModal(record)}
+                />
+              ),
+            },
+          ]}
+          dataSource={dataSource}
+        />
+      </SortableContext>
+    </DndContext>
   );
 };
+
 export default TableSlides;

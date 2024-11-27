@@ -4,10 +4,10 @@ import { SlidesType } from "@repo/types/src/marketing-content";
 import { useFetchLanguages } from "../../hooks/banners/useFetchLanguages.hook";
 import { Button } from "antd";
 import { Loader } from "../../components/loader/Loader";
-import TableSlides from "./TableSlides";
 import { NotFound } from "../../components/table/NotFound";
 import { NoContentResultIcon } from "../../assets/icons/NoContentResultIcon";
 import CreateSlideDrawer from "./CreateSlide";
+import TableSlides from "./TableSlides";
 
 interface Props {
   slider_delete?: boolean;
@@ -23,12 +23,18 @@ export default function Slides({
   const [filters, setFilters] = useState<object>({});
   const { slides = [], refetch, isLoading, meta } = useFetchSlides(filters);
   const [dataSource, setDataSource] = useState<SlidesType[]>([]);
+  const [isActiveData, setIsActiveData] = useState<SlidesType[]>([]);
   const [slider, setSlider] = useState<boolean | SlidesType>(false);
   const { languages } = useFetchLanguages();
 
   useEffect(() => {
     if (slides?.length) setDataSource(slides);
-  }, [slides]);
+    slides?.map((el: any) => {
+      if (el?.is_active) {
+        setIsActiveData((prevState) => [...prevState, el]);
+      }
+    });
+  }, [slides?.length]);
 
   return (
     <>
@@ -36,7 +42,7 @@ export default function Slides({
 
       {dataSource?.length && slider_create ? (
         <Button
-          className="mb-[16px] bg-oxford-blue-300 text-white"
+          className="mb-[16px] bg-oxford-blue-300 text-white hover:!bg-oxford-blue-300 hover:!text-white hover:!border-oxford-blue-300"
           type="default"
           onClick={() => setSlider(true)}
         >
@@ -48,16 +54,15 @@ export default function Slides({
       {isLoading ? (
         <Loader />
       ) : dataSource?.length > 0 ? (
-        <TableSlides
-          dataSource={dataSource}
-          setDataSource={setDataSource}
-          setSlider={setSlider}
-          languages={languages}
-          slider_delete={slider_delete}
-          meta={meta}
-          slider_edit={slider_edit}
-          setFilters={setFilters}
-        />
+        <div className="flex flex-col gap-[16px]">
+          <TableSlides
+            dataSource={dataSource}
+            setDataSource={setDataSource}
+            setSlider={setSlider}
+            languages={languages}
+            isActiveData={isActiveData}
+          />
+        </div>
       ) : (
         <NotFound
           icon={<NoContentResultIcon />}

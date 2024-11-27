@@ -52,9 +52,9 @@ export default function ActionSearch({ setFilter }: Props) {
   };
   return (
     <Form layout="vertical" onFinish={onFinish} form={form}>
-      <div className="flex items-center gap-[16px]">
-        <Space.Compact style={{ alignItems: "flex-end" }}>
-          <Form.Item label={"Search by"} name={"subject_type"}>
+      <div className="flex items-end gap-[16px]">
+        <Space.Compact className="flex items-end">
+          <Form.Item label="Search by" name="subject_type">
             <Select
               defaultValue="All"
               style={{ width: 180 }}
@@ -67,8 +67,8 @@ export default function ActionSearch({ setFilter }: Props) {
             />
           </Form.Item>
           <Form.Item
-            name={"subject_id"}
-            style={{ width: 290 }}
+            name="subject_id"
+            className="w-[290px]"
             rules={[
               {
                 required: Boolean(searchBy),
@@ -89,8 +89,8 @@ export default function ActionSearch({ setFilter }: Props) {
                   searchBy === "Order"
                     ? "Tracking code"
                     : searchBy === "Recipient"
-                      ? "User Code"
-                      : "Id"
+                    ? "User Code"
+                    : "Id"
                 }`}
                 disabled={!searchBy}
                 onKeyDown={(e) => {
@@ -103,9 +103,9 @@ export default function ActionSearch({ setFilter }: Props) {
           </Form.Item>
         </Space.Compact>
 
-        <Form.Item name={"event"}>
+        <Form.Item name="event" className="w-[250px]">
           <Select
-            placeholder={"All Actions"}
+            placeholder="All Actions"
             options={[
               { value: null, label: "All Actions" },
               {
@@ -118,17 +118,13 @@ export default function ActionSearch({ setFilter }: Props) {
               },
               {
                 value: "deleted",
-                label: (
-                  <Tag color="red">
-                    <Tag color="blue">Updated</Tag>
-                  </Tag>
-                ),
+                label: <Tag color="red">Deleted</Tag>,
               },
             ]}
           />
         </Form.Item>
 
-        <Form.Item name={"date"}>
+        <Form.Item name="date">
           <DatePicker.RangePicker
             onChange={(val) => {
               if (!val) {
@@ -143,13 +139,13 @@ export default function ActionSearch({ setFilter }: Props) {
         </Form.Item>
 
         <Form.Item>
-          <Button htmlType="reset" onClick={() => reset()} type={"default"}>
+          <Button htmlType="reset" onClick={() => reset()} type="default">
             Reset
           </Button>
         </Form.Item>
 
         <Form.Item>
-          <Button icon={<SearchIcon />} htmlType={"submit"} type="primary">
+          <Button icon={<SearchIcon />} htmlType="submit" type="primary">
             Search
           </Button>
         </Form.Item>

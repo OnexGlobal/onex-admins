@@ -32,13 +32,16 @@ body {
     align-items: center !important;
 }
 
-.table_wrapper thead .onex-table-cell {
+table thead .onex-table-cell {
     white-space: nowrap !important;
 }
 
 table thead tr .onex-table-cell {
     background: #e7e9ec !important
+}
 
+table .onex-table-cell {
+    vertical-align: top;
 }
 
 

@@ -4,6 +4,7 @@ import { Dispatch, FC, SetStateAction, useState } from "react";
 import { ActionsHistoryType } from "@repo/types/src/actions-history";
 import dayjs from "dayjs";
 import Table from "../../components/table/Table";
+
 interface Props {
   meta: Meta;
   actionList: ActionsHistoryType[];
@@ -45,10 +46,11 @@ export const TableActions: FC<Props> = ({ setFilter, actionList, meta }) => {
     },
   ];
   const dataSource = actionList?.map((el, i: number) => {
-    const str = el?.log_name?.split(" ")?.pop() || "";
+    let str = el?.log_name?.split(" ")?.pop() || "";
+    str = str?.charAt(0)?.toUpperCase() + str?.slice(1);
+    let event = el?.event?.charAt(0)?.toUpperCase() + el?.event?.slice(1);
 
     const subject_type = el?.subject_type?.split("\\")?.pop() || "";
-
     const desc = !el?.properties?.old
       ? ""
       : Object.entries(el?.properties?.old).map(([key, val], i) => {
@@ -71,14 +73,15 @@ export const TableActions: FC<Props> = ({ setFilter, actionList, meta }) => {
       changed_by: (
         <div className="flex flex-col">
           <span>{el?.causer?.user_info}</span>
-          <Tag color={str === "admin" ? "blue" : "orange"}>{str}</Tag>
+          <Tag
+            className="mt-[6px] w-max"
+            color={str === "Admin" ? "blue" : "orange"}
+          >
+            {str}
+          </Tag>
         </div>
       ),
-      type: el?.morph_to?.model ? (
-        <Tag color="blue">{el?.morph_to?.model}</Tag>
-      ) : (
-        ""
-      ),
+      type: el?.morph_to?.model ? <Tag>{el?.morph_to?.model}</Tag> : "",
       type_id: el?.subject_id,
       description: (
         <>
@@ -114,11 +117,11 @@ export const TableActions: FC<Props> = ({ setFilter, actionList, meta }) => {
             el?.event === "updated"
               ? "blue"
               : el?.event === "created"
-                ? "green"
-                : "red"
+              ? "green"
+              : "red"
           }
         >
-          {el?.event}
+          {event}
         </Tag>
       ),
       updated_date: (
@@ -137,6 +140,7 @@ export const TableActions: FC<Props> = ({ setFilter, actionList, meta }) => {
   });
   return (
     <Table
+      className="w-full"
       dataSource={dataSource}
       columns={columns}
       meta={meta}

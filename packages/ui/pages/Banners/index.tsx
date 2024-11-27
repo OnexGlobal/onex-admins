@@ -30,7 +30,7 @@ export default function Banners({
       {banners?.length > 0 && header_message_create ? (
         <Button
           type="default"
-          className="bg-oxford-blue-300 mb-[16px] text-white"
+          className="bg-oxford-blue-300 mb-[16px] text-white hover:!bg-oxford-blue-300 hover:!text-white hover:!border-oxford-blue-300"
           onClick={() => setBanner(true)}
         >
           Create header messages

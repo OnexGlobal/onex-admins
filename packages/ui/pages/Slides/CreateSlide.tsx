@@ -129,7 +129,7 @@ export default function CreateSlideDrawer({
 
   return (
     <Drawer
-      styles={{ header: { display: "none" } }}
+      styles={{ header: { display: "none" }, body: { background: "#f9fafb" } }}
       onClose={() => closeEditModal()}
       open={!!slider}
       width="1112px"
@@ -155,6 +155,7 @@ export default function CreateSlideDrawer({
                     setOpen(true);
                   }}
                   type="default"
+                  className="hover:!border-oxford-blue-50 hover:!text-black"
                 >
                   Delete Slide
                 </Button>
@@ -175,11 +176,14 @@ export default function CreateSlideDrawer({
           ) : (
             ""
           )}
-          <Button danger onClick={closeEditModal} type="primary">
+          <Button
+            onClick={closeEditModal}
+            className="bg-red-50 text-red-500 border-red-50 hover:!bg-red-50 hover:!text-red-500 hover:!border-red-50"
+          >
             Cancel
           </Button>
           <Button htmlType="submit" type="primary">
-            {slider ? "Save" : "Create"}
+            {typeof slider === "object" ? "Save" : "Create"}
           </Button>
         </div>
 
@@ -200,7 +204,7 @@ export default function CreateSlideDrawer({
                   value={languageId}
                 />
 
-                <div className={"_paper"}>
+                <div className={"rounded-[12px] bg-white p-[16px]"}>
                   <Form.Item
                     name={[languageId - 1, "image"]}
                     rules={[

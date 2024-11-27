@@ -22,6 +22,7 @@ import AlertCircleIcon from "../../assets/icons/AlertCircleIcon";
 import TabList from "../../components/tabs/TabList";
 import { CopyLink } from "../../assets/icons/CopyLink";
 import { DeactivateModal } from "../../components/modals/DeactivateModal";
+
 interface Props {
   setBanner: Dispatch<SetStateAction<boolean | BannersType>>;
   refetch: Refetch;
@@ -163,7 +164,7 @@ export default function CreateBannerDrawer({
       onClose={handelClosed}
       open={!!banner}
       width="1112px"
-      styles={{ header: { display: "none" } }}
+      styles={{ header: { display: "none" }, body: { background: "#f9fafb" } }}
     >
       <Form
         initialValues={bannerInitialValue}
@@ -172,39 +173,47 @@ export default function CreateBannerDrawer({
         layout="vertical"
         onFinish={createBanner}
       >
-        <div className="flex gap-[16px] items-center mb-[19px]">
+        <div className="flex justify-between gap-[16px] items-center mb-[19px]">
           <span className="text-[22px] font-[500]">
             {typeof banner === "object" ? "Edit header" : "Create header"}
           </span>
 
-          {typeof banner === "object" ? (
-            <>
-              <Button
-                type="default"
-                icon={<AlertCircleIcon />}
-                onClick={() => {
-                  setOpen(true);
-                }}
-              >
-                Delete Banner
-              </Button>
-              <span>{status ? "Active" : "Inactive"}</span>
+          <div className="flex gap-x-[16px] items-center">
+            {typeof banner === "object" ? (
+              <>
+                <Button
+                  type="default"
+                  className="hover:!border-oxford-blue-50 hover:!text-black"
+                  icon={<AlertCircleIcon />}
+                  onClick={() => {
+                    setOpen(true);
+                  }}
+                >
+                  Delete Banner
+                </Button>
+                <span>{status ? "Active" : "Inactive"}</span>
 
-              <Switch
-                loading={isActivateLoading}
-                checked={status}
-                onChange={(val) => {
-                  mutateIsActive({ id: banner?.id, is_active: val });
-                }}
-              />
-            </>
-          ) : null}
-          <Button type="primary" danger onClick={handelClosed} htmlType="reset">
-            Cancel
-          </Button>
-          <Button type="primary" htmlType="submit">
-            Save
-          </Button>
+                <Switch
+                  loading={isActivateLoading}
+                  checked={status}
+                  onChange={(val) => {
+                    mutateIsActive({ id: banner?.id, is_active: val });
+                  }}
+                />
+              </>
+            ) : null}
+
+            <Button
+              className="bg-red-50 text-red-500 border-red-50 hover:!bg-red-50 hover:!text-red-500 hover:!border-red-50"
+              onClick={handelClosed}
+              htmlType="reset"
+            >
+              Cancel
+            </Button>
+            <Button type="primary" htmlType="submit">
+              Save
+            </Button>
+          </div>
         </div>
 
         {banner ? (
@@ -275,8 +284,7 @@ export default function CreateBannerDrawer({
                         Add
                       </Button>
                       <Button
-                        danger
-                        type="primary"
+                        className="bg-red-50 text-red-500 border-red-50 hover:!bg-red-50 hover:!text-red-500 hover:!border-red-50"
                         onClick={() => {
                           setAddLink(false);
                           setManualLink("");
