@@ -15,13 +15,8 @@ interface Props {
   slider_edit?: boolean;
 }
 
-export default function Slides({
-  slider_delete,
-  slider_create,
-  slider_edit,
-}: Props) {
-  const [filters, setFilters] = useState<object>({});
-  const { slides = [], refetch, isLoading, meta } = useFetchSlides(filters);
+export default function Slides({ slider_delete, slider_create }: Props) {
+  const { slides = [], refetch, isLoading } = useFetchSlides();
   const [dataSource, setDataSource] = useState<SlidesType[]>([]);
   const [isActiveData, setIsActiveData] = useState<SlidesType[]>([]);
   const [slider, setSlider] = useState<boolean | SlidesType>(false);

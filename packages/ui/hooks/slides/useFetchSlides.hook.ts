@@ -1,10 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
 import { slidesApi } from "../../services/slides-sort";
 
-export const useFetchSlides = (params: object) => {
+export const useFetchSlides = () => {
   const { isLoading, refetch, data } = useQuery({
-    queryKey: ["get-slides", params],
-    queryFn: () => slidesApi.fetchSlides(params),
+    queryKey: ["get-slides"],
+    queryFn: () => slidesApi.fetchSlides(),
     staleTime: Infinity,
     select: ({ data }) => {
       return {

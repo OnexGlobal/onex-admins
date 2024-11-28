@@ -19,8 +19,8 @@ export const slidesApi = {
   async sortSlides(data: object) {
     return await axios.post("/sliders/sort-priority", data);
   },
-  async fetchSlides(params: object) {
-    return await axios.get("/sliders", { params });
+  async fetchSlides() {
+    return await axios.get("/sliders");
   },
 
   async isActiveSlide({
