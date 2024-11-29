@@ -1,5 +1,5 @@
-import { Dispatch, FC, SetStateAction, useEffect } from "react";
-import { Button, Form, FormInstance, Input, Select, Tabs } from "antd";
+import { Dispatch, FC, SetStateAction, useEffect, useState } from "react";
+import { Button, Form, FormInstance, Input, Select } from "antd";
 import apple from "../../assets/images/apple.svg";
 import android from "../../assets/images/android.svg";
 import { useFetchLanguages } from "../../hooks/banners/useFetchLanguages.hook";
@@ -8,10 +8,16 @@ import { LanguagesType } from "@repo/types/src/marketing-content";
 import { Refetch } from "@repo/types";
 import { appVersionsApi } from "../../services/app-versions";
 import DangerousIcon from "../../assets/icons/DangerousIcon";
-import check from "../../assets/images/check-circle.svg";
+import { useCheckEmptyArrItem } from "../../hooks/helpers/useCheckEmptyArrItem";
+import TabList from "../../components/tabs/TabList";
+import { initialValuesAppDetails } from "./initial-values-app-details";
 
 interface FormValues {
-  details: { title: string; description: string }[];
+  details: {
+    title: string;
+    description: string;
+    language_id: any;
+  }[];
   update_type: string | string[];
   version: number | string;
   os: string;
@@ -37,6 +43,9 @@ const CreateEdit: FC<Props> = ({
 }) => {
   const isEdit = Boolean(data?.id);
   const { languages } = useFetchLanguages();
+  const [languageId, setLanguageId] = useState<number>(
+    typeof data === "object" && data?.language_id ? data?.language_id : 1
+  );
 
   const handleSubmit = (values: FormValues) => {
     const afterSave = () => {
@@ -53,6 +62,7 @@ const CreateEdit: FC<Props> = ({
     const details = values.details.filter(
       (item) => item.title && item.description
     );
+
     for (let update_type of values.update_type) {
       if (update_type === "all_update_types") {
         form.force_update = true;
@@ -69,6 +79,8 @@ const CreateEdit: FC<Props> = ({
       appVersionsApi.createVersion(form).then(afterSave);
     }
   };
+  const appWatch = Form.useWatch("details", form);
+  const isTrueAllItems = useCheckEmptyArrItem(appWatch);
   const update_type: string[] = [];
   if (data?.id) {
     if (data?.force_update) update_type.push("force_update");
@@ -89,21 +101,27 @@ const CreateEdit: FC<Props> = ({
     } else {
       form.setFieldsValue({
         update_type: [],
-        details: [],
+        details: initialValuesAppDetails,
         version: "",
         os: "",
       });
     }
+    if (data?.language_id) {
+      setLanguageId(data.language_id);
+      form.setFieldValue(
+        ["details", data?.language_id - 1, "language_id"],
+        data?.language_id
+      );
+    }
   }, [isEdit]);
+
   return (
     <Form layout="vertical" onFinish={handleSubmit} form={form}>
       <>
         <div className="flex items-center justify-between mb-[24px]">
-          <div className="page-title">
-            <span className="text-[24px] block text-black font-[500]">
-              {isEdit ? "Edit Version" : "Create Version"}
-            </span>
-          </div>
+          <h1 className="text-title">
+            {isEdit ? "Edit Version" : "Create Version"}
+          </h1>
           <div className="flex items-center gap-[16px]">
             {isEdit && (
               <Button
@@ -111,11 +129,10 @@ const CreateEdit: FC<Props> = ({
                 onClick={() => {
                   setOpenDeleteModal(data?.id);
                 }}
-                htmlType="button"
-                type="primary"
-                danger
+                type="default"
+                className="hover:!border-oxford-blue-50 hover:!text-black"
               >
-                Delete
+                Delete version
               </Button>
             )}
             <Button
@@ -123,8 +140,8 @@ const CreateEdit: FC<Props> = ({
                 form.resetFields();
                 setOpenDrawer(undefined);
               }}
+              className="bg-red-50 text-red-500 border-red-50 hover:!bg-red-50 hover:!text-red-500 hover:!border-red-50"
               htmlType="reset"
-              type="default"
             >
               Cancel
             </Button>
@@ -133,7 +150,7 @@ const CreateEdit: FC<Props> = ({
             </Button>
           </div>
         </div>
-        <div className="_paper flex gap-[16px] mb-[24px]">
+        <div className="rounded-[12px] bg-white pt-[16px] pl-[16px] pr-[16px] flex gap-[16px] mb-[24px]">
           <Form.Item
             label="Version"
             name="version"
@@ -194,52 +211,65 @@ const CreateEdit: FC<Props> = ({
             />
           </Form.Item>
         </div>
-        <Tabs
-          style={{ marginBottom: 25 }}
-          items={languages?.map((language, index) => {
-            return {
-              key: String(language?.id),
-              label: (
-                <div className="flex items-center">
-                  <div
-                    className={
-                      isEdit &&
-                      data?.apiVersionsMl?.some(
-                        (item) => language?.id === item.language_id
-                      )
-                        ? "with-circle"
-                        : "with-circle-none"
-                    }
+        <Form.List name={"details"}>
+          {() => {
+            return (
+              <div>
+                <TabList
+                  data={languages}
+                  isTrueAllItems={isTrueAllItems}
+                  onChange={(key) => {
+                    setLanguageId(+key);
+                    form.setFieldValue(
+                      ["details", +key - 1, "language_id"],
+                      key
+                    );
+                  }}
+                  value={languageId}
+                />
+
+                <div className={"rounded-[12px] bg-white p-[16px]"}>
+                  <Form.Item
+                    name={[languageId - 1, "title"]}
+                    label="Slide title"
+                    rules={[
+                      {
+                        required: true,
+                        message: "Missing Title.",
+                      },
+                    ]}
                   >
-                    <img src={language?.flag} alt="" />
-                    <img src={check} alt="" className="circle" />
+                    <Input
+                      style={{ minHeight: "52px" }}
+                      placeholder={"Slide title"}
+                      maxLength={32}
+                      showCount={true}
+                    />
+                  </Form.Item>
+                  <div style={{ margin: "32px 0 0 0" }}>
+                    <Form.Item
+                      name={[languageId - 1, "description"]}
+                      label="Description"
+                      rules={[
+                        {
+                          required: true,
+                          message: "Missing Description.",
+                        },
+                      ]}
+                    >
+                      <Input
+                        style={{ minHeight: "52px" }}
+                        placeholder={"Description"}
+                        maxLength={100}
+                        showCount={true}
+                      />
+                    </Form.Item>
                   </div>
-                  <p className="pl-[7px] text-[14px] font-[500] text-oxford-blue-400">
-                    {language?.name}
-                  </p>
                 </div>
-              ),
-              children: (
-                <div className="title-box">
-                  <Form.Item
-                    hidden
-                    name={["details", index, "language_id"]}
-                    initialValue={`${language.id}`}
-                  />
-                  <Form.Item label="Title" name={["details", index, "title"]}>
-                    <Input placeholder="Version" />
-                  </Form.Item>
-                  <Form.Item
-                    label="Description"
-                    name={["details", index, "description"]}
-                  >
-                    <Input placeholder="Description" />
-                  </Form.Item>
-                </div>
-              ),
-            };
-          })}
-        />
+              </div>
+            );
+          }}
+        </Form.List>
       </>
     </Form>
   );

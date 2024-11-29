@@ -108,7 +108,10 @@ export default function ActionsHistory() {
         />
       </>
       <Drawer
-        styles={{ header: { display: "none" } }}
+        styles={{
+          header: { display: "none" },
+          body: { background: "#f9fafb" },
+        }}
         open={!!openDrawer}
         width="694px"
         onClose={() => closeModal()}

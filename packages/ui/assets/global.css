@@ -64,3 +64,18 @@ table .onex-table-cell {
     top: -63px;
     right: 20px;
 }
+
+
+.with-circle {
+    position: relative;
+}
+
+.with-circle .circle {
+    position: absolute;
+    bottom: 0;
+    right: -5px;
+}
+
+.with-circle-none .circle {
+    display: none;
+}

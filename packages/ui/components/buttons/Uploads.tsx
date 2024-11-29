@@ -49,7 +49,6 @@ export const FileUpload = ({
   }, []);
 
   const handleChange: UploadProps["onChange"] = ({ fileList }) => {
-    console.log("Aliyun OSS:", fileList);
     onChange?.([...fileList]);
   };
 
