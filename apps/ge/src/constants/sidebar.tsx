@@ -20,6 +20,8 @@ import shops_icon from "../assets/images/shops.svg";
 import logout_icon from "../assets/images/log-out-icon.svg";
 import onex_logo from "../assets/images/onex_logo_closed.svg";
 import app_versions from "../assets/images/api-versions.svg";
+import consignment_icon from "../assets/images/consignment.svg";
+
 import { MenuProps } from "antd";
 
 type MenuItem = Required<MenuProps>["items"][number];
@@ -39,6 +41,7 @@ export const sidebar = (permissions: Record<string, boolean>): MenuItem[] => {
     shop_view,
     warehouse_view,
     api_version_view,
+    parcel_view,
   } = permissions;
 
   return [
@@ -119,6 +122,12 @@ export const sidebar = (permissions: Record<string, boolean>): MenuItem[] => {
           style: order_view ? undefined : { display: "none" },
         },
       ],
+    },
+    {
+      key: "/consignment",
+      label: "Consignment",
+      icon: <img src={consignment_icon} alt="Consignment" />,
+      style: parcel_view ? undefined : { display: "none" },
     },
     {
       key: "/finances",

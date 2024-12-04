@@ -31,3 +31,4 @@ export { default as Shops } from "./pages/Shops";
 export { default as AppVersions } from "./pages/AppVersions";
 export { default as SignIn } from "./pages/sign-in/intex";
 export { default as CustomerSingle } from "./pages/CustomerSingle";
+export { default as Consignment } from "./pages/Consignment";

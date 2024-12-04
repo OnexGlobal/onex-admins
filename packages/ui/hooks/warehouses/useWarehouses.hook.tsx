@@ -7,7 +7,7 @@ export default function useGetWarehouses() {
     queryKey: ["get-warehouses"],
     queryFn: () => warehouseApi.getWareHouses(),
     staleTime: Infinity,
-    select: ({ data }) =>
+    select: ({ data }): (WarehouseType & { value: number })[] =>
       data.data.data?.map((warehouse: WarehouseType, i: number) => ({
         key: i,
         value: warehouse.id,

@@ -5,6 +5,7 @@ import {
   Banners,
   Blogs,
   Bonus,
+  Consignment,
   Customers,
   CustomerSingle,
   Dashboard,
@@ -58,6 +59,8 @@ const AuthRoutes = () => {
     shop_create,
     shop_edit,
     shop_delete,
+    parcel_view,
+    parcel_edit,
   } = usePermission();
 
   const permissions = localStorage.getItem("permissions")
@@ -109,6 +112,13 @@ const AuthRoutes = () => {
       path: "/failed-orders",
       component: <OrdersFailed />,
       permission: order_view,
+    },
+    {
+      path: "/consignment",
+      component: (
+        <Consignment parcel_view={parcel_view} parcel_edit={parcel_edit} />
+      ),
+      permission: parcel_view,
     },
     {
       path: "/balance",
